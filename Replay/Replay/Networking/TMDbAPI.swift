@@ -28,7 +28,7 @@ extension TMDbService: TargetType {
     }
 
     var parameters: [String: Any]? {
-        return ["api_key": "YOUR_API_KEY_HERE",
+        return ["api_key": APIKeys.TMDbKey,
                 "append_to_response": "videos,images"]
     }
 
