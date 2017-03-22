@@ -1,0 +1,70 @@
+{
+  "genres": [
+    {
+      "name": "Comedy"
+    },
+    {
+      "name": "Adventure"
+    }
+  ],
+  "homepage": "http://www.google.com",
+  "id": 1,
+  "imdb_id": "tt0110912",
+  "original_language": "en",
+  "original_title": "Title",
+  "overview": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum porttitor eleifend tellus, vitae convallis dolor mattis at. Donec odio orci, ultrices sed neque quis, pretium semper mi. Nulla quis gravida purus. Nam vitae diam eget nibh efficitur mollis. Pellentesque malesuada sed sem ac congue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas euismod mauris lorem, ut rutrum libero pellentesque ut.",
+  "poster_path": "default.jpg",
+  "production_companies": [
+    {
+      "name": "Company A"
+    },
+    {
+      "name": "Company B"
+    }
+  ],
+  "production_countries": [
+    {
+      "iso_3166_1": "US",
+      "name": "United States of America"
+    },
+    {
+      "iso_3166_1": "BR",
+      "name": "Brazil"
+    }    
+  ],
+  "release_date": "2010-07-30",
+  "spoken_languages": [
+    {
+      "name": "English"
+    },
+    {
+      "name": "Portuguese"
+    }
+  ],
+  "videos": {
+    "results": [
+      {
+        "key": "pjTDTmef5-c",
+        "name": "Trailer",
+        "site": "YouTube",
+        "size": 480
+      },
+      {
+        "key": "Sagg08DrO5U",
+        "name": "Gandalf",
+        "site": "YouTube",
+        "size": 360
+      }
+    ]
+  },
+  "images": {
+    "backdrops": [
+      {
+        "file_path": "movieA.jpg"
+      },
+      {
+        "file_path": "movieB.jpg"
+      }
+    ]
+  }
+}
