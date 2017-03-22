@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3B011BC41E81C92500DDA24D /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B011BC31E81C92500DDA24D /* APIKeys.swift */; };
+		3B011BC91E81F12A00DDA24D /* MoyaResponseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B011BC81E81F12A00DDA24D /* MoyaResponseExtension.swift */; };
+		3B011BCB1E81F74A00DDA24D /* JSONAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B011BCA1E81F74A00DDA24D /* JSONAble.swift */; };
 		3B2EC01B1E81276D00435CA9 /* TMDbAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2EC01A1E81276D00435CA9 /* TMDbAPI.swift */; };
 		3BAB454A1E7FEA21009E4E41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAB45491E7FEA21009E4E41 /* AppDelegate.swift */; };
 		3BAB454C1E7FEA21009E4E41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAB454B1E7FEA21009E4E41 /* ViewController.swift */; };
@@ -31,6 +33,8 @@
 /* Begin PBXFileReference section */
 		344B3A25ACA45F5ABB6A3D4F /* Pods-Replay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Replay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Replay/Pods-Replay.debug.xcconfig"; sourceTree = "<group>"; };
 		3B011BC31E81C92500DDA24D /* APIKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		3B011BC81E81F12A00DDA24D /* MoyaResponseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoyaResponseExtension.swift; sourceTree = "<group>"; };
+		3B011BCA1E81F74A00DDA24D /* JSONAble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONAble.swift; sourceTree = "<group>"; };
 		3B2EC01A1E81276D00435CA9 /* TMDbAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDbAPI.swift; sourceTree = "<group>"; };
 		3BAB45461E7FEA21009E4E41 /* Replay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Replay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAB45491E7FEA21009E4E41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +69,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B011BC71E81F10200DDA24D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3B011BC81E81F12A00DDA24D /* MoyaResponseExtension.swift */,
+				3B011BCA1E81F74A00DDA24D /* JSONAble.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		3B2EC0191E81275100435CA9 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +110,7 @@
 		3BAB45481E7FEA21009E4E41 /* Replay */ = {
 			isa = PBXGroup;
 			children = (
+				3B011BC71E81F10200DDA24D /* Utilities */,
 				3B2EC0191E81275100435CA9 /* Networking */,
 				3BAB45491E7FEA21009E4E41 /* AppDelegate.swift */,
 				3BAB454B1E7FEA21009E4E41 /* ViewController.swift */,
@@ -305,7 +319,9 @@
 				3BAB454C1E7FEA21009E4E41 /* ViewController.swift in Sources */,
 				3BAB454A1E7FEA21009E4E41 /* AppDelegate.swift in Sources */,
 				3B011BC41E81C92500DDA24D /* APIKeys.swift in Sources */,
+				3B011BCB1E81F74A00DDA24D /* JSONAble.swift in Sources */,
 				3B2EC01B1E81276D00435CA9 /* TMDbAPI.swift in Sources */,
+				3B011BC91E81F12A00DDA24D /* MoyaResponseExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
