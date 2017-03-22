@@ -2,6 +2,7 @@ use_frameworks!
 
 target 'Replay' do
 	platform :ios, '10.2'
-	pod 'Moya', '~> 8.0.3'
+	pod 'Moya'
+	pod 'SwiftyJSON'
 end
 
