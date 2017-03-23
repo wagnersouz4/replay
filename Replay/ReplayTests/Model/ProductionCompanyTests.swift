@@ -19,8 +19,6 @@ class ProductionCompanyTests: QuickSpec {
             guard let productionCompany = ProductionCompany(json: data) else { return fail() }
 
             expect(productionCompany.name) == name
-
         }
     }
-
 }
