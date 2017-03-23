@@ -16,7 +16,9 @@ class GenreTests: QuickSpec {
         it("should create a Genre from a JSON") {
             let name = "Comedy"
             let data = ["name": name]
+
             guard let genre = Genre(json: data) else { return fail() }
+
             expect(genre.name) == name
         }
     }
