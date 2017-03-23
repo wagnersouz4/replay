@@ -9,12 +9,12 @@
 import Foundation
 import SwiftyJSON
 
+/// Describe the genre of a movie
 struct Genre {
     var name: String
 }
 
 extension Genre: JSONable {
-
     init?(json: [String : Any]) {
         let json = JSON(json)
         guard let name = json["name"].string else { return nil }

@@ -9,12 +9,12 @@
 import Foundation
 import SwiftyJSON
 
+/// Describe the company that has produced the movie
 struct ProductionCompany {
     var name: String
 }
 
 extension ProductionCompany: JSONable {
-
     init?(json: [String : Any]) {
         let json = JSON(json)
         guard let name = json["name"].string else { return nil }

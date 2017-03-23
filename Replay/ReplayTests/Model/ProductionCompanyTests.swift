@@ -8,8 +8,7 @@
 
 import Quick
 import Nimble
-@testable
-import Replay
+@testable import Replay
 
 class ProductionCompanyTests: QuickSpec {
     override func spec() {
