@@ -4,5 +4,9 @@ target 'Replay' do
 	platform :ios, '10.2'
 	pod 'Moya'
 	pod 'SwiftyJSON'
+  	target 'ReplayTests' do
+    		inherit! :search_paths
+    		pod 'Quick'
+    		pod 'Nimble'
+	end
 end
-
