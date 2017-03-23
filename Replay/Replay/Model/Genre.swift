@@ -21,8 +21,5 @@ extension Genre: JSONable {
         self.init(name: name)
     }
 
-    static var typeDescription: String {
-        return "Genre"
-    }
-
+    static var typeDescription: String { return "Genre" }
 }

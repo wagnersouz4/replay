@@ -21,8 +21,5 @@ extension SpokenLanguage: JSONable {
         self.init(name: name)
     }
 
-    static var typeDescription: String {
-        return "SpokenLanguage"
-    }
-
+    static var typeDescription: String { return "SpokenLanguage" }
 }

@@ -23,7 +23,5 @@ extension ProductionCountry: JSONable {
         self.init(name: name, code: code)
     }
 
-    static var typeDescription: String {
-        return "ProductionContry"
-    }
+    static var typeDescription: String { return "ProductionContry" }
 }

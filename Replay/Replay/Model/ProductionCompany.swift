@@ -21,8 +21,5 @@ extension ProductionCompany: JSONable {
         self.init(name: name)
     }
 
-    static var typeDescription: String {
-        return "ProductionCompany"
-    }
-
+    static var typeDescription: String { return "ProductionCompany" }
 }

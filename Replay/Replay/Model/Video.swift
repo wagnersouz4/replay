@@ -36,7 +36,5 @@ extension Video: JSONable {
 
     }
 
-    static var typeDescription: String {
-        return "Video"
-    }
+    static var typeDescription: String { return "Video" }
 }
