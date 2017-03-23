@@ -20,6 +20,8 @@
 		3B2EC01B1E81276D00435CA9 /* TMDbAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2EC01A1E81276D00435CA9 /* TMDbAPI.swift */; };
 		3B43BCEC1E838E3D00FBBB66 /* SpokenLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B43BCEB1E838E3D00FBBB66 /* SpokenLanguage.swift */; };
 		3B43BCEE1E838F3F00FBBB66 /* SpokenLanguageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B43BCED1E838F3F00FBBB66 /* SpokenLanguageTests.swift */; };
+		3B43BCF21E839B2400FBBB66 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B43BCF11E839B2400FBBB66 /* Video.swift */; };
+		3B43BCF41E83A17900FBBB66 /* VideoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B43BCF31E83A17900FBBB66 /* VideoTests.swift */; };
 		3BAB454A1E7FEA21009E4E41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAB45491E7FEA21009E4E41 /* AppDelegate.swift */; };
 		3BAB454C1E7FEA21009E4E41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAB454B1E7FEA21009E4E41 /* ViewController.swift */; };
 		3BAB454F1E7FEA21009E4E41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BAB454D1E7FEA21009E4E41 /* Main.storyboard */; };
@@ -55,6 +57,8 @@
 		3B2EC01A1E81276D00435CA9 /* TMDbAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDbAPI.swift; sourceTree = "<group>"; };
 		3B43BCEB1E838E3D00FBBB66 /* SpokenLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpokenLanguage.swift; sourceTree = "<group>"; };
 		3B43BCED1E838F3F00FBBB66 /* SpokenLanguageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpokenLanguageTests.swift; sourceTree = "<group>"; };
+		3B43BCF11E839B2400FBBB66 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		3B43BCF31E83A17900FBBB66 /* VideoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTests.swift; sourceTree = "<group>"; };
 		3BAB45461E7FEA21009E4E41 /* Replay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Replay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAB45491E7FEA21009E4E41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BAB454B1E7FEA21009E4E41 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 				3B011BD71E837BA200DDA24D /* ProductionCompany.swift */,
 				3B011BDB1E837E9C00DDA24D /* ProductionCountry.swift */,
 				3B43BCEB1E838E3D00FBBB66 /* SpokenLanguage.swift */,
+				3B43BCF11E839B2400FBBB66 /* Video.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -127,6 +132,7 @@
 				3B011BD91E837CA000DDA24D /* ProductionCompanyTests.swift */,
 				3B011BDD1E83806E00DDA24D /* ProductionCountryTests.swift */,
 				3B43BCED1E838F3F00FBBB66 /* SpokenLanguageTests.swift */,
+				3B43BCF31E83A17900FBBB66 /* VideoTests.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -431,6 +437,7 @@
 				3B011BC41E81C92500DDA24D /* APIKeys.swift in Sources */,
 				3B011BCB1E81F74A00DDA24D /* JSONAble.swift in Sources */,
 				3B2EC01B1E81276D00435CA9 /* TMDbAPI.swift in Sources */,
+				3B43BCF21E839B2400FBBB66 /* Video.swift in Sources */,
 				3B43BCEC1E838E3D00FBBB66 /* SpokenLanguage.swift in Sources */,
 				3B011BC91E81F12A00DDA24D /* MoyaResponseExtension.swift in Sources */,
 				3B011BD31E82122B00DDA24D /* Genre.swift in Sources */,
@@ -444,6 +451,7 @@
 				3BAB455F1E7FEA21009E4E41 /* ReplayTests.swift in Sources */,
 				3B011BDE1E83806E00DDA24D /* ProductionCountryTests.swift in Sources */,
 				3B011BD61E824FDE00DDA24D /* GenreTests.swift in Sources */,
+				3B43BCF41E83A17900FBBB66 /* VideoTests.swift in Sources */,
 				3B43BCEE1E838F3F00FBBB66 /* SpokenLanguageTests.swift in Sources */,
 				3B011BDA1E837CA000DDA24D /* ProductionCompanyTests.swift in Sources */,
 			);

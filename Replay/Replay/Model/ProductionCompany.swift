@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-/// Describe the company that has produced the movie
+/// Describe the company that has made the movie
 struct ProductionCompany {
     var name: String
 }
