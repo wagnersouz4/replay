@@ -8,14 +8,7 @@
 
 import Foundation
 
-public protocol JSONable {
-    /// A Failable initializer that will try to create a new instance of the conforming type
-    /// using a json [String: Any object].
-    init?(json: [String: Any])
-
-    /// A computed property describing the conforming type
-    static var typeDescription: String { get }
-}
+public typealias JSONDictionary = [String: Any]
 
 enum JSONAbleError: Error {
     case incompatibleJSON(String)
@@ -28,4 +21,23 @@ extension JSONAbleError: LocalizedError {
             return "The json object is not compatible with the type: \(typeDescription)"
         }
     }
+}
+
+public protocol JSONable {
+    /// A Failable initializer that will try to create a new instance of the conforming type
+    /// using a json [String: JSONDictionary].
+    init?(json: JSONDictionary)
+
+    /// A computed property describing the conforming type
+    static var typeDescription: String { get }
+}
+
+public func createJSONArray<T>(using data: Any?) -> [T]? where T: JSONable {
+    guard let jsonArray = data as? [JSONDictionary] else { return nil }
+    var genres = [T]()
+    for json in jsonArray {
+        guard let genre = T(json: json) else { return nil }
+        genres.append(genre)
+    }
+    return genres
 }

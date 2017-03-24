@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 /// Describe a country where the movie was produced
 struct ProductionCountry {
@@ -16,10 +15,9 @@ struct ProductionCountry {
 }
 
 extension ProductionCountry: JSONable {
-    init?(json: [String : Any]) {
-        let json = JSON(json)
-        guard let name = json["name"].string,
-            let code = json["iso_3166_1"].string else { return nil }
+    init?(json: JSONDictionary) {
+        guard let name = json["name"] as? String,
+            let code = json["iso_3166_1"] as? String else { return nil }
         self.init(name: name, code: code)
     }
 

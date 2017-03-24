@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 /// Videos related to a movie
 struct Video {
@@ -23,15 +22,25 @@ struct Video {
     var url: String? {
         return (site == "Youtube") ? "https://youtube.com/watch?v=\(key)" : nil
     }
+
+    static func extract(from data: Any?) -> [Video]? {
+        guard let jsonData = data as? JSONDictionary,
+            let jsonArray = jsonData["results"] as? [JSONDictionary] else { return nil }
+        var videos = [Video]()
+        for json in jsonArray {
+            guard let video = Video(json: json) else { return nil }
+            videos.append(video)
+        }
+        return videos
+    }
 }
 
 extension Video: JSONable {
-    init?(json: [String : Any]) {
-        let json = JSON(json)
-        guard let key = json["key"].string,
-            let name = json["name"].string,
-            let site = json["site"].string,
-            let size = json["size"].int else { return nil }
+    init?(json: JSONDictionary) {
+        guard let key = json["key"] as? String,
+            let name = json["name"] as? String,
+            let site = json["site"] as? String,
+            let size = json["size"] as? Int else { return nil }
         self.init(key: key, name: name, site: site, size: size)
 
     }
