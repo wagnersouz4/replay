@@ -33,7 +33,7 @@ extension TMDbService: TargetType {
     }
 
     var parameterEncoding: ParameterEncoding {
-        /// Parameters that should sent in the URL.
+        /// Parameters that be should sent in the URL.
         return URLEncoding.default
 
     }
@@ -42,15 +42,12 @@ extension TMDbService: TargetType {
     var sampleData: Data {
         switch self {
         case .movie:
-            return stubbedResponse("Movie")
+            return Stub.stubbedResponse("Movie")
         }
     }
 
     var task: Task {
-        switch self {
-        case .movie:
-            return .request
-        }
+        return .request
     }
 
     /// Using Alamofire auto response validation
@@ -58,14 +55,4 @@ extension TMDbService: TargetType {
     var validate: Bool {
         return true
     }
-
-}
-
-func stubbedResponse(_ filename: String) -> Data {
-    /// Searching for the file, if not found or the file is not recognized as a valid Base-64 returning an empty Data
-    guard let path = Bundle.main.path(forResource: filename, ofType: "json"),
-        let data = Data(base64Encoded: path) else {
-            return Data()
-    }
-    return data
 }
