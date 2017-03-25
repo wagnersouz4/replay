@@ -22,17 +22,6 @@ struct Video {
     var url: String? {
         return (site == "Youtube") ? "https://youtube.com/watch?v=\(key)" : nil
     }
-
-    static func extract(from data: Any?) -> [Video]? {
-        guard let jsonData = data as? JSONDictionary,
-            let jsonArray = jsonData["results"] as? [JSONDictionary] else { return nil }
-        var videos = [Video]()
-        for json in jsonArray {
-            guard let video = Video(json: json) else { return nil }
-            videos.append(video)
-        }
-        return videos
-    }
 }
 
 extension Video: JSONable {

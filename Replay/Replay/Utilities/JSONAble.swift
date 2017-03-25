@@ -32,12 +32,16 @@ public protocol JSONable {
     static var typeDescription: String { get }
 }
 
-public func createJSONArray<T>(using data: Any?) -> [T]? where T: JSONable {
-    guard let jsonArray = data as? [JSONDictionary] else { return nil }
-    var genres = [T]()
-    for json in jsonArray {
-        guard let genre = T(json: json) else { return nil }
-        genres.append(genre)
+public func generateList<T>(using list: [JSONDictionary]) -> [T]? where T: JSONable {
+    var listT = [T]()
+    for element in list {
+        guard let instanceT = T(json: element) else { return nil }
+        listT.append(instanceT)
     }
-    return genres
+    return listT
+}
+
+public func generateList<T>(using json: JSONDictionary, key: String) -> [T]? where T: JSONable {
+    guard let list = json[key] as? [JSONDictionary] else { return nil }
+    return generateList(using: list)
 }
