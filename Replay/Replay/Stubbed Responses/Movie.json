@@ -8,10 +8,8 @@
     }
   ],
   "homepage": "http://www.google.com",
-  "id": 1,
   "imdb_id": "tt0110912",
-  "original_language": "en",
-  "original_title": "Title",
+  "original_title": "Movie Title",
   "overview": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum porttitor eleifend tellus, vitae convallis dolor mattis at. Donec odio orci, ultrices sed neque quis, pretium semper mi. Nulla quis gravida purus. Nam vitae diam eget nibh efficitur mollis. Pellentesque malesuada sed sem ac congue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas euismod mauris lorem, ut rutrum libero pellentesque ut.",
   "poster_path": "default.jpg",
   "production_companies": [
