@@ -13,14 +13,12 @@ import Nimble
 class ProductionCountryTests: QuickSpec {
     override func spec() {
         it("should create a ProductionCountry from a json object") {
-            let name = "United States of America"
-            let code = "US"
-            let data = ["name": name, "iso_3166_1": code]
+            let data = ["name": "United States of America", "iso_3166_1": "US"]
 
             guard let productionCountry = ProductionCountry(json: data) else { return fail() }
 
-            expect(productionCountry.name) == name
-            expect(productionCountry.code) == code
+            expect(productionCountry.name) == data["name"]
+            expect(productionCountry.code) == data["iso_3166_1"]
         }
     }
 }

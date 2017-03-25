@@ -13,12 +13,11 @@ import Nimble
 class SpokenLanguageTests: QuickSpec {
     override func spec() {
         it("should create a SpokenLanguage from a json object") {
-            let name = "English"
-            let data = ["name": name]
+            let data = ["name": "English"]
 
             guard let spokenLanguage = SpokenLanguage(json: data) else { return fail() }
 
-            expect(spokenLanguage.name) == name
+            expect(spokenLanguage.name) == data["name"]
         }
     }
 }

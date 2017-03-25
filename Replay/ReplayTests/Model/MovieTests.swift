@@ -48,12 +48,12 @@ class MovieTests: QuickSpec {
 
             guard let movie = Movie(json: data) else { return fail() }
 
-            expect(movie.genres.count) == 2
-            expect(movie.companies.count) == 2
+            expect(movie.genres.count) == genres.count
+            expect(movie.companies.count) == companies.count
             expect(movie.contries[0].name) == "United States of America"
             expect(movie.spokenLanguages[0].name) == "English"
-            expect(movie.videos.count) == 2
-            expect(movie.backdropImages.count) == 3
+            expect(movie.videos.count) == videos.count
+            expect(movie.backdropImages.count) == images.count
             expect(movie.homepage) == "http://www.google.com"
             expect(movie.imdbID) == "tt0110912"
             expect(movie.overview) == "Lorem ipsum dolor sit amet, consectetur adipiscing elit."

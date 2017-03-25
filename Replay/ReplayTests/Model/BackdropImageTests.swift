@@ -13,12 +13,11 @@ import Nimble
 class BackdropImageTests: QuickSpec {
     override func spec() {
         it("should create a BackdropImage from a json") {
-            let filePath = "/image1.jpg"
-            let data = ["file_path": filePath]
+            let data = ["file_path": "/image1.jpg"]
 
             guard let backdropImage = BackdropImage(json: data) else { return fail() }
 
-            expect(backdropImage.filePath) == filePath
+            expect(backdropImage.filePath) == data["file_path"]
         }
     }
 }
