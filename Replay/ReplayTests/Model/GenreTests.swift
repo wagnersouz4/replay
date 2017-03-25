@@ -12,7 +12,7 @@ import Nimble
 
 class GenreTests: QuickSpec {
     override func spec() {
-        it("should create a Genre from a JSON") {
+        it("should create a Genre from a json object") {
             let name = "Comedy"
             let data = ["name": name]
 

@@ -19,7 +19,7 @@ struct Movie {
     var contries: [ProductionCountry]
     var releaseDate: String
     var spokenLanguages: [SpokenLanguage]
-    var videos: [Video]?
+    var videos: [Video]
     var backdropImages: [BackdropImage]
 }
 

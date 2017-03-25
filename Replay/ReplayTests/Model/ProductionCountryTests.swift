@@ -12,7 +12,7 @@ import Nimble
 
 class ProductionCountryTests: QuickSpec {
     override func spec() {
-        it("should create a ProductionCountry from a JSON") {
+        it("should create a ProductionCountry from a json object") {
             let name = "United States of America"
             let code = "US"
             let data = ["name": name, "iso_3166_1": code]

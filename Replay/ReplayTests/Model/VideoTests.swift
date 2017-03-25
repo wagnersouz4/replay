@@ -12,7 +12,7 @@ import Nimble
 
 class VideoTests: QuickSpec {
     override func spec() {
-        it("should create a Video from a JSON") {
+        it("should create a Video from a json object") {
             let key = "pjTDTmef5-c"
             let name = "Trailer"
             let site = "Youtube"

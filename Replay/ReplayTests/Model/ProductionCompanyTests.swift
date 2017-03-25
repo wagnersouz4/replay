@@ -12,7 +12,7 @@ import Nimble
 
 class ProductionCompanyTests: QuickSpec {
     override func spec() {
-        it("should create a ProductionCompany from a JSON") {
+        it("should create a ProductionCompany from a json object") {
             let name = "Walt Disney Picture"
             let data = ["name": name]
 
