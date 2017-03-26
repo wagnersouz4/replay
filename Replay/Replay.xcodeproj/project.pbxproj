@@ -149,7 +149,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		3B011BD41E824FAB00DDA24D /* Model */ = {
+		3B011BD41E824FAB00DDA24D /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				3B011BD51E824FDE00DDA24D /* GenreTests.swift */,
@@ -161,7 +161,7 @@
 				3BC6B5A01E85F7D90055F43F /* MovieTests.swift */,
 				3BC6B5AA1E86E8B50055F43F /* MovieOMDbTests.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		3B2EC0191E81275100435CA9 /* Networking */ = {
@@ -214,7 +214,7 @@
 		3BAB455D1E7FEA21009E4E41 /* ReplayTests */ = {
 			isa = PBXGroup;
 			children = (
-				3B011BD41E824FAB00DDA24D /* Model */,
+				3B011BD41E824FAB00DDA24D /* Models */,
 				3BAB45601E7FEA21009E4E41 /* Info.plist */,
 			);
 			path = ReplayTests;
