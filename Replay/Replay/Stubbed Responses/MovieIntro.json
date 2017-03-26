@@ -1,0 +1,22 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "poster_path": "/image1.jpg",
+      "id": 1
+    },
+    {
+      "poster_path": "/image2.jpg",
+      "id": 2
+    },
+    {
+      "poster_path": "/image3.jpg",
+      "id": 3
+    },
+    {
+      "poster_path": "/image4.jpg",
+      "id": 4
+    }
+  ],
+  "total_pages": 50
+}
