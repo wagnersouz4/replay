@@ -11,6 +11,7 @@ import Moya
 enum TMDbService {
     case movie(imdbID: String)
     case popularMovies(page: Int)
+    case nowPlayingMovies(page: Int)
 }
 
 extension TMDbService: TargetType {
@@ -23,6 +24,8 @@ extension TMDbService: TargetType {
             return "/movie/\(imdbID)"
         case .popularMovies(_):
             return "/movie/popular"
+        case .nowPlayingMovies(_):
+            return "/movie/now_playing"
         }
     }
 
@@ -35,7 +38,7 @@ extension TMDbService: TargetType {
         case .movie:
             return ["api_key": APIKeys.TMDbKey,
                     "append_to_response": "videos,images"]
-        case .popularMovies(let page):
+        case .popularMovies(let page), .nowPlayingMovies(let page):
             return ["api_key": APIKeys.TMDbKey, "page": page]
         }
 
@@ -54,6 +57,8 @@ extension TMDbService: TargetType {
             return Stub.stubbedResponse("Movie")
         case .popularMovies:
             return Stub.stubbedResponse("PopularMovies")
+        case .nowPlayingMovies:
+            return Stub.stubbedResponse("NowPlayingMovies")
         }
     }
 
