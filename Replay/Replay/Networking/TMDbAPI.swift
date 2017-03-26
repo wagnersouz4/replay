@@ -10,6 +10,7 @@ import Moya
 
 enum TMDbService {
     case movie(imdbID: String)
+    case popularMovies(page: Int)
 }
 
 extension TMDbService: TargetType {
@@ -20,6 +21,8 @@ extension TMDbService: TargetType {
         switch self {
         case .movie(let imdbID):
             return "/movie/\(imdbID)"
+        case .popularMovies(_):
+            return "/movie/popular"
         }
     }
 
@@ -28,8 +31,14 @@ extension TMDbService: TargetType {
     }
 
     var parameters: [String: Any]? {
-        return ["api_key": APIKeys.TMDbKey,
-                "append_to_response": "videos,images"]
+        switch self {
+        case .movie:
+            return ["api_key": APIKeys.TMDbKey,
+                    "append_to_response": "videos,images"]
+        case .popularMovies(let page):
+            return ["api_key": APIKeys.TMDbKey, "page": page]
+        }
+
     }
 
     var parameterEncoding: ParameterEncoding {
@@ -43,6 +52,8 @@ extension TMDbService: TargetType {
         switch self {
         case .movie:
             return Stub.stubbedResponse("Movie")
+        case .popularMovies:
+            return Stub.stubbedResponse("PopularMovies")
         }
     }
 
