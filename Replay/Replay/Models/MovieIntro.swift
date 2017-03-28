@@ -13,6 +13,10 @@ struct MovieIntro {
     var movieID: Int
     var posterPath: String
 
+    var posterURL: URL? {
+        return URL(string: "https://image.tmdb.org/t/p/w300\(posterPath)")
+    }
+
     static func fromResults(_ json: JSONDictionary) -> [MovieIntro]? {
         guard let list: [MovieIntro] = generateList(using: json, key: "results") else { return nil }
         return list

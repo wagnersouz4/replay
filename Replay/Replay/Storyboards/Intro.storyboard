@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Sc8-X1-UZP">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Wly-y6-idl">
+            <objects>
+                <navigationController id="Sc8-X1-UZP" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="twh-aC-ygt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8lN-48-DLf" kind="relationship" relationship="rootViewController" id="SrQ-nl-zqs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rxt-BG-5Vy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3817" y="-1563"/>
+        </scene>
+        <!--Intro Table View Controller-->
+        <scene sceneID="IWx-X4-HBL">
+            <objects>
+                <tableViewController id="8lN-48-DLf" customClass="IntroTableViewController" customModule="Replay" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="250" sectionHeaderHeight="28" sectionFooterHeight="28" id="JHf-TT-56C">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="sectionIndexColor" red="0.01089341752" green="0.79868286850000003" blue="0.7309702039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexTrackingBackgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableCellIntro" rowHeight="250" id="TUx-vn-1fB" customClass="IntroTableViewCell" customModule="Replay" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="250"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TUx-vn-1fB" id="CQQ-aj-00e">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vyb-6d-IBw" customClass="IndexedCollectionView" customModule="Replay" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="249.66666666666666"/>
+                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="15" minimumInteritemSpacing="10" id="f22-TM-TBV">
+                                                <size key="itemSize" width="150" height="222"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                            </collectionViewFlowLayout>
+                                            <cells>
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionCellIntro" id="HQo-7Y-WlC" customClass="IntroCollectionViewCell" customModule="Replay" customModuleProvider="target">
+                                                    <rect key="frame" x="10" y="14" width="150" height="222"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                        <rect key="frame" x="0.0" y="0.0" width="150" height="222"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <subviews>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JwO-lc-qOC">
+                                                                <rect key="frame" x="0.0" y="0.0" width="150" height="222"/>
+                                                            </imageView>
+                                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="0p1-de-h3t">
+                                                                <rect key="frame" x="65" y="101" width="20" height="20"/>
+                                                                <color key="color" red="1" green="0.56861701275484577" blue="0.19240913779074975" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </activityIndicatorView>
+                                                        </subviews>
+                                                    </view>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="0p1-de-h3t" firstAttribute="centerY" secondItem="HQo-7Y-WlC" secondAttribute="centerY" id="0VI-cP-4tk"/>
+                                                        <constraint firstItem="JwO-lc-qOC" firstAttribute="leading" secondItem="HQo-7Y-WlC" secondAttribute="leading" id="HDA-yF-t6R"/>
+                                                        <constraint firstItem="0p1-de-h3t" firstAttribute="centerX" secondItem="HQo-7Y-WlC" secondAttribute="centerX" id="Oe1-we-btr"/>
+                                                        <constraint firstItem="JwO-lc-qOC" firstAttribute="top" secondItem="HQo-7Y-WlC" secondAttribute="top" id="gUA-h3-7uR"/>
+                                                        <constraint firstAttribute="bottom" secondItem="JwO-lc-qOC" secondAttribute="bottom" id="hoM-re-dJD"/>
+                                                        <constraint firstAttribute="trailing" secondItem="JwO-lc-qOC" secondAttribute="trailing" id="iVu-ts-ynH"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="imageView" destination="JwO-lc-qOC" id="7fg-X7-t9A"/>
+                                                        <outlet property="spinner" destination="0p1-de-h3t" id="ha7-ht-l1Z"/>
+                                                    </connections>
+                                                </collectionViewCell>
+                                            </cells>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="vyb-6d-IBw" firstAttribute="leading" secondItem="CQQ-aj-00e" secondAttribute="leading" id="Etb-Kx-lf0"/>
+                                        <constraint firstAttribute="trailing" secondItem="vyb-6d-IBw" secondAttribute="trailing" id="GaU-7U-hst"/>
+                                        <constraint firstAttribute="bottom" secondItem="vyb-6d-IBw" secondAttribute="bottom" id="IQs-dS-Uff"/>
+                                        <constraint firstItem="vyb-6d-IBw" firstAttribute="top" secondItem="CQQ-aj-00e" secondAttribute="top" id="IZn-IH-ufk"/>
+                                        <constraint firstAttribute="trailing" secondItem="vyb-6d-IBw" secondAttribute="trailing" id="YRQ-FH-ylH"/>
+                                        <constraint firstAttribute="bottom" secondItem="vyb-6d-IBw" secondAttribute="bottom" id="sff-cw-JEd"/>
+                                        <constraint firstItem="vyb-6d-IBw" firstAttribute="leading" secondItem="CQQ-aj-00e" secondAttribute="leading" id="vo5-au-GBa"/>
+                                        <constraint firstItem="vyb-6d-IBw" firstAttribute="top" secondItem="CQQ-aj-00e" secondAttribute="top" id="yN5-hq-YuY"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="collectionView" destination="vyb-6d-IBw" id="FAk-Gt-njC"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="8lN-48-DLf" id="NVG-L2-oZ8"/>
+                            <outlet property="delegate" destination="8lN-48-DLf" id="c1b-PN-2t7"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="wbs-6t-OIY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="IME-Nd-gDz"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gCB-V6-AVI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3065.217391304348" y="-1552.1739130434785"/>
+        </scene>
+    </scenes>
+</document>

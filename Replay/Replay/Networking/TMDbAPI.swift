@@ -12,7 +12,7 @@ enum TMDbService {
     case movie(imdbID: String)
     case popularMovies(page: Int)
     case nowPlayingMovies(page: Int)
-    case upComingMovies(page: Int)
+    case upcomingMovies(page: Int)
     case topRatedMovies(page: Int)
 }
 
@@ -28,7 +28,7 @@ extension TMDbService: TargetType {
             return "/movie/popular"
         case .nowPlayingMovies:
             return "/movie/now_playing"
-        case .upComingMovies:
+        case .upcomingMovies:
             return "/movie/upcoming"
         case .topRatedMovies:
             return "/movie/top_rated"
@@ -46,7 +46,7 @@ extension TMDbService: TargetType {
                     "append_to_response": "videos,images"]
         case .popularMovies(let page),
              .nowPlayingMovies(let page),
-             .upComingMovies(let page),
+             .upcomingMovies(let page),
              .topRatedMovies(let page):
             return ["api_key": APIKeys.TMDbKey, "page": page]
         }
@@ -66,7 +66,7 @@ extension TMDbService: TargetType {
             return Stub.stubbedResponse("Movie")
         case .popularMovies,
              .nowPlayingMovies,
-             .upComingMovies,
+             .upcomingMovies,
              .topRatedMovies:
             return Stub.stubbedResponse("MovieIntro")
         }
