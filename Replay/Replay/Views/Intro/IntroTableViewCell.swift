@@ -41,6 +41,7 @@ private extension IntroTableViewCell {
     func setupCollectionView() {
         layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+
         /// Initializing the colletionView
         collectionView = IntroCollectionView(frame: .zero, collectionViewLayout: layout)
 
@@ -48,7 +49,7 @@ private extension IntroTableViewCell {
                                 forCellWithReuseIdentifier: "CollectionViewCell")
 
         /// ColectionView Custom settings
-        collectionView.backgroundColor = .black
+        collectionView.backgroundColor = ReplayColors.IntroBackground
         collectionView.isPrefetchingEnabled = true
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false

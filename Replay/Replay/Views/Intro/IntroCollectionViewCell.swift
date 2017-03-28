@@ -14,4 +14,6 @@ class IntroCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var spinner: UIActivityIndicatorView!
 
+    @IBOutlet weak var label: UILabel!
+
 }

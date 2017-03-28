@@ -19,25 +19,35 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zHy-Vx-FfA">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="444"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="424"/>
                     </imageView>
-                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="x6n-cZ-ljc">
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="x6n-cZ-ljc">
                         <rect key="frame" x="140" y="212" width="20" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="color" red="1" green="0.56861701279999999" blue="0.19240913779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </activityIndicatorView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bX-Eh-rdI">
+                        <rect key="frame" x="0.0" y="423" width="300" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
+            <color key="backgroundColor" red="0.1097869947552681" green="0.10981365293264389" blue="0.10978532582521439" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="zHy-Vx-FfA" secondAttribute="bottom" id="Go1-z8-2W0"/>
-                <constraint firstItem="x6n-cZ-ljc" firstAttribute="centerX" secondItem="zHy-Vx-FfA" secondAttribute="centerX" id="Mgf-Rs-qjl"/>
-                <constraint firstItem="zHy-Vx-FfA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="bh3-Fy-KIp"/>
-                <constraint firstItem="zHy-Vx-FfA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xCQ-5j-NKc"/>
-                <constraint firstItem="x6n-cZ-ljc" firstAttribute="centerY" secondItem="zHy-Vx-FfA" secondAttribute="centerY" id="xIK-WE-FF2"/>
-                <constraint firstAttribute="trailing" secondItem="zHy-Vx-FfA" secondAttribute="trailing" id="xMN-43-Thp"/>
+                <constraint firstItem="4bX-Eh-rdI" firstAttribute="top" secondItem="zHy-Vx-FfA" secondAttribute="bottom" constant="-1" id="2Mx-pA-4m4"/>
+                <constraint firstItem="zHy-Vx-FfA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="2ua-5h-fEE"/>
+                <constraint firstAttribute="bottom" secondItem="zHy-Vx-FfA" secondAttribute="bottom" constant="20" id="CbP-9f-MfH"/>
+                <constraint firstItem="4bX-Eh-rdI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="QXt-eA-vNL"/>
+                <constraint firstItem="zHy-Vx-FfA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="VRU-aB-CGw"/>
+                <constraint firstAttribute="trailing" secondItem="zHy-Vx-FfA" secondAttribute="trailing" id="dAb-n8-vU2"/>
+                <constraint firstAttribute="trailing" secondItem="4bX-Eh-rdI" secondAttribute="trailing" id="zc3-Z4-veu"/>
             </constraints>
             <size key="customSize" width="305" height="333"/>
             <connections>
                 <outlet property="imageView" destination="zHy-Vx-FfA" id="bG8-BU-bHq"/>
+                <outlet property="label" destination="4bX-Eh-rdI" id="uKh-A5-tMP"/>
                 <outlet property="spinner" destination="x6n-cZ-ljc" id="1iF-6b-n2w"/>
             </connections>
             <point key="canvasLocation" x="-2" y="34"/>

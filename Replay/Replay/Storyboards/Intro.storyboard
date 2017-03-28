@@ -29,10 +29,11 @@
         <scene sceneID="F8L-rC-HE1">
             <objects>
                 <tableViewController id="qkm-wu-SDp" customClass="IntroTableViewController" customModule="Replay" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JHF-ti-kr6">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JHF-ti-kr6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.25325383415950509" green="0.25576129786405466" blue="0.25576129786405466" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="qkm-wu-SDp" id="El4-du-q02"/>
                             <outlet property="delegate" destination="qkm-wu-SDp" id="rKg-IS-XMR"/>

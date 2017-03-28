@@ -30,8 +30,8 @@ class IntroTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sections.append(Section(title: "Popular", target: TMDbService.popularMovies))
-        sections.append(Section(title: "Now Playing", target: TMDbService.nowPlayingMovies))
+        sections.append(Section(title: "Popular Movies", target: TMDbService.popularMovies))
+        sections.append(Section(title: "Popular on TV", target: TMDbService.nowPlayingMovies))
         sections.append(Section(title: "Upcoming", target: TMDbService.upcomingMovies))
         sections.append(Section(title: "Top Rated", target: TMDbService.topRatedMovies))
     }
@@ -69,8 +69,16 @@ extension IntroTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
+        return 220
     }
+
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let headerView = view as? UITableViewHeaderFooterView else { return }
+        headerView.contentView.backgroundColor = ReplayColors.IntroBackground
+        headerView.textLabel?.textColor = .white
+        headerView.textLabel?.textAlignment = .left
+    }
+
 }
 
 // MARK: CollectionView delegate and data source
@@ -92,30 +100,36 @@ extension IntroTableViewController: UICollectionViewDataSource, UICollectionView
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let collection = collectionView as? IntroCollectionView else { fatalError("Invalid collection") }
 
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell",
-                                                            for: indexPath) as? IntroCollectionViewCell else {
-                                                                fatalError("Invalid cell") }
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "CollectionViewCell", for: indexPath) as? IntroCollectionViewCell
+            else { fatalError("Invalid cell") }
 
         let movieIntro = sections[collection.section].movies[indexPath.row]
             cell.spinner.startAnimating()
             DispatchQueue.global().async {
-                if let data = try? Data(contentsOf: movieIntro.posterURL) {
-                    DispatchQueue.main.async {
-                        cell.imageView.image = UIImage(data: data)
+                let data = (movieIntro.posterURL != nil) ? try? Data(contentsOf: movieIntro.posterURL!) : nil
+                    DispatchQueue.main.sync {
+                        cell.imageView.image = (data != nil) ? UIImage(data: data!) : #imageLiteral(resourceName: "noCover")
+                        cell.label.text = movieIntro.title
                         cell.spinner.stopAnimating()
                     }
-                }
             }
 
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let collection = collectionView as? IntroCollectionView else { fatalError("Invalid collection") }
+        let movie = sections[collection.section].movies[indexPath.row]
+        print(movie.title)
     }
 }
 
 extension IntroTableViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = 230.0
-        let width = 155.40
+        let height = 200.0
+        let width = 135.35
         return CGSize(width: width, height: height)
     }
 }
