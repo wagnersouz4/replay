@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="IntroCollectionViewCell" customModule="Replay" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="444"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="300" height="444"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zHy-Vx-FfA">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="444"/>
+                    </imageView>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="x6n-cZ-ljc">
+                        <rect key="frame" x="140" y="212" width="20" height="20"/>
+                        <color key="color" red="1" green="0.56861701279999999" blue="0.19240913779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </activityIndicatorView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="zHy-Vx-FfA" secondAttribute="bottom" id="Go1-z8-2W0"/>
+                <constraint firstItem="x6n-cZ-ljc" firstAttribute="centerX" secondItem="zHy-Vx-FfA" secondAttribute="centerX" id="Mgf-Rs-qjl"/>
+                <constraint firstItem="zHy-Vx-FfA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="bh3-Fy-KIp"/>
+                <constraint firstItem="zHy-Vx-FfA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="xCQ-5j-NKc"/>
+                <constraint firstItem="x6n-cZ-ljc" firstAttribute="centerY" secondItem="zHy-Vx-FfA" secondAttribute="centerY" id="xIK-WE-FF2"/>
+                <constraint firstAttribute="trailing" secondItem="zHy-Vx-FfA" secondAttribute="trailing" id="xMN-43-Thp"/>
+            </constraints>
+            <size key="customSize" width="305" height="333"/>
+            <connections>
+                <outlet property="imageView" destination="zHy-Vx-FfA" id="bG8-BU-bHq"/>
+                <outlet property="spinner" destination="x6n-cZ-ljc" id="1iF-6b-n2w"/>
+            </connections>
+            <point key="canvasLocation" x="-2" y="34"/>
+        </collectionViewCell>
+    </objects>
+</document>

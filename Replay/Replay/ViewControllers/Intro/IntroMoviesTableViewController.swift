@@ -16,16 +16,12 @@ class IntroTableViewController: UITableViewController {
     struct Section {
         var movies: [MovieIntro]
         let title: String
-        let index: Int
         let target: MovieIntroTarget
-        var currentPage: Int
 
-        init(title: String, index: Int, target: @escaping MovieIntroTarget) {
+        init(title: String, target: @escaping MovieIntroTarget) {
             self.movies = []
             self.title = title
-            self.index = index
             self.target = target
-            self.currentPage = 1
         }
     }
 
@@ -34,13 +30,14 @@ class IntroTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sections.append(Section(title: "Popular", index: 0, target: TMDbService.popularMovies))
-        sections.append(Section(title: "Now Playing", index: 1, target: TMDbService.nowPlayingMovies))
-        sections.append(Section(title: "Upcoming", index: 2, target: TMDbService.upcomingMovies))
-        sections.append(Section(title: "Top Rated", index: 3, target: TMDbService.topRatedMovies))
+        sections.append(Section(title: "Popular", target: TMDbService.popularMovies))
+        sections.append(Section(title: "Now Playing", target: TMDbService.nowPlayingMovies))
+        sections.append(Section(title: "Upcoming", target: TMDbService.upcomingMovies))
+        sections.append(Section(title: "Top Rated", target: TMDbService.topRatedMovies))
     }
 }
 
+// MARK: Tableview delegate and data source
 extension IntroTableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -52,73 +49,89 @@ extension IntroTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellIntro", for: indexPath)
+        /// Each table cell will have one identifier. 
+        /// As a consequence, each section will have its own reuse queue avoiding unexpected conflits.
+        let identifier = "TableCell#\(indexPath.section)"
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier) ??
+            IntroTableViewCell(style: .default, reuseIdentifier: identifier)
         return cell
     }
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                             forRowAt indexPath: IndexPath) {
         guard let tableViewCell = cell as? IntroTableViewCell else { return }
-        tableViewCell.setCollectionView(dataSource: self, delegate: self, indexPath: indexPath)
+        tableViewCell.setCollectionView(dataSource: self, delegate: self, section: indexPath.section)
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard section < sections.count else { return nil }
         return sections[section].title
     }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 250
+    }
 }
 
-extension IntroTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-
+// MARK: CollectionView delegate and data source
+extension IntroTableViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let collection = collectionView as? IndexedCollectionView else { fatalError("Invalid collection Type") }
+        guard let collection = collectionView as? IntroCollectionView,
+            let currentSection = collection.section else { fatalError("Invalid collection") }
 
-        if sections[collection.section].movies.isEmpty {
+        if sections[currentSection].movies.isEmpty {
             loadContent(for: collection.section) {
                 collectionView.reloadData()
             }
         }
-        return sections[section].movies.count
+
+        return sections[currentSection].movies.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let collection = collectionView as? IndexedCollectionView else { fatalError("Invalid collection Type") }
+        guard let collection = collectionView as? IntroCollectionView else { fatalError("Invalid collection") }
 
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCellIntro",
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell",
                                                             for: indexPath) as? IntroCollectionViewCell else {
-                                                                fatalError("Invalid cell type") }
+                                                                fatalError("Invalid cell") }
 
         let movieIntro = sections[collection.section].movies[indexPath.row]
-
-        if let url = movieIntro.posterURL {
             cell.spinner.startAnimating()
             DispatchQueue.global().async {
-                if let data = try? Data(contentsOf: url) {
+                if let data = try? Data(contentsOf: movieIntro.posterURL) {
                     DispatchQueue.main.async {
                         cell.imageView.image = UIImage(data: data)
                         cell.spinner.stopAnimating()
                     }
                 }
             }
-        }
+
         return cell
+    }
+}
+
+extension IntroTableViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let height = 230.0
+        let width = 155.40
+        return CGSize(width: width, height: height)
     }
 }
 
 extension IntroTableViewController {
     func loadContent(for section: Int, completion: @escaping (() -> Void)) {
-
         let target = sections[section].target
-        let page = sections[section].currentPage
 
-        provider.request(target(page)) { [weak self] result in
+        provider.request(target(1)) { [weak self] result in
+
             switch result {
             case .success(let response):
                 do {
                     guard let json = try response.mapJSON() as? JSONDictionary,
-                        let movies = MovieIntro.fromResults(json) else { return }
-                    self?.sections[section].movies.append(contentsOf: movies)
+                        let movies = MovieIntro.fromResults(json) else { fatalError("Error while loading JSON") }
+                        self?.sections[section].movies.append(contentsOf: movies)
                     completion()
                 } catch {
                     print(error.localizedDescription)

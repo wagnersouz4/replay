@@ -2,25 +2,69 @@
 //  IntroTableViewCell.swift
 //  Replay
 //
-//  Created by Wagner Souza on 26/03/17.
+//  Created by Wagner Souza on 28/03/17.
 //  Copyright © 2017 Wagner Souza. All rights reserved.
 //
 
 import UIKit
 
-class IndexedCollectionView: UICollectionView {
-    var section: Int!
-}
-
 class IntroTableViewCell: UITableViewCell {
 
-    @IBOutlet private var collectionView: IndexedCollectionView!
+    var collectionView: IntroCollectionView!
+    var layout: UICollectionViewFlowLayout!
 
-    func setCollectionView(dataSource: UICollectionViewDataSource,
-                           delegate: UICollectionViewDelegate,
-                           indexPath: IndexPath) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
 
-        collectionView.section = indexPath.section
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupCollectionView()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        collectionView.frame = contentView.bounds
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: Collection View
+private extension IntroTableViewCell {
+    func setupCollectionView() {
+        layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        /// Initializing the colletionView
+        collectionView = IntroCollectionView(frame: .zero, collectionViewLayout: layout)
+
+        collectionView.register(UINib(nibName: "IntroCollectionViewCell", bundle: nil),
+                                forCellWithReuseIdentifier: "CollectionViewCell")
+
+        /// ColectionView Custom settings
+        collectionView.backgroundColor = .black
+        collectionView.isPrefetchingEnabled = true
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isDirectionalLockEnabled = true
+        contentView.addSubview(collectionView)
+    }
+}
+
+// MARK: Collection data source, delegate and section
+extension IntroTableViewCell {
+    /// This method will be called in the TableViewController's tableView(_:willDisplay:forRowAt:)
+    func setCollectionView(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate, section: Int) {
+
+        if collectionView.section == nil {
+            collectionView.section = section
+        }
 
         if collectionView.dataSource == nil {
             collectionView.dataSource = dataSource
@@ -30,4 +74,5 @@ class IntroTableViewCell: UITableViewCell {
             collectionView.delegate = delegate
         }
     }
+
 }
