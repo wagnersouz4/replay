@@ -19,29 +19,30 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zHy-Vx-FfA">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="424"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="444"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bX-Eh-rdI">
+                        <rect key="frame" x="0.0" y="429.5" width="300" height="14.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="x6n-cZ-ljc">
                         <rect key="frame" x="140" y="212" width="20" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="color" red="1" green="0.56861701279999999" blue="0.19240913779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </activityIndicatorView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bX-Eh-rdI">
-                        <rect key="frame" x="0.0" y="423" width="300" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" red="0.1097869947552681" green="0.10981365293264389" blue="0.10978532582521439" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="4bX-Eh-rdI" firstAttribute="top" secondItem="zHy-Vx-FfA" secondAttribute="bottom" constant="-1" id="2Mx-pA-4m4"/>
                 <constraint firstItem="zHy-Vx-FfA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="2ua-5h-fEE"/>
-                <constraint firstAttribute="bottom" secondItem="zHy-Vx-FfA" secondAttribute="bottom" constant="20" id="CbP-9f-MfH"/>
+                <constraint firstAttribute="bottom" secondItem="zHy-Vx-FfA" secondAttribute="bottom" id="CbP-9f-MfH"/>
                 <constraint firstItem="4bX-Eh-rdI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="QXt-eA-vNL"/>
                 <constraint firstItem="zHy-Vx-FfA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="VRU-aB-CGw"/>
                 <constraint firstAttribute="trailing" secondItem="zHy-Vx-FfA" secondAttribute="trailing" id="dAb-n8-vU2"/>
+                <constraint firstAttribute="bottom" secondItem="4bX-Eh-rdI" secondAttribute="bottom" id="fXm-ag-FYN"/>
                 <constraint firstAttribute="trailing" secondItem="4bX-Eh-rdI" secondAttribute="trailing" id="zc3-Z4-veu"/>
             </constraints>
             <size key="customSize" width="305" height="333"/>

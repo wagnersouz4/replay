@@ -13,14 +13,20 @@ class IntroTableViewController: UITableViewController {
 
     typealias MovieIntroTarget = (Int) -> TMDbService
 
+    enum ContentType {
+        case movie, tvshow, celebrity
+    }
+
     struct Section {
-        var movies: [MovieIntro]
+        var contentList: [IntroContent]
         let title: String
+        let contentType: ContentType
         let target: MovieIntroTarget
 
-        init(title: String, target: @escaping MovieIntroTarget) {
-            self.movies = []
+        init(title: String, contentType: ContentType, target: @escaping MovieIntroTarget) {
+            self.contentList = []
             self.title = title
+            self.contentType = contentType
             self.target = target
         }
     }
@@ -30,10 +36,9 @@ class IntroTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        sections.append(Section(title: "Popular Movies", target: TMDbService.popularMovies))
-        sections.append(Section(title: "Popular on TV", target: TMDbService.nowPlayingMovies))
-        sections.append(Section(title: "Upcoming", target: TMDbService.upcomingMovies))
-        sections.append(Section(title: "Top Rated", target: TMDbService.topRatedMovies))
+        sections.append(Section(title: "Popular Movies", contentType: .movie, target: TMDbService.popularMovies))
+        sections.append(Section(title: "Popular on TV", contentType: .tvshow, target: TMDbService.popularOnTV))
+        sections.append(Section(title: "Celebrities", contentType: .celebrity, target: TMDbService.celebrities))
     }
 }
 
@@ -87,13 +92,13 @@ extension IntroTableViewController: UICollectionViewDataSource, UICollectionView
         guard let collection = collectionView as? IntroCollectionView,
             let currentSection = collection.section else { fatalError("Invalid collection") }
 
-        if sections[currentSection].movies.isEmpty {
+        if sections[currentSection].contentList.isEmpty {
             loadContent(for: collection.section) {
                 collectionView.reloadData()
             }
         }
 
-        return sections[currentSection].movies.count
+        return sections[currentSection].contentList.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -104,13 +109,13 @@ extension IntroTableViewController: UICollectionViewDataSource, UICollectionView
             withReuseIdentifier: "CollectionViewCell", for: indexPath) as? IntroCollectionViewCell
             else { fatalError("Invalid cell") }
 
-        let movieIntro = sections[collection.section].movies[indexPath.row]
+        let contentIntro = sections[collection.section].contentList[indexPath.row]
             cell.spinner.startAnimating()
             DispatchQueue.global().async {
-                let data = (movieIntro.posterURL != nil) ? try? Data(contentsOf: movieIntro.posterURL!) : nil
+                let data = (contentIntro.imageURL != nil) ? try? Data(contentsOf: contentIntro.imageURL!) : nil
                     DispatchQueue.main.sync {
                         cell.imageView.image = (data != nil) ? UIImage(data: data!) : #imageLiteral(resourceName: "noCover")
-                        cell.label.text = movieIntro.title
+                        cell.label.text = contentIntro.description
                         cell.spinner.stopAnimating()
                     }
             }
@@ -120,16 +125,17 @@ extension IntroTableViewController: UICollectionViewDataSource, UICollectionView
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let collection = collectionView as? IntroCollectionView else { fatalError("Invalid collection") }
-        let movie = sections[collection.section].movies[indexPath.row]
-        print(movie.title)
+        let content = sections[collection.section].contentList[indexPath.row]
+        print(content.description)
     }
+
 }
 
 extension IntroTableViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = 200.0
-        let width = 135.35
+        let width = 0.6756756756756757 * height
         return CGSize(width: width, height: height)
     }
 }
@@ -144,8 +150,8 @@ extension IntroTableViewController {
             case .success(let response):
                 do {
                     guard let json = try response.mapJSON() as? JSONDictionary,
-                        let movies = MovieIntro.fromResults(json) else { fatalError("Error while loading JSON") }
-                        self?.sections[section].movies.append(contentsOf: movies)
+                        let contentList = IntroContent.fromResults(json) else { fatalError("Error while loading JSON") }
+                        self?.sections[section].contentList.append(contentsOf: contentList)
                     completion()
                 } catch {
                     print(error.localizedDescription)
