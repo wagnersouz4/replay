@@ -28,18 +28,12 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="x6n-cZ-ljc">
-                        <rect key="frame" x="140" y="212" width="20" height="20"/>
-                        <color key="color" red="0.0" green="0.82607823610305786" blue="0.43200629949569702" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </activityIndicatorView>
                 </subviews>
             </view>
             <color key="backgroundColor" red="0.1097869947552681" green="0.10981365293264389" blue="0.10978532582521439" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="zHy-Vx-FfA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="2ua-5h-fEE"/>
                 <constraint firstAttribute="bottom" secondItem="zHy-Vx-FfA" secondAttribute="bottom" id="CbP-9f-MfH"/>
-                <constraint firstItem="x6n-cZ-ljc" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Cf1-Mo-Sn8"/>
-                <constraint firstItem="x6n-cZ-ljc" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="PfH-qI-a8w"/>
                 <constraint firstItem="4bX-Eh-rdI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="QXt-eA-vNL"/>
                 <constraint firstItem="zHy-Vx-FfA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="VRU-aB-CGw"/>
                 <constraint firstAttribute="trailing" secondItem="zHy-Vx-FfA" secondAttribute="trailing" id="dAb-n8-vU2"/>
@@ -50,7 +44,6 @@
             <connections>
                 <outlet property="imageView" destination="zHy-Vx-FfA" id="bG8-BU-bHq"/>
                 <outlet property="label" destination="4bX-Eh-rdI" id="uKh-A5-tMP"/>
-                <outlet property="spinner" destination="x6n-cZ-ljc" id="1iF-6b-n2w"/>
             </connections>
             <point key="canvasLocation" x="-2" y="34"/>
         </collectionViewCell>

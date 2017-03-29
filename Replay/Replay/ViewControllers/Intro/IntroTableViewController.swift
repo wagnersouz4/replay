@@ -8,6 +8,7 @@
 
 import UIKit
 import Moya
+import PINRemoteImage
 
 class IntroTableViewController: UITableViewController {
 
@@ -39,7 +40,7 @@ class IntroTableViewController: UITableViewController {
     let collectionEdgeInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
 
     /// Default table height
-    var defaultTableRowHeight: CGFloat = 180
+    var defaultTableRowHeight: CGFloat = 160
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,7 +93,7 @@ extension IntroTableViewController {
 
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let headerView = view as? UITableViewHeaderFooterView else { return }
-        headerView.contentView.backgroundColor = ReplayColors.IntroBackground
+        headerView.contentView.backgroundColor = ReplayColors.defaultBackground
         headerView.textLabel?.textColor = .white
         headerView.textLabel?.textAlignment = .left
     }
@@ -122,15 +123,15 @@ extension IntroTableViewController: UICollectionViewDataSource, UICollectionView
             else { fatalError("Invalid cell") }
 
         let contentIntro = sections[collection.section].contentList[indexPath.row]
-            cell.spinner.startAnimating()
-            DispatchQueue.global().async {
-                let data = (contentIntro.imageURL != nil) ? try? Data(contentsOf: contentIntro.imageURL!) : nil
-                    DispatchQueue.main.sync {
-                        cell.imageView.image = (data != nil) ? UIImage(data: data!) : #imageLiteral(resourceName: "noCover")
-                        cell.label.text = contentIntro.description
-                        cell.spinner.stopAnimating()
-                    }
-            }
+
+        if contentIntro.imageURL == nil {
+            cell.imageView.image = #imageLiteral(resourceName: "noCover")
+        } else {
+            cell.imageView.pin_updateWithProgress = true
+            cell.imageView.pin_setImage(from: contentIntro.imageURL!)
+        }
+        cell.label.text = contentIntro.description
+
         return cell
     }
 
@@ -144,7 +145,8 @@ extension IntroTableViewController: UICollectionViewDataSource, UICollectionView
 
 // MARK: CollectionView flow layout
 extension IntroTableViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
         return collectionEdgeInset
     }
 
@@ -155,11 +157,13 @@ extension IntroTableViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: width, height: height)
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
 }

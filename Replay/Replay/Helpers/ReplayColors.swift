@@ -12,5 +12,7 @@ import UIKit
 struct ReplayColors {
     private init() { }
 
-    static let IntroBackground = UIColor(colorLiteralRed:  0.109787, green: 0.109814, blue: 0.109785, alpha: 1)
+    static let defaultBackground = UIColor(colorLiteralRed:  0.109787, green: 0.109814, blue: 0.109785, alpha: 1)
+
+    static let titleGreen =  UIColor(colorLiteralRed: 0, green: 211/255, blue: 115/255, alpha: 1)
 }

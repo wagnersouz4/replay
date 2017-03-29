@@ -11,9 +11,6 @@ import UIKit
 class IntroCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
-
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
-
     @IBOutlet weak var label: UILabel!
 
 }
