@@ -28,10 +28,9 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="x6n-cZ-ljc">
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="x6n-cZ-ljc">
                         <rect key="frame" x="140" y="212" width="20" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="color" red="1" green="0.56861701279999999" blue="0.19240913779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="color" red="0.0" green="0.82607823610305786" blue="0.43200629949569702" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </activityIndicatorView>
                 </subviews>
             </view>
@@ -39,6 +38,8 @@
             <constraints>
                 <constraint firstItem="zHy-Vx-FfA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="2ua-5h-fEE"/>
                 <constraint firstAttribute="bottom" secondItem="zHy-Vx-FfA" secondAttribute="bottom" id="CbP-9f-MfH"/>
+                <constraint firstItem="x6n-cZ-ljc" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Cf1-Mo-Sn8"/>
+                <constraint firstItem="x6n-cZ-ljc" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="PfH-qI-a8w"/>
                 <constraint firstItem="4bX-Eh-rdI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="QXt-eA-vNL"/>
                 <constraint firstItem="zHy-Vx-FfA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="VRU-aB-CGw"/>
                 <constraint firstAttribute="trailing" secondItem="zHy-Vx-FfA" secondAttribute="trailing" id="dAb-n8-vU2"/>

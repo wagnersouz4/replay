@@ -13,7 +13,7 @@
         <scene sceneID="wTd-2q-Lbx">
             <objects>
                 <navigationController id="v0T-CE-Y8I" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="l5d-0I-cas">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="l5d-0I-cas">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -33,7 +33,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="separatorColor" red="0.25325383415950509" green="0.25576129786405466" blue="0.25576129786405466" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="separatorColor" red="0.21772694440000001" green="0.21988265670000001" blue="0.21988265670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="qkm-wu-SDp" id="El4-du-q02"/>
                             <outlet property="delegate" destination="qkm-wu-SDp" id="rKg-IS-XMR"/>

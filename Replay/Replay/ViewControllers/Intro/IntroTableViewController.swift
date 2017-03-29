@@ -31,14 +31,27 @@ class IntroTableViewController: UITableViewController {
         }
     }
 
+    /// Content
     fileprivate let provider = MoyaProvider<TMDbService>()
     fileprivate var sections = [Section]()
 
+    /// Collection insets
+    let collectionEdgeInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+
+    /// Default table height
+    var defaultTableRowHeight: CGFloat = 180
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        sections.append(Section(title: "Popular Movies", contentType: .movie, target: TMDbService.popularMovies))
+        createSections()
+    }
+
+    func createSections() {
         sections.append(Section(title: "Popular on TV", contentType: .tvshow, target: TMDbService.popularOnTV))
         sections.append(Section(title: "Celebrities", contentType: .celebrity, target: TMDbService.celebrities))
+        sections.append(Section(title: "Upcoming Movies", contentType: .celebrity, target: TMDbService.upcomingMovies))
+        sections.append(Section(title: "Popular Movies", contentType: .movie, target: TMDbService.popularMovies))
+        sections.append(Section(title: "Top Rated Movies", contentType: .celebrity, target: TMDbService.topRatedMovies))
     }
 }
 
@@ -74,7 +87,7 @@ extension IntroTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 220
+        return defaultTableRowHeight
     }
 
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -97,7 +110,6 @@ extension IntroTableViewController: UICollectionViewDataSource, UICollectionView
                 collectionView.reloadData()
             }
         }
-
         return sections[currentSection].contentList.count
     }
 
@@ -119,7 +131,6 @@ extension IntroTableViewController: UICollectionViewDataSource, UICollectionView
                         cell.spinner.stopAnimating()
                     }
             }
-
         return cell
     }
 
@@ -131,12 +142,25 @@ extension IntroTableViewController: UICollectionViewDataSource, UICollectionView
 
 }
 
+// MARK: CollectionView flow layout
 extension IntroTableViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return collectionEdgeInset
+    }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = 200.0
-        let width = 0.6756756756756757 * height
+        let height = defaultTableRowHeight - (collectionEdgeInset.left + collectionEdgeInset.right)
+        let width = 0.6756 * height
         return CGSize(width: width, height: height)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
 
