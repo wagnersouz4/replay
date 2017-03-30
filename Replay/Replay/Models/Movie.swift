@@ -42,7 +42,7 @@ extension Movie: JSONable {
 
         guard let imagesList = json["images"] as? JSONDictionary,
             let backdropImages: [BackdropImage] = generateList(using: imagesList,
-                                                                  key: "backdrops") else { return nil }
+                                                               key: "backdrops") else { return nil }
         guard let homepage = json["homepage"] as? String,
             let imdbID = json["imdb_id"] as? String,
             let title = json["original_title"] as? String,

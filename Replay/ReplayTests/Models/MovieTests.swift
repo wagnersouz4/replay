@@ -29,16 +29,16 @@ class MovieTests: QuickSpec {
             let videos = [["key": "pjTDTmef5-c", "name": "Trailer", "site": "YouTube", "size": 480],
                           ["key": "Sagg08DrO5U", "name": "Teaser", "site": "YouTube", "size": 360 ]]
 
-            let images = [["file_path": "imageA.jpg"],
-                          ["file_path": "imageB.jpg"],
-                          ["file_path": "imageC.jpg"]]
+            let images = [["file_path": "/imageA.jpg"],
+                          ["file_path": "/imageB.jpg"],
+                          ["file_path": "/imageC.jpg"]]
 
             let data: [String: Any] = ["genres": genres,
                                        "homepage": "http://www.google.com",
                                        "imdb_id": "tt0110912",
                                        "original_title": "Movie Title",
                                        "overview": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-                                       "poster_path": "poster.jpg",
+                                       "poster_path": "/poster.jpg",
                                        "production_companies": companies,
                                        "production_countries": countries,
                                        "release_date": "1995-02-18",
@@ -57,7 +57,7 @@ class MovieTests: QuickSpec {
             expect(movie.homepage) == "http://www.google.com"
             expect(movie.imdbID) == "tt0110912"
             expect(movie.overview) == "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            expect(movie.posterPath) == "poster.jpg"
+            expect(movie.posterPath) == "/poster.jpg"
             expect(movie.releaseDate) == "1995-02-18"
         }
     }
