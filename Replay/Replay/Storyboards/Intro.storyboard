@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="v0T-CE-Y8I">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -40,10 +40,31 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="X9l-7T-eGf"/>
+                    <connections>
+                        <segue destination="fPK-C5-Yx0" kind="presentation" identifier="SegueMovieDetail" modalTransitionStyle="crossDissolve" id="Vhx-WT-TfS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AeU-rf-VlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3336" y="-545"/>
+        </scene>
+        <!--Movie View Controller-->
+        <scene sceneID="oqb-Am-txu">
+            <objects>
+                <viewController storyboardIdentifier="MovieViewController" id="fPK-C5-Yx0" customClass="MovieViewController" customModule="Replay" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Xg-cB-NPi"/>
+                        <viewControllerLayoutGuide type="bottom" id="VQ5-8p-K2C"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kks-sK-RL1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mlv-du-j2m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2401" y="-693"/>
         </scene>
     </scenes>
 </document>

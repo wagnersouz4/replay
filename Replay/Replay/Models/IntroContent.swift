@@ -10,7 +10,7 @@ import Foundation
 
 /// A IntroContent is a movie, tv-show or celebrity
 struct IntroContent {
-    var contentID: Int
+    var contentId: Int
     var imagePath: String?
     var description: String
 
@@ -27,10 +27,13 @@ struct IntroContent {
 extension IntroContent: JSONable {
     init?(json: JSONDictionary) {
         guard let id = json["id"] as? Int,
-            let description = json["title"] as? String ?? json["name"] as? String else { return nil }
+            let description = json["title"] as? String ??
+                              json["name"] as? String else { return nil }
 
-        let imagePath = json["poster_path"] as? String ?? json["profile_path"] as? String
-        self.init(contentID: id, imagePath: imagePath, description: description)
+        let imagePath = json["poster_path"] as? String ??
+                        json["profile_path"] as? String
+
+        self.init(contentId: id, imagePath: imagePath, description: description)
     }
 
     static var typeDescription: String {

@@ -49,7 +49,7 @@ private extension IntroTableViewCell {
                                 forCellWithReuseIdentifier: "CollectionViewCell")
 
         /// ColectionView Custom settings
-        collectionView.backgroundColor = ReplayColors.defaultBackground
+        collectionView.backgroundColor = .background
         collectionView.isPrefetchingEnabled = true
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false

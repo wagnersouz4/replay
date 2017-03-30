@@ -21,13 +21,13 @@ class IntroTableViewController: UITableViewController {
     struct Section {
         var contentList: [IntroContent]
         let title: String
-        let contentType: ContentType
+        let mediaType: ContentType
         let target: MovieIntroTarget
 
         init(title: String, contentType: ContentType, target: @escaping MovieIntroTarget) {
             self.contentList = []
             self.title = title
-            self.contentType = contentType
+            self.mediaType = contentType
             self.target = target
         }
     }
@@ -50,9 +50,9 @@ class IntroTableViewController: UITableViewController {
     func createSections() {
         sections.append(Section(title: "Popular on TV", contentType: .tvshow, target: TMDbService.popularOnTV))
         sections.append(Section(title: "Celebrities", contentType: .celebrity, target: TMDbService.celebrities))
-        sections.append(Section(title: "Upcoming Movies", contentType: .celebrity, target: TMDbService.upcomingMovies))
+        sections.append(Section(title: "Upcoming Movies", contentType: .movie, target: TMDbService.upcomingMovies))
         sections.append(Section(title: "Popular Movies", contentType: .movie, target: TMDbService.popularMovies))
-        sections.append(Section(title: "Top Rated Movies", contentType: .celebrity, target: TMDbService.topRatedMovies))
+        sections.append(Section(title: "Top Rated Movies", contentType: .movie, target: TMDbService.topRatedMovies))
     }
 }
 
@@ -93,7 +93,7 @@ extension IntroTableViewController {
 
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let headerView = view as? UITableViewHeaderFooterView else { return }
-        headerView.contentView.backgroundColor = ReplayColors.defaultBackground
+        headerView.contentView.backgroundColor = .background
         headerView.textLabel?.textColor = .white
         headerView.textLabel?.textAlignment = .left
     }
@@ -137,8 +137,25 @@ extension IntroTableViewController: UICollectionViewDataSource, UICollectionView
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let collection = collectionView as? IntroCollectionView else { fatalError("Invalid collection") }
-        let content = sections[collection.section].contentList[indexPath.row]
-        print(content.description)
+        let section = sections[collection.section]
+
+        switch section.mediaType {
+        case .movie:
+            let content = section.contentList[indexPath.row]
+
+            guard let movieViewController = storyboard?.instantiateViewController(
+                withIdentifier: "MovieViewController") as? MovieViewController else {
+                    fatalError("error while instanciating the MovieViewController")
+            }
+
+            movieViewController.movieID = content.contentId
+            self.navigationController?.pushViewController(movieViewController, animated: true)
+
+        case .celebrity:
+            print("celebrity")
+        case .tvshow:
+            print("tvshow")
+        }
     }
 
 }

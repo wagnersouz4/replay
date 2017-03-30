@@ -16,20 +16,26 @@ class NavigationController: UINavigationController {
     }
 
     func setupNavigationBar() {
+        /// NavigationBar Style
         navigationBar.clipsToBounds = true
         navigationBar.barStyle = .black
-        navigationBar.barTintColor = ReplayColors.defaultBackground
+        navigationBar.barTintColor = .background
+        navigationBar.tintColor = .highlighted
+
         navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName: ReplayColors.titleGreen,
+            NSForegroundColorAttributeName: UIColor.highlighted,
             NSFontAttributeName: UIFont(name: ".SFUIText-Medium", size: 15)!
         ]
 
-        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
-        searchButton.tintColor = ReplayColors.titleGreen
-
+        /// Adding a search button to the rightBar
+        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
+        searchButton.tintColor = .highlighted
         let navigationItem = UINavigationItem()
         navigationItem.rightBarButtonItem = searchButton
-
         navigationBar.items = [navigationItem]
+    }
+
+    @objc func search() {
+        // do search
     }
 }
