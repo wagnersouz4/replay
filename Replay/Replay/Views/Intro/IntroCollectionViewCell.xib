@@ -28,6 +28,9 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="8Wi-vE-ysY">
+                        <rect key="frame" x="140" y="212" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
             </view>
             <color key="backgroundColor" red="0.1097869947552681" green="0.10981365293264389" blue="0.10978532582521439" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -36,7 +39,9 @@
                 <constraint firstAttribute="bottom" secondItem="zHy-Vx-FfA" secondAttribute="bottom" id="CbP-9f-MfH"/>
                 <constraint firstItem="4bX-Eh-rdI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="QXt-eA-vNL"/>
                 <constraint firstItem="zHy-Vx-FfA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="VRU-aB-CGw"/>
+                <constraint firstItem="8Wi-vE-ysY" firstAttribute="centerY" secondItem="zHy-Vx-FfA" secondAttribute="centerY" id="YoH-hf-p4a"/>
                 <constraint firstAttribute="trailing" secondItem="zHy-Vx-FfA" secondAttribute="trailing" id="dAb-n8-vU2"/>
+                <constraint firstItem="8Wi-vE-ysY" firstAttribute="centerX" secondItem="zHy-Vx-FfA" secondAttribute="centerX" id="esF-yv-iut"/>
                 <constraint firstAttribute="bottom" secondItem="4bX-Eh-rdI" secondAttribute="bottom" id="fXm-ag-FYN"/>
                 <constraint firstAttribute="trailing" secondItem="4bX-Eh-rdI" secondAttribute="trailing" id="zc3-Z4-veu"/>
             </constraints>
@@ -44,6 +49,7 @@
             <connections>
                 <outlet property="imageView" destination="zHy-Vx-FfA" id="bG8-BU-bHq"/>
                 <outlet property="label" destination="4bX-Eh-rdI" id="uKh-A5-tMP"/>
+                <outlet property="spinner" destination="8Wi-vE-ysY" id="R3F-eT-N3t"/>
             </connections>
             <point key="canvasLocation" x="-2" y="34"/>
         </collectionViewCell>

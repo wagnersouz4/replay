@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,7 +14,7 @@
         <scene sceneID="wTd-2q-Lbx">
             <objects>
                 <navigationController modalTransitionStyle="crossDissolve" id="v0T-CE-Y8I" customClass="NavigationController" customModule="Replay" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="l5d-0I-cas">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" contentMode="scaleToFill" translucent="NO" id="l5d-0I-cas">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -29,11 +30,10 @@
         <scene sceneID="F8L-rC-HE1">
             <objects>
                 <tableViewController id="qkm-wu-SDp" customClass="IntroTableViewController" customModule="Replay" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JHF-ti-kr6">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JHF-ti-kr6">
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.21772694440000001" green="0.21988265670000001" blue="0.21988265670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="separatorColor" red="0.21772694440000001" green="0.21988265670000001" blue="0.21988265670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="dataSource" destination="qkm-wu-SDp" id="El4-du-q02"/>
                             <outlet property="delegate" destination="qkm-wu-SDp" id="rKg-IS-XMR"/>
@@ -48,10 +48,10 @@
             </objects>
             <point key="canvasLocation" x="-3336" y="-545"/>
         </scene>
-        <!--Movie View Controller-->
+        <!--Movie Details View Controller-->
         <scene sceneID="oqb-Am-txu">
             <objects>
-                <viewController storyboardIdentifier="MovieViewController" id="fPK-C5-Yx0" customClass="MovieViewController" customModule="Replay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailsViewController" id="fPK-C5-Yx0" customClass="MovieDetailsViewController" customModule="Replay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6Xg-cB-NPi"/>
                         <viewControllerLayoutGuide type="bottom" id="VQ5-8p-K2C"/>
@@ -59,12 +59,24 @@
                     <view key="view" contentMode="scaleToFill" id="Kks-sK-RL1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pcO-2C-NVL">
+                                <rect key="frame" x="20" y="20" width="165.66666666666666" height="245"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="165.59999999999999" id="C7P-cW-Scg"/>
+                                    <constraint firstAttribute="height" constant="245" id="UVE-Y9-1eC"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="pcO-2C-NVL" firstAttribute="leading" secondItem="Kks-sK-RL1" secondAttribute="leadingMargin" id="51P-7o-6kT"/>
+                            <constraint firstItem="pcO-2C-NVL" firstAttribute="top" secondItem="6Xg-cB-NPi" secondAttribute="bottom" id="POS-EM-ww4"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mlv-du-j2m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2401" y="-693"/>
+            <point key="canvasLocation" x="-2488.4057971014495" y="-545.38043478260875"/>
         </scene>
     </scenes>
 </document>

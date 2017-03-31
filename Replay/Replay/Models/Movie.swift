@@ -14,13 +14,18 @@ struct Movie {
     var imdbID: String
     var title: String
     var overview: String
-    var posterPath: String
+    var posterPath: String?
     var companies: [ProductionCompany]
     var contries: [ProductionCountry]
     var releaseDate: String
     var spokenLanguages: [SpokenLanguage]
     var videos: [Video]
     var backdropImages: [BackdropImage]
+
+    var posterURL: URL? {
+        guard let path = posterPath else { return nil }
+        return URL(string: "https://image.tmdb.org/t/p/w300\(path)")
+    }
 }
 
 extension Movie: JSONable {
@@ -47,8 +52,10 @@ extension Movie: JSONable {
             let imdbID = json["imdb_id"] as? String,
             let title = json["original_title"] as? String,
             let overview = json["overview"] as? String,
-            let posterPath = json["poster_path"] as? String,
+            let poster = json["poster_path"] as? String,
             let releaseDate = json["release_date"] as? String else { return nil }
+
+        let posterPath = (poster == "N/A") ? nil : poster
 
         self.init(genres: genres,
                   homepage: homepage,

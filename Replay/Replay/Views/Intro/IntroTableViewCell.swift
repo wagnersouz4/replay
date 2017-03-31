@@ -58,7 +58,7 @@ private extension IntroTableViewCell {
     }
 }
 
-// MARK: Collection data source, delegate and section
+// MARK: Collection data source, delegate
 extension IntroTableViewCell {
     /// This method will be called in the TableViewController's tableView(_:willDisplay:forRowAt:)
     func setCollectionView(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate, section: Int) {

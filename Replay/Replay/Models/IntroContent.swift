@@ -15,7 +15,8 @@ struct IntroContent {
     var description: String
 
     var imageURL: URL? {
-        return (imagePath != nil) ? URL(string: "https://image.tmdb.org/t/p/w300\(imagePath!)") : nil
+        guard let path = imagePath else { return nil }
+        return URL(string: "https://image.tmdb.org/t/p/original\(path)")
     }
 
     static func fromResults(_ json: JSONDictionary) -> [IntroContent]? {

@@ -9,7 +9,7 @@
 import Moya
 
 enum TMDbService {
-    case movie(imdbID: String)
+    case movie(movieID: Int)
     case popularMovies(page: Int)
     case nowPlayingMovies(page: Int)
     case upcomingMovies(page: Int)
@@ -25,8 +25,8 @@ extension TMDbService: TargetType {
 
     var path: String {
         switch self {
-        case .movie(let imdbID):
-            return "/movie/\(imdbID)"
+        case .movie(let movieID):
+            return "/movie/\(movieID)"
         case .popularMovies:
             return "/movie/popular"
         case .nowPlayingMovies:
