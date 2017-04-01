@@ -25,13 +25,14 @@
 		3B43BCF61E83A59300FBBB66 /* BackdropImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B43BCF51E83A59300FBBB66 /* BackdropImage.swift */; };
 		3B43BCF81E83B4C600FBBB66 /* BackdropImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B43BCF71E83B4C600FBBB66 /* BackdropImageTests.swift */; };
 		3B5F7B8B1E8E58590052DCC1 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5F7B8A1E8E58590052DCC1 /* DiscoverViewController.swift */; };
-		3B5F7B8D1E8EECAD0052DCC1 /* GridCollectionViewDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5F7B8C1E8EECAD0052DCC1 /* GridCollectionViewDelegateDataSource.swift */; };
 		3B5F7B911E8F181A0052DCC1 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5F7B901E8F181A0052DCC1 /* Section.swift */; };
 		3B5F7B981E8F7EA40052DCC1 /* GridCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5F7B931E8F7EA40052DCC1 /* GridCollectionView.swift */; };
 		3B5F7B991E8F7EA40052DCC1 /* GridCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5F7B941E8F7EA40052DCC1 /* GridCollectionViewCell.swift */; };
 		3B5F7B9A1E8F7EA40052DCC1 /* GridCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B5F7B951E8F7EA40052DCC1 /* GridCollectionViewCell.xib */; };
 		3B5F7B9B1E8F7EA40052DCC1 /* GridTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5F7B961E8F7EA40052DCC1 /* GridTableView.swift */; };
 		3B5F7B9C1E8F7EA40052DCC1 /* GridTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5F7B971E8F7EA40052DCC1 /* GridTableViewCell.swift */; };
+		3B5F7BA01E8FF6E50052DCC1 /* GridCollectionViewDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5F7B9E1E8FF6E50052DCC1 /* GridCollectionViewDelegateDataSource.swift */; };
+		3B5F7BA11E8FF6E50052DCC1 /* GridTableViewDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5F7B9F1E8FF6E50052DCC1 /* GridTableViewDelegateDataSource.swift */; };
 		3BAB454A1E7FEA21009E4E41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAB45491E7FEA21009E4E41 /* AppDelegate.swift */; };
 		3BAB45511E7FEA21009E4E41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BAB45501E7FEA21009E4E41 /* Assets.xcassets */; };
 		3BAB45541E7FEA21009E4E41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BAB45521E7FEA21009E4E41 /* LaunchScreen.storyboard */; };
@@ -39,7 +40,6 @@
 		3BB613731E8B924B009EDF42 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB613721E8B924B009EDF42 /* MovieDetailsViewController.swift */; };
 		3BBE1A591E8CBB7200975AF7 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE1A581E8CBB7200975AF7 /* UIColorExtension.swift */; };
 		3BBE1A5B1E8CC84400975AF7 /* IntroContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE1A5A1E8CC84400975AF7 /* IntroContentTests.swift */; };
-		3BBE1A5D1E8CCDAA00975AF7 /* GridTableViewDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE1A5C1E8CCDAA00975AF7 /* GridTableViewDelegateDataSource.swift */; };
 		3BC6B59F1E85AA890055F43F /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6B59E1E85AA890055F43F /* Movie.swift */; };
 		3BC6B5A11E85F7D90055F43F /* MovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6B5A01E85F7D90055F43F /* MovieTests.swift */; };
 		3BC6B5A31E86184F0055F43F /* OMDbAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6B5A21E86184F0055F43F /* OMDbAPI.swift */; };
@@ -83,13 +83,14 @@
 		3B43BCF51E83A59300FBBB66 /* BackdropImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackdropImage.swift; sourceTree = "<group>"; };
 		3B43BCF71E83B4C600FBBB66 /* BackdropImageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackdropImageTests.swift; sourceTree = "<group>"; };
 		3B5F7B8A1E8E58590052DCC1 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
-		3B5F7B8C1E8EECAD0052DCC1 /* GridCollectionViewDelegateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridCollectionViewDelegateDataSource.swift; sourceTree = "<group>"; };
 		3B5F7B901E8F181A0052DCC1 /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		3B5F7B931E8F7EA40052DCC1 /* GridCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridCollectionView.swift; sourceTree = "<group>"; };
 		3B5F7B941E8F7EA40052DCC1 /* GridCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridCollectionViewCell.swift; sourceTree = "<group>"; };
 		3B5F7B951E8F7EA40052DCC1 /* GridCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GridCollectionViewCell.xib; sourceTree = "<group>"; };
 		3B5F7B961E8F7EA40052DCC1 /* GridTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTableView.swift; sourceTree = "<group>"; };
 		3B5F7B971E8F7EA40052DCC1 /* GridTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTableViewCell.swift; sourceTree = "<group>"; };
+		3B5F7B9E1E8FF6E50052DCC1 /* GridCollectionViewDelegateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridCollectionViewDelegateDataSource.swift; sourceTree = "<group>"; };
+		3B5F7B9F1E8FF6E50052DCC1 /* GridTableViewDelegateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTableViewDelegateDataSource.swift; sourceTree = "<group>"; };
 		3BAB45461E7FEA21009E4E41 /* Replay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Replay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAB45491E7FEA21009E4E41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BAB45501E7FEA21009E4E41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,7 +102,6 @@
 		3BB613721E8B924B009EDF42 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		3BBE1A581E8CBB7200975AF7 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		3BBE1A5A1E8CC84400975AF7 /* IntroContentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroContentTests.swift; sourceTree = "<group>"; };
-		3BBE1A5C1E8CCDAA00975AF7 /* GridTableViewDelegateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTableViewDelegateDataSource.swift; sourceTree = "<group>"; };
 		3BC6B59E1E85AA890055F43F /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		3BC6B5A01E85F7D90055F43F /* MovieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTests.swift; sourceTree = "<group>"; };
 		3BC6B5A21E86184F0055F43F /* OMDbAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMDbAPI.swift; sourceTree = "<group>"; };
@@ -213,6 +213,15 @@
 			path = Grid;
 			sourceTree = "<group>";
 		};
+		3B5F7B9D1E8FF6E50052DCC1 /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				3B5F7B9E1E8FF6E50052DCC1 /* GridCollectionViewDelegateDataSource.swift */,
+				3B5F7B9F1E8FF6E50052DCC1 /* GridTableViewDelegateDataSource.swift */,
+			);
+			path = Grid;
+			sourceTree = "<group>";
+		};
 		3BAB453D1E7FEA20009E4E41 = {
 			isa = PBXGroup;
 			children = (
@@ -262,11 +271,10 @@
 		3BC6B5F31E883C750055F43F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3BBE1A5C1E8CCDAA00975AF7 /* GridTableViewDelegateDataSource.swift */,
+				3B5F7B9D1E8FF6E50052DCC1 /* Grid */,
 				3BB6136C1E8B7B4F009EDF42 /* NavigationController.swift */,
 				3BB613721E8B924B009EDF42 /* MovieDetailsViewController.swift */,
 				3B5F7B8A1E8E58590052DCC1 /* DiscoverViewController.swift */,
-				3B5F7B8C1E8EECAD0052DCC1 /* GridCollectionViewDelegateDataSource.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -536,16 +544,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B011BD81E837BA200DDA24D /* ProductionCompany.swift in Sources */,
-				3BBE1A5D1E8CCDAA00975AF7 /* GridTableViewDelegateDataSource.swift in Sources */,
 				3B43BCF61E83A59300FBBB66 /* BackdropImage.swift in Sources */,
 				3B011BDC1E837E9C00DDA24D /* ProductionCountry.swift in Sources */,
 				3BAB454A1E7FEA21009E4E41 /* AppDelegate.swift in Sources */,
 				3B5F7B9B1E8F7EA40052DCC1 /* GridTableView.swift in Sources */,
 				3BBE1A591E8CBB7200975AF7 /* UIColorExtension.swift in Sources */,
+				3B5F7BA01E8FF6E50052DCC1 /* GridCollectionViewDelegateDataSource.swift in Sources */,
 				3B5F7B911E8F181A0052DCC1 /* Section.swift in Sources */,
 				3B011BC41E81C92500DDA24D /* APIKeys.swift in Sources */,
 				3B5F7B981E8F7EA40052DCC1 /* GridCollectionView.swift in Sources */,
 				3B011BCB1E81F74A00DDA24D /* JSONAble.swift in Sources */,
+				3B5F7BA11E8FF6E50052DCC1 /* GridTableViewDelegateDataSource.swift in Sources */,
 				3B2EC01B1E81276D00435CA9 /* TMDbAPI.swift in Sources */,
 				3BB6136D1E8B7B4F009EDF42 /* NavigationController.swift in Sources */,
 				3BC6B5AD1E870DF40055F43F /* IntroContent.swift in Sources */,
@@ -553,7 +562,6 @@
 				3B43BCF21E839B2400FBBB66 /* Video.swift in Sources */,
 				3B5F7B8B1E8E58590052DCC1 /* DiscoverViewController.swift in Sources */,
 				3BC6B5A51E8623620055F43F /* Stub.swift in Sources */,
-				3B5F7B8D1E8EECAD0052DCC1 /* GridCollectionViewDelegateDataSource.swift in Sources */,
 				3BC6B5A31E86184F0055F43F /* OMDbAPI.swift in Sources */,
 				3B5F7B991E8F7EA40052DCC1 /* GridCollectionViewCell.swift in Sources */,
 				3BC6B5A91E863E010055F43F /* MovieOMDb.swift in Sources */,
