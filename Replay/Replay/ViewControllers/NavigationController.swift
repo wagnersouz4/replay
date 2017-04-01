@@ -26,13 +26,6 @@ class NavigationController: UINavigationController {
             NSForegroundColorAttributeName: UIColor.highlighted,
             NSFontAttributeName: UIFont(name: ".SFUIText-Medium", size: 15)!
         ]
-
-        /// Adding a search button to the rightBar
-        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(search))
-        searchButton.tintColor = .highlighted
-        let navigationItem = UINavigationItem()
-        navigationItem.rightBarButtonItem = searchButton
-        navigationBar.items = [navigationItem]
     }
 
     @objc private func search() {

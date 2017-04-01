@@ -54,6 +54,7 @@ private extension GridTableViewCell {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isDirectionalLockEnabled = true
+        collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         contentView.addSubview(collectionView)
     }
 }
@@ -74,7 +75,5 @@ extension GridTableViewCell {
         if collectionView.delegate == nil {
             collectionView.delegate = delegate
         }
-
-        collectionView.reloadData()
     }
 }

@@ -51,9 +51,19 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
             let currentSection = collection.section else { fatalError("Invalid collection") }
 
         if sections[currentSection].contentList.isEmpty {
+            let center = CGPoint(x: collectionView.frame.width/2, y: collectionView.frame.height/2)
+
+            /// Spinner to give a feedback to the user while loading the json data (not the image)
+            let spinner = UIActivityIndicatorView(frame: CGRect(x: center.x, y: center.y, width: 50, height: 50))
+                spinner.color = .highlighted
+                spinner.hidesWhenStopped = true
+                collectionView.addSubview(spinner)
+
+                spinner.startAnimating()
             loadContent(for: collection.section) { [weak self] newContentList in
                 if let contentList = newContentList {
                     self?.sections[currentSection].contentList.append(contentsOf: contentList)
+                    spinner.stopAnimating()
                     collectionView.reloadData()
                 }
             }

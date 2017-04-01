@@ -1,5 +1,5 @@
 //
-//  IntroViewController.swift
+//  DiscoverViewController.swift
 //  Replay
 //
 //  Created by Wagner Souza on 31/03/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IntroViewController: UIViewController {
+class DiscoverViewController: UIViewController {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
@@ -32,9 +32,14 @@ class IntroViewController: UIViewController {
         segmentedControl.insertSegment(withTitle: "Movies", at: 0, animated: true)
         segmentedControl.insertSegment(withTitle: "TV", at: 1, animated: true)
         segmentedControl.insertSegment(withTitle: "Celebrities", at: 2, animated: true)
-
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(loadContent), for: .valueChanged)
+
+        /// Adding a search button to the rightBar
+        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(loadContent))
+        searchButton.tintColor = .highlighted
+        navigationItem.rightBarButtonItem = searchButton
+        navigationItem.title = "Discover"
     }
 
     @objc private func loadContent() {

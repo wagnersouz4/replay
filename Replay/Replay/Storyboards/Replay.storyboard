@@ -10,10 +10,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Item-->
         <scene sceneID="wTd-2q-Lbx">
             <objects>
                 <navigationController modalTransitionStyle="crossDissolve" id="v0T-CE-Y8I" customClass="NavigationController" customModule="Replay" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="qDp-jv-1N7"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" contentMode="scaleToFill" translucent="NO" id="l5d-0I-cas">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -24,12 +25,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LaX-g6-Ju3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4143" y="-545"/>
+            <point key="canvasLocation" x="-4786" y="-1111"/>
         </scene>
-        <!--Intro View Controller-->
+        <!--Discover View Controller-->
         <scene sceneID="mur-0f-RPw">
             <objects>
-                <viewController id="Oge-Rm-twV" customClass="IntroViewController" customModule="Replay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Oge-Rm-twV" customClass="DiscoverViewController" customModule="Replay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L87-mX-z81"/>
                         <viewControllerLayoutGuide type="bottom" id="DHB-YS-Pzf"/>
@@ -38,29 +39,26 @@
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Zyx-BO-hTX" customClass="GridTableView" customModule="Replay" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="628"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wMP-Hm-2gt">
-                                <rect key="frame" x="57" y="0.0" width="300" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="DFA-Ja-D21"/>
-                                </constraints>
+                                <rect key="frame" x="147" y="8" width="121" height="29"/>
                                 <segments>
                                     <segment title="First"/>
                                     <segment title="Second"/>
                                 </segments>
                             </segmentedControl>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Zyx-BO-hTX" customClass="GridTableView" customModule="Replay" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="36" width="414" height="636"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wMP-Hm-2gt" firstAttribute="top" secondItem="L87-mX-z81" secondAttribute="bottom" id="9um-dq-dMJ"/>
-                            <constraint firstItem="wMP-Hm-2gt" firstAttribute="centerX" secondItem="1JA-ap-Jm1" secondAttribute="centerX" id="EzS-Zm-jfC"/>
-                            <constraint firstItem="DHB-YS-Pzf" firstAttribute="top" secondItem="Zyx-BO-hTX" secondAttribute="bottom" id="fYy-hw-pno"/>
-                            <constraint firstItem="Zyx-BO-hTX" firstAttribute="top" secondItem="wMP-Hm-2gt" secondAttribute="bottom" constant="8" id="jE2-Ww-MFY"/>
-                            <constraint firstItem="Zyx-BO-hTX" firstAttribute="leading" secondItem="1JA-ap-Jm1" secondAttribute="leading" id="osz-ho-ciH"/>
-                            <constraint firstAttribute="trailing" secondItem="Zyx-BO-hTX" secondAttribute="trailing" id="sHI-Oh-oMH"/>
+                            <constraint firstAttribute="trailing" secondItem="Zyx-BO-hTX" secondAttribute="trailing" id="5sx-Y7-yEa"/>
+                            <constraint firstItem="DHB-YS-Pzf" firstAttribute="top" secondItem="Zyx-BO-hTX" secondAttribute="bottom" id="BWC-uG-5wd"/>
+                            <constraint firstItem="wMP-Hm-2gt" firstAttribute="centerX" secondItem="1JA-ap-Jm1" secondAttribute="centerX" id="LZh-5V-Jo5"/>
+                            <constraint firstItem="Zyx-BO-hTX" firstAttribute="leading" secondItem="1JA-ap-Jm1" secondAttribute="leading" id="eS0-Im-HFC"/>
+                            <constraint firstItem="wMP-Hm-2gt" firstAttribute="top" secondItem="L87-mX-z81" secondAttribute="bottom" constant="8" id="iw8-A1-BaR"/>
+                            <constraint firstItem="Zyx-BO-hTX" firstAttribute="top" secondItem="wMP-Hm-2gt" secondAttribute="bottom" constant="8" id="otu-Bl-kOP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fC0-MW-MZa"/>
@@ -71,7 +69,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYb-9F-Xlq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3299" y="-545"/>
+            <point key="canvasLocation" x="-3970" y="-1111"/>
         </scene>
         <!--Movie Details View Controller-->
         <scene sceneID="oqb-Am-txu">
@@ -101,7 +99,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mlv-du-j2m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2488.4057971014495" y="-545.38043478260875"/>
+            <point key="canvasLocation" x="-3149" y="-1111"/>
         </scene>
     </scenes>
 </document>
