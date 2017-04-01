@@ -1,5 +1,5 @@
 //
-//  IntroTableViewCell.swift
+//  GridTableViewCell.swift
 //  Replay
 //
 //  Created by Wagner Souza on 28/03/17.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class IntroTableViewCell: UITableViewCell {
+class GridTableViewCell: UITableViewCell {
 
-    var collectionView: IntroCollectionView!
-    var layout: UICollectionViewFlowLayout!
+    fileprivate var collectionView: GridCollectionView!
+    fileprivate var layout: UICollectionViewFlowLayout!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,15 +37,15 @@ class IntroTableViewCell: UITableViewCell {
 }
 
 // MARK: Collection View
-private extension IntroTableViewCell {
+private extension GridTableViewCell {
     func setupCollectionView() {
         layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
 
         /// Initializing the colletionView
-        collectionView = IntroCollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView = GridCollectionView(frame: .zero, collectionViewLayout: layout)
 
-        collectionView.register(UINib(nibName: "IntroCollectionViewCell", bundle: nil),
+        collectionView.register(UINib(nibName: "GridCollectionViewCell", bundle: nil),
                                 forCellWithReuseIdentifier: "CollectionViewCell")
 
         /// ColectionView Custom settings
@@ -58,8 +58,8 @@ private extension IntroTableViewCell {
     }
 }
 
-// MARK: Collection data source, delegate
-extension IntroTableViewCell {
+// MARK: Setting collection data source, delegate and section
+extension GridTableViewCell {
     /// This method will be called in the TableViewController's tableView(_:willDisplay:forRowAt:)
     func setCollectionView(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate, section: Int) {
 
@@ -74,6 +74,7 @@ extension IntroTableViewCell {
         if collectionView.delegate == nil {
             collectionView.delegate = delegate
         }
-    }
 
+        collectionView.reloadData()
+    }
 }

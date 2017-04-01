@@ -14,7 +14,10 @@ enum TMDbService {
     case nowPlayingMovies(page: Int)
     case upcomingMovies(page: Int)
     case topRatedMovies(page: Int)
+
     case popularOnTV(page: Int)
+    case topRatedOnTV(page: Int)
+
     case celebrities(page: Int)
 
 }
@@ -37,6 +40,8 @@ extension TMDbService: TargetType {
             return "/movie/top_rated"
         case .popularOnTV:
             return "/tv/popular"
+        case .topRatedOnTV:
+            return "/tv/top_rated"
         case .celebrities:
             return "/person/popular"
         }
@@ -56,6 +61,7 @@ extension TMDbService: TargetType {
              .upcomingMovies(let page),
              .topRatedMovies(let page),
              .popularOnTV(let page),
+             .topRatedOnTV(let page),
              .celebrities(let page):
             return ["api_key": APIKeys.TMDbKey, "page": page]
         }
@@ -78,7 +84,7 @@ extension TMDbService: TargetType {
              .upcomingMovies,
              .topRatedMovies:
             return Stub.stubbedResponse("MovieIntro")
-        case .popularOnTV:
+        case .popularOnTV, .topRatedOnTV:
             return Stub.stubbedResponse("TVShowIntro")
         case .celebrities:
             return Stub.stubbedResponse("Celebrities")

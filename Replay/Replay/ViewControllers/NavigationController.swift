@@ -15,7 +15,7 @@ class NavigationController: UINavigationController {
         setupNavigationBar()
     }
 
-    func setupNavigationBar() {
+    private func setupNavigationBar() {
         /// NavigationBar Style
         navigationBar.clipsToBounds = true
         navigationBar.barStyle = .black
@@ -35,7 +35,7 @@ class NavigationController: UINavigationController {
         navigationBar.items = [navigationItem]
     }
 
-    @objc func search() {
+    @objc private func search() {
         // do search
     }
 }

@@ -16,7 +16,7 @@ struct IntroContent {
 
     var imageURL: URL? {
         guard let path = imagePath else { return nil }
-        return URL(string: "https://image.tmdb.org/t/p/original\(path)")
+        return URL(string: "https://image.tmdb.org/t/p/w300\(path)")
     }
 
     static func fromResults(_ json: JSONDictionary) -> [IntroContent]? {

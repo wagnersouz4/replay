@@ -1,5 +1,5 @@
 //
-//  IntroCollectionView.swift
+//  GridCollectionView.swift
 //  Replay
 //
 //  Created by Wagner Souza on 28/03/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IntroCollectionView: UICollectionView {
+class GridCollectionView: UICollectionView {
 
     /// The corresponding table's section where the collection view is placed
     var section: Int!

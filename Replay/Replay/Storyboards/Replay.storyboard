@@ -19,34 +19,59 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="qkm-wu-SDp" kind="relationship" relationship="rootViewController" id="SHg-Ya-aM6"/>
+                        <segue destination="Oge-Rm-twV" kind="relationship" relationship="rootViewController" id="Im8-Mb-QWd"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LaX-g6-Ju3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4143" y="-545"/>
         </scene>
-        <!--Intro Table View Controller-->
-        <scene sceneID="F8L-rC-HE1">
+        <!--Intro View Controller-->
+        <scene sceneID="mur-0f-RPw">
             <objects>
-                <tableViewController id="qkm-wu-SDp" customClass="IntroTableViewController" customModule="Replay" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="JHF-ti-kr6">
+                <viewController id="Oge-Rm-twV" customClass="IntroViewController" customModule="Replay" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="L87-mX-z81"/>
+                        <viewControllerLayoutGuide type="bottom" id="DHB-YS-Pzf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1JA-ap-Jm1">
                         <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="wMP-Hm-2gt">
+                                <rect key="frame" x="57" y="0.0" width="300" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="DFA-Ja-D21"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Zyx-BO-hTX" customClass="GridTableView" customModule="Replay" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="36" width="414" height="636"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <connections>
-                            <outlet property="dataSource" destination="qkm-wu-SDp" id="El4-du-q02"/>
-                            <outlet property="delegate" destination="qkm-wu-SDp" id="rKg-IS-XMR"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="X9l-7T-eGf"/>
+                        <constraints>
+                            <constraint firstItem="wMP-Hm-2gt" firstAttribute="top" secondItem="L87-mX-z81" secondAttribute="bottom" id="9um-dq-dMJ"/>
+                            <constraint firstItem="wMP-Hm-2gt" firstAttribute="centerX" secondItem="1JA-ap-Jm1" secondAttribute="centerX" id="EzS-Zm-jfC"/>
+                            <constraint firstItem="DHB-YS-Pzf" firstAttribute="top" secondItem="Zyx-BO-hTX" secondAttribute="bottom" id="fYy-hw-pno"/>
+                            <constraint firstItem="Zyx-BO-hTX" firstAttribute="top" secondItem="wMP-Hm-2gt" secondAttribute="bottom" constant="8" id="jE2-Ww-MFY"/>
+                            <constraint firstItem="Zyx-BO-hTX" firstAttribute="leading" secondItem="1JA-ap-Jm1" secondAttribute="leading" id="osz-ho-ciH"/>
+                            <constraint firstAttribute="trailing" secondItem="Zyx-BO-hTX" secondAttribute="trailing" id="sHI-Oh-oMH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="fC0-MW-MZa"/>
                     <connections>
-                        <segue destination="fPK-C5-Yx0" kind="presentation" identifier="SegueMovieDetail" modalTransitionStyle="crossDissolve" id="Vhx-WT-TfS"/>
+                        <outlet property="segmentedControl" destination="wMP-Hm-2gt" id="Gdz-Ah-38T"/>
+                        <outlet property="tableView" destination="Zyx-BO-hTX" id="wJ1-pz-1H9"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AeU-rf-VlZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYb-9F-Xlq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3336" y="-545"/>
+            <point key="canvasLocation" x="-3299" y="-545"/>
         </scene>
         <!--Movie Details View Controller-->
         <scene sceneID="oqb-Am-txu">
