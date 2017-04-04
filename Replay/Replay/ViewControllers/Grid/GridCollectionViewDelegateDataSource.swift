@@ -16,14 +16,14 @@ class GridCollectionViewDelegateDataSource: NSObject {
 
     fileprivate var sections: [Section]
     fileprivate let provider = MoyaProvider<TMDbService>()
-    fileprivate var didSelectedContent: DidSelectContentClosure
+    fileprivate var didSelect: DidSelectContentClosure
 
     /// Collection insets
     fileprivate let collectionEdgeInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
 
-    init(sections: [Section], didSelectedContent: @escaping DidSelectContentClosure) {
+    init(sections: [Section], didSelect: @escaping DidSelectContentClosure) {
         self.sections = sections
-        self.didSelectedContent = didSelectedContent
+        self.didSelect = didSelect
     }
 
     fileprivate func loadContent(for section: Int, completion: @escaping ((_: [IntroContent]?) -> Void)) {
@@ -85,7 +85,7 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
 
         let content = sections[collection.section].contentList[indexPath.row]
 
-        cell.imageView.image = #imageLiteral(resourceName: "noCover")
+        cell.imageView.image = #imageLiteral(resourceName: "nocover")
         if let imageURL = content.imageURL {
             /// Loading the image progressively see more at: https://github.com/pinterest/PINRemoteImage
             cell.spinner.color = .highlighted
@@ -107,7 +107,7 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
         let content = section.contentList[indexPath.row]
 
         /// The class holding the delegate will be responsible to act when a content is selected
-        didSelectedContent(content, section.mediaType)
+        didSelect(content, section.mediaType)
     }
 }
 

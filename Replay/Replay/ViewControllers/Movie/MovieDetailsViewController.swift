@@ -20,12 +20,17 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var ratingImageView: UIImageView!
     @IBOutlet weak var containterView: UIView!
 
-    weak var currentViewController: UIViewController!
+    weak var currentVC: UIViewController!
+
+    private lazy var overviewViewController: MovieOverviewViewController = {
+        let storyboard = UIStoryboard.init(using: .ReplayIphone)
+        return storyboard.instantiateViewController()
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        loadContentView()
+        loadContent()
         print(movieID)
     }
 
@@ -49,31 +54,25 @@ class MovieDetailsViewController: UIViewController {
         segmentedControl.insertSegment(withTitle: "Cast", at: 1, animated: true)
         segmentedControl.insertSegment(withTitle: "Similar", at: 2, animated: true)
         segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.addTarget(self, action: #selector(loadContentView), for: .valueChanged)
+        segmentedControl.addTarget(self, action: #selector(loadContent), for: .valueChanged)
     }
 
-    @objc private func loadContentView() {
+    @objc private func loadContent() {
         switch segmentedControl.selectedSegmentIndex {
+        /// Overview
         case 0:
-            guard let viewController = storyboard?.instantiateViewController(
-                withIdentifier: "MovieOverviewViewController") as? MovieOverviewViewController else { return }
-            currentViewController = viewController
-            currentViewController.view.translatesAutoresizingMaskIntoConstraints = false
-            addChildViewController(currentViewController)
-
-            containterView.addSubview(currentViewController.view)
-            var viewBindingsDict = [String: Any]()
-            viewBindingsDict["subView"] = currentViewController.view
-            containterView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[subView]|",
-                                                                         options: [],
-                                                                         metrics: nil,
-                                                                         views: viewBindingsDict))
-            containterView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[subView]|",
-                                                                         options: [],
-                                                                         metrics: nil,
-                                                                         views: viewBindingsDict))
+            loadContentView(using: overviewViewController)
         default:
             print("others")
         }
+    }
+
+    private func loadContentView(using viewController: UIViewController) {
+        currentVC = viewController
+        addChildViewController(currentVC)
+        containterView.addSubview(currentVC.view)
+        currentVC.view.frame = containterView.bounds
+        currentVC.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        currentVC.didMove(toParentViewController: self)
     }
 }

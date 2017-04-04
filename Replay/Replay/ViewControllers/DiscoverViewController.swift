@@ -66,11 +66,18 @@ class DiscoverViewController: UIViewController {
 
     private func reloadData(using sections: [Section]) {
         collectionViewDelegateDataSource = GridCollectionViewDelegateDataSource(sections: sections,
-                                                                                didSelectedContent: didSelectedContent)
+                                                                                didSelect: didSelect)
         tableViewDelegateDataSource = GridTableViewDelegateDataSource(
             sections: sections, collectionDelegateDataSource: collectionViewDelegateDataSource)
-        tableView.dataSource = tableViewDelegateDataSource
-        tableView.delegate = tableViewDelegateDataSource
+
+        if tableView.dataSource == nil {
+            tableView.dataSource = tableViewDelegateDataSource
+        }
+
+        if tableView.delegate == nil {
+            tableView.delegate = tableViewDelegateDataSource
+        }
+
         tableView.reloadData()
     }
 
@@ -90,7 +97,7 @@ class DiscoverViewController: UIViewController {
         }
     }
 
-    private func didSelectedContent(_ content: IntroContent, with mediaType: Mediatype) {
+    private func didSelect(_ content: IntroContent, with mediaType: Mediatype) {
         switch mediaType {
         case .movie:
             performSegue(withIdentifier: "MovieDetailsSegue", sender: content.contentId)
