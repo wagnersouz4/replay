@@ -12,14 +12,18 @@ import PINRemoteImage
 
 class GridCollectionViewDelegateDataSource: NSObject {
 
+    typealias DidSelectContentClosure = (_: IntroContent, _: Mediatype) -> Void
+
     fileprivate var sections: [Section]
     fileprivate let provider = MoyaProvider<TMDbService>()
+    fileprivate var didSelectedContent: DidSelectContentClosure
 
     /// Collection insets
     fileprivate let collectionEdgeInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
 
-    init(sections: [Section]) {
+    init(sections: [Section], didSelectedContent: @escaping DidSelectContentClosure) {
         self.sections = sections
+        self.didSelectedContent = didSelectedContent
     }
 
     fileprivate func loadContent(for section: Int, completion: @escaping ((_: [IntroContent]?) -> Void)) {
@@ -101,7 +105,9 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
         guard let collection = collectionView as? GridCollectionView else { fatalError("Invalid collection") }
         let section = sections[collection.section]
         let content = section.contentList[indexPath.row]
-        /// todo: show detailed info
+
+        /// The class holding the delegate will be responsible to act when a content is selected
+        didSelectedContent(content, section.mediaType)
     }
 }
 
@@ -115,7 +121,7 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDelegateFlowLayo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = 210.0
-        /// Keeping aspect ratio as the image from TMDb is 300x444
+        /// Keeping the aspect ratio as the image from TMDb is 300x444
         let width = 0.6756 * height
         return CGSize(width: width, height: height)
     }

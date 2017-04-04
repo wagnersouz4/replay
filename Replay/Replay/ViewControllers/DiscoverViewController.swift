@@ -24,8 +24,6 @@ class DiscoverViewController: UIViewController {
 
     private func setupUI() {
         view.backgroundColor = .background
-        segmentedControl.tintColor = .highlighted
-        segmentedControl.removeAllSegments()
 
         /// Inserting segments programatically as it's easier to know the index of each one,
         /// without the need to go open the storyboard.
@@ -67,11 +65,39 @@ class DiscoverViewController: UIViewController {
     }
 
     private func reloadData(using sections: [Section]) {
-        collectionViewDelegateDataSource = GridCollectionViewDelegateDataSource(sections: sections)
+        collectionViewDelegateDataSource = GridCollectionViewDelegateDataSource(sections: sections,
+                                                                                didSelectedContent: didSelectedContent)
         tableViewDelegateDataSource = GridTableViewDelegateDataSource(
             sections: sections, collectionDelegateDataSource: collectionViewDelegateDataSource)
         tableView.dataSource = tableViewDelegateDataSource
         tableView.delegate = tableViewDelegateDataSource
         tableView.reloadData()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else { fatalError("The segue must have a identifier!") }
+        guard let contentId = sender as? Int else { fatalError("The sender should be an Int value") }
+        switch identifier {
+        case "MovieDetailsSegue":
+            let viewController = segue.destination as? MovieDetailsViewController
+            viewController?.movieID = contentId
+        case "TVDetailsSegue":
+            print("tv")
+        case "CelebrityDetailsSegue":
+            print("celebrity")
+        default:
+            break
+        }
+    }
+
+    private func didSelectedContent(_ content: IntroContent, with mediaType: Mediatype) {
+        switch mediaType {
+        case .movie:
+            performSegue(withIdentifier: "MovieDetailsSegue", sender: content.contentId)
+        case .tv:
+            performSegue(withIdentifier: "TVDetailsSegue", sender: content.contentId)
+        case .celebrity:
+            performSegue(withIdentifier: "CelebrityDetailsSegue", sender: content.contentId)
+        }
     }
 }
