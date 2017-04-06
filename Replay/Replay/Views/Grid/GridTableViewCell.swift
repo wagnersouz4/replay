@@ -8,10 +8,15 @@
 
 import UIKit
 
+enum CollectionViewCellOrientation {
+    case portrait, landscape
+}
+
 class GridTableViewCell: UITableViewCell {
 
     fileprivate var collectionView: GridCollectionView!
     fileprivate var layout: UICollectionViewFlowLayout!
+    fileprivate var cellOrientation: CollectionViewCellOrientation
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,8 +26,9 @@ class GridTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    init(reuseIdentifier: String?, orientation cellOrientation: CollectionViewCellOrientation) {
+        self.cellOrientation = cellOrientation
+        super.init(style: .default, reuseIdentifier: reuseIdentifier)
         setupCollectionView()
     }
 
@@ -33,6 +39,11 @@ class GridTableViewCell: UITableViewCell {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    fileprivate func nibForCollectionViewCell(with orientation: CollectionViewCellOrientation) -> UINib {
+        let nibName = (orientation == .portrait) ? "GridPortraitCollectionViewCell" : "GridLandscapeCollectionViewCell"
+        return UINib(nibName: nibName, bundle: nil)
     }
 }
 
@@ -45,8 +56,8 @@ private extension GridTableViewCell {
         /// Initializing the colletionView
         collectionView = GridCollectionView(frame: .zero, collectionViewLayout: layout)
 
-        collectionView.register(UINib(nibName: "GridCollectionViewCell", bundle: nil),
-                                forCellWithReuseIdentifier: "CollectionViewCell")
+        let nib = nibForCollectionViewCell(with: cellOrientation)
+        collectionView.register(nib, forCellWithReuseIdentifier: "CollectionViewCell")
 
         /// ColectionView Custom settings
         collectionView.backgroundColor = .background

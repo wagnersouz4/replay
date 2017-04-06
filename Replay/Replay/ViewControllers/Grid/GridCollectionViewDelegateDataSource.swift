@@ -12,7 +12,7 @@ import PINRemoteImage
 
 class GridCollectionViewDelegateDataSource: NSObject {
 
-    typealias DidSelectContentClosure = (_: IntroContent, _: Mediatype) -> Void
+    typealias DidSelectContentClosure = (_: GridContent) -> Void
 
     fileprivate var sections: [Section]
     fileprivate let provider = MoyaProvider<TMDbService>()
@@ -26,7 +26,7 @@ class GridCollectionViewDelegateDataSource: NSObject {
         self.didSelect = didSelect
     }
 
-    fileprivate func loadContent(for section: Int, completion: @escaping ((_: [IntroContent]?) -> Void)) {
+    fileprivate func loadContent(for section: Int, completion: @escaping ((_: [GridContent]?) -> Void)) {
         let target = sections[section].target
 
         provider.request(target(1)) { result in
@@ -34,7 +34,7 @@ class GridCollectionViewDelegateDataSource: NSObject {
             case .success(let response):
                 do {
                     guard let json = try response.mapJSON() as? JSONDictionary,
-                        let contentList = IntroContent.fromResults(json) else { fatalError("Error while loading JSON") }
+                        let contentList = GridContent.fromResults(json) else { fatalError("Error while loading JSON") }
                     completion(contentList)
                 } catch {
                     print(error.localizedDescription)
@@ -57,13 +57,13 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
         if sections[currentSection].contentList.isEmpty {
             let center = CGPoint(x: collectionView.frame.width/2, y: collectionView.frame.height/2)
 
-            /// Spinner to give a feedback to the user while loading the json data (not the image)
+            /// Spinner to give some feedback to the user while loading the json data (not the image)
             let spinner = UIActivityIndicatorView(frame: CGRect(x: center.x, y: center.y, width: 50, height: 50))
-                spinner.color = .highlighted
-                spinner.hidesWhenStopped = true
-                collectionView.addSubview(spinner)
+            spinner.color = .highlighted
+            spinner.hidesWhenStopped = true
+            collectionView.addSubview(spinner)
 
-                spinner.startAnimating()
+            spinner.startAnimating()
             loadContent(for: collection.section) { [weak self] newContentList in
                 if let contentList = newContentList {
                     self?.sections[currentSection].contentList.append(contentsOf: contentList)
@@ -79,26 +79,18 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let collection = collectionView as? GridCollectionView else { fatalError("Invalid collection") }
 
-        guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "CollectionViewCell", for: indexPath) as? GridCollectionViewCell
-            else { fatalError("Invalid cell") }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath)
+            as? GridableCollectionViewCell else { fatalError("Invalid cell") }
 
         let content = sections[collection.section].contentList[indexPath.row]
 
         cell.imageView.image = #imageLiteral(resourceName: "nocover")
-        if let imageURL = content.imageURL {
-            /// Loading the image progressively see more at: https://github.com/pinterest/PINRemoteImage
-            cell.spinner.color = .highlighted
-            cell.spinner.hidesWhenStopped = true
-            cell.spinner.startAnimating()
-            cell.imageView.pin_updateWithProgress = true
-            cell.imageView.pin_setImage(from: imageURL) { _ in
-                cell.spinner.stopAnimating()
-            }
-        }
+        /// load the right image
         cell.label.text = content.description
 
-        return cell
+        guard let collectionViewCell = cell as? UICollectionViewCell else { fatalError("lol") }
+
+        return collectionViewCell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -107,7 +99,7 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
         let content = section.contentList[indexPath.row]
 
         /// The class holding the delegate will be responsible to act when a content is selected
-        didSelect(content, section.mediaType)
+        didSelect(content)
     }
 }
 
@@ -120,9 +112,10 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDelegateFlowLayo
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = 210.0
-        /// Keeping the aspect ratio as the image from TMDb is 300x444
-        let width = 0.6756 * height
+        guard let collection = collectionView as? GridCollectionView else { fatalError("Invalid collection") }
+        let section = sections[collection.section]
+        let height = section.layout.collectionViewCellSize.height
+        let width = section.layout.collectionViewCellSize.width
         return CGSize(width: width, height: height)
     }
 

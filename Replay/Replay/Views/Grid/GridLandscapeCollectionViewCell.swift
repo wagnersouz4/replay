@@ -1,16 +1,17 @@
 //
-//  GridCollectionViewCell.swift
+//  GridLandscapeCollectionViewCell.swift
 //  Replay
 //
-//  Created by Wagner Souza on 28/03/17.
+//  Created by Pan on 5/04/17.
 //  Copyright © 2017 Wagner Souza. All rights reserved.
 //
 
 import UIKit
 
-class GridCollectionViewCell: UICollectionViewCell {
+class GridLandscapeCollectionViewCell: UICollectionViewCell, GridableCollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+
 }

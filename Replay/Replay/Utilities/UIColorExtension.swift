@@ -12,6 +12,11 @@ extension UIColor {
     open class var background: UIColor {
         return UIColor(colorLiteralRed:  28/255, green: 28/255, blue: 28/255, alpha: 1)
     }
+
+    open class var tabBar: UIColor {
+        return UIColor(colorLiteralRed:  25/255, green: 25/255, blue: 25/255, alpha: 1)
+    }
+
     open class var highlighted: UIColor {
         return UIColor(colorLiteralRed: 0, green: 211/255, blue: 115/255, alpha: 1)
     }

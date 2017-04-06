@@ -8,14 +8,37 @@
 
 import UIKit
 
+/// Data structure containing the grid layout specification
+struct GridLayout {
+    let tableViewHeight: CGFloat
+    let collectionViewCellOrientation: CollectionViewCellOrientation
+    let collectionViewCellSize: CGSize
+}
+
+struct Section {
+    typealias TargetPaged = (Int) -> TMDbService
+
+    let title: String
+    let layout: GridLayout
+    var contentList: [GridContent]
+    let target: TargetPaged
+
+    init(title: String, layout: GridLayout, target: @escaping TargetPaged) {
+        self.contentList = []
+        self.layout = layout
+        self.target = target
+        self.title = title
+    }
+}
+
 class GridTableViewDelegateDataSource: NSObject {
 
     fileprivate var sections: [Section]!
-    fileprivate weak var collectionDelegateDataSource: GridCollectionViewDelegateDataSource!
+    fileprivate weak var collectionViewDelegateDataSource: GridCollectionViewDelegateDataSource!
 
-    init(sections: [Section], collectionDelegateDataSource: GridCollectionViewDelegateDataSource) {
+    init(sections: [Section], collectionViewDelegateDataSource: GridCollectionViewDelegateDataSource) {
         self.sections = sections
-        self.collectionDelegateDataSource = collectionDelegateDataSource
+        self.collectionViewDelegateDataSource = collectionViewDelegateDataSource
     }
 }
 
@@ -35,23 +58,25 @@ extension GridTableViewDelegateDataSource: UITableViewDataSource, UITableViewDel
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 230
+        return sections[indexPath.section].layout.tableViewHeight
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         /// Each table cell will have one identifier.
         /// As a consequence, each section will have its own reuse queue avoiding unexpected conflits.
         let identifier = "TableCell#\(indexPath.section)"
+        let section = sections[indexPath.section]
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier) ??
-            GridTableViewCell(style: .default, reuseIdentifier: identifier)
+            GridTableViewCell(reuseIdentifier: identifier,
+                              orientation: section.layout.collectionViewCellOrientation)
         return cell
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let tableViewCell = cell as? GridTableViewCell else { fatalError("Invalid Table Cell") }
-        guard collectionDelegateDataSource != nil else { return }
-        tableViewCell.setCollectionView(dataSource: collectionDelegateDataSource!,
-                                        delegate: collectionDelegateDataSource!,
+        guard collectionViewDelegateDataSource != nil else { return }
+        tableViewCell.setCollectionView(dataSource: collectionViewDelegateDataSource,
+                                        delegate: collectionViewDelegateDataSource,
                                         section: indexPath.section)
     }
 
@@ -59,6 +84,7 @@ extension GridTableViewDelegateDataSource: UITableViewDataSource, UITableViewDel
         guard let headerView = view as? UITableViewHeaderFooterView else { return }
         headerView.contentView.backgroundColor = .background
         headerView.textLabel?.textColor = .white
-        headerView.textLabel?.textAlignment = .left
+        let orientation = sections[section].layout.collectionViewCellOrientation
+        headerView.textLabel?.textAlignment = (orientation == .landscape) ? .center : .left
     }
 }
