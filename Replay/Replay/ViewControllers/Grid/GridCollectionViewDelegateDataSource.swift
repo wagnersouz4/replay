@@ -82,13 +82,49 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath)
             as? GridableCollectionViewCell else { fatalError("Invalid cell") }
 
-        let content = sections[collection.section].contentList[indexPath.row]
+        let section = sections[collection.section]
+        let content = section.contentList[indexPath.row]
 
         cell.imageView.image = #imageLiteral(resourceName: "nocover")
-        /// load the right image
-        cell.label.text = content.description
 
-        guard let collectionViewCell = cell as? UICollectionViewCell else { fatalError("lol") }
+        var imageURL: URL? = nil
+
+        switch section.layout.collectionViewCellOrientation {
+        case .landscape:
+            cell.label.text = content.description
+
+            guard content.landscapeImagePath != nil else { break }
+
+            if UIDevice.isIPad {
+                imageURL = content.imageURL(orientation: .landscape, size: .w500)!
+            } else {
+                imageURL = content.imageURL(orientation: .landscape, size: .w300)!
+            }
+        case .portrait:
+            guard content.portraitImagePath != nil else {
+                cell.label.text = content.description
+                break
+            }
+
+            if UIDevice.isIPad {
+                imageURL = content.imageURL(orientation: .portrait, size: .w500)
+            } else {
+                imageURL = content.imageURL(orientation: .portrait, size: .w300)
+            }
+        }
+
+        if let url = imageURL {
+            cell.spinner.color = .highlighted
+            cell.spinner.hidesWhenStopped = true
+            cell.spinner.startAnimating()
+            /// Loading the image progressively see more at: https://github.com/pinterest/PINRemoteImage
+            cell.imageView.pin_updateWithProgress = true
+            cell.imageView.pin_setImage(from: url) { _ in
+                cell.spinner.stopAnimating()
+            }
+        }
+
+        guard let collectionViewCell = cell as? UICollectionViewCell else { fatalError("Invalid CollectViewCell") }
 
         return collectionViewCell
     }

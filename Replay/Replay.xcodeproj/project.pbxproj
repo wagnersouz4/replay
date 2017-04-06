@@ -43,6 +43,7 @@
 		3BBE1A5B1E8CC84400975AF7 /* IntroContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE1A5A1E8CC84400975AF7 /* IntroContentTests.swift */; };
 		3BBE2C281E95607600AAA6E7 /* GridLandscapeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE2C261E95607600AAA6E7 /* GridLandscapeCollectionViewCell.swift */; };
 		3BBE2C291E95607600AAA6E7 /* GridLandscapeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE2C271E95607600AAA6E7 /* GridLandscapeCollectionViewCell.xib */; };
+		3BBE2C2B1E95E6E100AAA6E7 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE2C2A1E95E6E100AAA6E7 /* UIDeviceExtension.swift */; };
 		3BC6B59F1E85AA890055F43F /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6B59E1E85AA890055F43F /* Movie.swift */; };
 		3BC6B5A11E85F7D90055F43F /* MovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6B5A01E85F7D90055F43F /* MovieTests.swift */; };
 		3BC6B5A31E86184F0055F43F /* OMDbAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6B5A21E86184F0055F43F /* OMDbAPI.swift */; };
@@ -108,6 +109,7 @@
 		3BBE1A5A1E8CC84400975AF7 /* IntroContentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroContentTests.swift; sourceTree = "<group>"; };
 		3BBE2C261E95607600AAA6E7 /* GridLandscapeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLandscapeCollectionViewCell.swift; sourceTree = "<group>"; };
 		3BBE2C271E95607600AAA6E7 /* GridLandscapeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GridLandscapeCollectionViewCell.xib; sourceTree = "<group>"; };
+		3BBE2C2A1E95E6E100AAA6E7 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		3BC6B59E1E85AA890055F43F /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		3BC6B5A01E85F7D90055F43F /* MovieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTests.swift; sourceTree = "<group>"; };
 		3BC6B5A21E86184F0055F43F /* OMDbAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMDbAPI.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				3BBE1A581E8CBB7200975AF7 /* UIColorExtension.swift */,
 				3B7F3A641E9368ED003F6925 /* UIStoryBoardExtension.swift */,
 				3B7F3A661E9369D1003F6925 /* UIViewControllerExtension.swift */,
+				3BBE2C2A1E95E6E100AAA6E7 /* UIDeviceExtension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				3BC6B5A51E8623620055F43F /* Stub.swift in Sources */,
 				3B7F3A651E9368ED003F6925 /* UIStoryBoardExtension.swift in Sources */,
 				3BBE2C281E95607600AAA6E7 /* GridLandscapeCollectionViewCell.swift in Sources */,
+				3BBE2C2B1E95E6E100AAA6E7 /* UIDeviceExtension.swift in Sources */,
 				3BC6B5A31E86184F0055F43F /* OMDbAPI.swift in Sources */,
 				3B5F7B991E8F7EA40052DCC1 /* GridPortraitCollectionViewCell.swift in Sources */,
 				3BC6B5A91E863E010055F43F /* MovieOMDb.swift in Sources */,
