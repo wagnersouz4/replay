@@ -51,7 +51,7 @@
         <!--TV-->
         <scene sceneID="ygW-UK-Mok">
             <objects>
-                <viewController id="loO-yq-nxU" sceneMemberID="viewController">
+                <viewController id="loO-yq-nxU" customClass="TVViewController" customModule="Replay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ils-Z7-SRS"/>
                         <viewControllerLayoutGuide type="bottom" id="K9D-I9-eoi"/>
@@ -59,13 +59,28 @@
                     <view key="view" contentMode="scaleToFill" id="RWC-4V-HFi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rbD-OM-y78">
+                                <rect key="frame" x="0.0" y="20" width="414" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rbD-OM-y78" firstAttribute="top" secondItem="Ils-Z7-SRS" secondAttribute="bottom" id="BXG-RL-q7z"/>
+                            <constraint firstItem="rbD-OM-y78" firstAttribute="leading" secondItem="RWC-4V-HFi" secondAttribute="leading" id="eoB-rh-SGD"/>
+                            <constraint firstAttribute="trailing" secondItem="rbD-OM-y78" secondAttribute="trailing" id="jxD-f9-VeW"/>
+                            <constraint firstItem="K9D-I9-eoi" firstAttribute="top" secondItem="rbD-OM-y78" secondAttribute="bottom" id="oUa-sm-T4N"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="TV" image="tv-unselected" selectedImage="tv-selected" id="kqC-Of-MpV"/>
+                    <connections>
+                        <outlet property="tableView" destination="rbD-OM-y78" id="uWK-04-d9Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ycl-4X-uBB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4770" y="-1057"/>
+            <point key="canvasLocation" x="-4771.0144927536239" y="-1057.3369565217392"/>
         </scene>
         <!--Movies-->
         <scene sceneID="j8Y-5J-xE3">
@@ -82,10 +97,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="06T-bw-7CD">
                                 <rect key="frame" x="0.0" y="20" width="414" height="667"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Fxb-21-FxQ" id="qbE-vO-qLs"/>
-                                    <outlet property="delegate" destination="Fxb-21-FxQ" id="Ypt-OB-JE0"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <constraints>

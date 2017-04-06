@@ -8,13 +8,6 @@
 
 import UIKit
 
-/// Data structure containing the grid layout specification
-struct GridLayout {
-    let tableViewHeight: CGFloat
-    let collectionViewCellOrientation: CollectionViewCellOrientation
-    let collectionViewCellSize: CGSize
-}
-
 struct Section {
     typealias TargetPaged = (Int) -> TMDbService
 

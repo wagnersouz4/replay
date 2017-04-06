@@ -44,6 +44,8 @@
 		3BBE2C281E95607600AAA6E7 /* GridLandscapeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE2C261E95607600AAA6E7 /* GridLandscapeCollectionViewCell.swift */; };
 		3BBE2C291E95607600AAA6E7 /* GridLandscapeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE2C271E95607600AAA6E7 /* GridLandscapeCollectionViewCell.xib */; };
 		3BBE2C2B1E95E6E100AAA6E7 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE2C2A1E95E6E100AAA6E7 /* UIDeviceExtension.swift */; };
+		3BBE2C2D1E95F22500AAA6E7 /* TVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE2C2C1E95F22500AAA6E7 /* TVViewController.swift */; };
+		3BBE2C321E95F30E00AAA6E7 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE2C311E95F30E00AAA6E7 /* Grid.swift */; };
 		3BC6B59F1E85AA890055F43F /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6B59E1E85AA890055F43F /* Movie.swift */; };
 		3BC6B5A11E85F7D90055F43F /* MovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6B5A01E85F7D90055F43F /* MovieTests.swift */; };
 		3BC6B5A31E86184F0055F43F /* OMDbAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6B5A21E86184F0055F43F /* OMDbAPI.swift */; };
@@ -110,6 +112,8 @@
 		3BBE2C261E95607600AAA6E7 /* GridLandscapeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLandscapeCollectionViewCell.swift; sourceTree = "<group>"; };
 		3BBE2C271E95607600AAA6E7 /* GridLandscapeCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GridLandscapeCollectionViewCell.xib; sourceTree = "<group>"; };
 		3BBE2C2A1E95E6E100AAA6E7 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
+		3BBE2C2C1E95F22500AAA6E7 /* TVViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TVViewController.swift; sourceTree = "<group>"; };
+		3BBE2C311E95F30E00AAA6E7 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		3BC6B59E1E85AA890055F43F /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		3BC6B5A01E85F7D90055F43F /* MovieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTests.swift; sourceTree = "<group>"; };
 		3BC6B5A21E86184F0055F43F /* OMDbAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMDbAPI.swift; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				3B7F3A6A1E94E416003F6925 /* MovieViewController.swift */,
+				3BBE2C2C1E95F22500AAA6E7 /* TVViewController.swift */,
 			);
 			path = Movie;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 		3BAB45481E7FEA21009E4E41 /* Replay */ = {
 			isa = PBXGroup;
 			children = (
+				3BBE2C301E95F30E00AAA6E7 /* Helpers */,
 				3BC6B5FC1E8849870055F43F /* Views */,
 				3BAB45491E7FEA21009E4E41 /* AppDelegate.swift */,
 				3BAB45521E7FEA21009E4E41 /* LaunchScreen.storyboard */,
@@ -286,6 +292,14 @@
 				3BAB45601E7FEA21009E4E41 /* Info.plist */,
 			);
 			path = ReplayTests;
+			sourceTree = "<group>";
+		};
+		3BBE2C301E95F30E00AAA6E7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3BBE2C311E95F30E00AAA6E7 /* Grid.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		3BC6B5F31E883C750055F43F /* ViewControllers */ = {
@@ -577,9 +591,11 @@
 				3B5F7B981E8F7EA40052DCC1 /* GridCollectionView.swift in Sources */,
 				3B7F3A671E9369D1003F6925 /* UIViewControllerExtension.swift in Sources */,
 				3B011BCB1E81F74A00DDA24D /* JSONAble.swift in Sources */,
+				3BBE2C2D1E95F22500AAA6E7 /* TVViewController.swift in Sources */,
 				3B5F7BA11E8FF6E50052DCC1 /* GridTableViewDelegateDataSource.swift in Sources */,
 				3B2EC01B1E81276D00435CA9 /* TMDbAPI.swift in Sources */,
 				3B7F3A6D1E94E60A003F6925 /* TabBarController.swift in Sources */,
+				3BBE2C321E95F30E00AAA6E7 /* Grid.swift in Sources */,
 				3BC6B5AD1E870DF40055F43F /* GridContent.swift in Sources */,
 				3BC6B59F1E85AA890055F43F /* Movie.swift in Sources */,
 				3B43BCF21E839B2400FBBB66 /* Video.swift in Sources */,

@@ -1,14 +1,14 @@
 //
-//  MovieViewController.swift
+//  TVViewController.swift
 //  Replay
 //
-//  Created by Wagner Souza on 5/04/17.
+//  Created by Wagner Souza on 6/04/17.
 //  Copyright © 2017 Wagner Souza. All rights reserved.
 //
 
 import UIKit
 
-class MovieViewController: UIViewController {
+class TVViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -25,23 +25,20 @@ class MovieViewController: UIViewController {
     }
 
     private func configureUI() {
-       tableView.backgroundColor = .background
+        tableView.backgroundColor = .background
     }
 
     private func createSections() {
         sections = [Section]()
-        sections.append(Section(title: "In Theaters",
+        sections.append(Section(title: "Airing Today",
                                 layout: Grid(view).landscapeLayout,
-                                target: TMDbService.nowPlayingMovies))
+                                target: TMDbService.airingToday))
         sections.append(Section(title: "Most Popular",
-                                layout: Grid(view).portraitLayout,
-                                target: TMDbService.popularMovies))
+                               layout: Grid(view).portraitLayout,
+                               target: TMDbService.popularOnTV))
         sections.append(Section(title: "Top Rated",
                                 layout: Grid(view).portraitLayout,
-                                target: TMDbService.topRatedMovies))
-        sections.append(Section(title: "Upcoming",
-                                layout: Grid(view).portraitLayout,
-                                target: TMDbService.upcomingMovies))
+                                target: TMDbService.topRatedOnTV))
     }
 
     private func loadContent() {
@@ -56,7 +53,8 @@ class MovieViewController: UIViewController {
         tableView.dataSource = tableViewDelegateDataSource
     }
 
-    private func didSelect(_ content: GridContent) {
-        print("selected \(content.contentId)")
+    private func didSelect(content: GridContent) {
+        print(content.description)
     }
+
 }
