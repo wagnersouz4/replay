@@ -1,0 +1,162 @@
+//
+//  SearchViewController.swift
+//  Replay
+//
+//  Created by Wagner Souza on 6/04/17.
+//  Copyright © 2017 Wagner Souza. All rights reserved.
+//
+
+import UIKit
+
+class SearchViewController: UIViewController {
+
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
+
+    private var section: Section!
+    fileprivate var data = [SearchContent]()
+
+    fileprivate var collectionHeaderTitle: String {
+        if let text = searchBar.text, text.characters.count >= 3 {
+            return "Searching for \(text)"
+        }
+
+        return "Most Popular Movies"
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupSearchBar()
+        setupCollectionView()
+        configureUI()
+    }
+
+    private func configureUI() {
+        view.backgroundColor = .background
+        collectionView.backgroundColor = .background
+        searchBar.searchBarStyle = .minimal
+        searchBar.barStyle = .black
+        searchBar.tintColor = .white
+        searchBar.showsCancelButton = true
+        searchBar.placeholder = "Search movies, tv-shows and people."
+    }
+
+    private func setupCollectionView() {
+        let nib = UINib(nibName: "GridPortraitCollectionViewCell", bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView.dataSource = self
+        collectionView.delegate = self
+    }
+
+    private func setupSearchBar() {
+        searchBar.delegate = self
+    }
+
+    fileprivate func searchContent(_ keyword: String? = nil) {
+
+        /// By default the search page will be laoded with the most popular movies
+        if let keyword = keyword {
+            loadContent(using: TMDbService.search(page: 1, query: keyword),
+                        with: SearchContent.self) { [weak self] contentList in
+                            self?.reloadCollectionData(using: contentList)
+            }
+        } else {
+            loadContent(using: TMDbService.popularMovies(page: 1), with: GridContent.self) { [weak self] contentList in
+                if let loadedContent = contentList {
+                    let searchContentList = loadedContent.flatMap {
+                        SearchContent($0, with: .movie)
+                    }
+                    self?.reloadCollectionData(using: searchContentList)
+                }
+            }
+        }
+
+    }
+
+    private func reloadCollectionData(using contentList: [SearchContent]?) {
+        data = contentList ?? []
+        collectionView.reloadData()
+    }
+
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.characters.count >= 3 {
+            searchContent(searchText)
+        } else {
+            searchContent()
+        }
+    }
+}
+
+extension SearchViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if data.isEmpty {
+            searchContent()
+        }
+
+        return data.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath)
+            as? GridPortraitCollectionViewCell else { fatalError("Invalid cell") }
+
+        let currentData = data[indexPath.row]
+
+        cell.imageView.image = #imageLiteral(resourceName: "nocover")
+        cell.label.text = nil
+
+        if let imageURL = currentData.imageURL {
+            cell.spinner.color = .highlighted
+            cell.spinner.hidesWhenStopped = true
+            cell.spinner.startAnimating()
+            cell.imageView.pin_updateWithProgress = true
+            cell.imageView.pin_setImage(from: imageURL) { _ in
+                cell.spinner.stopAnimating()
+            }
+        } else {
+            cell.spinner.isHidden = true
+            cell.label.text = currentData.description
+        }
+
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionElementKindSectionHeader:
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: "CollectionViewHeader",
+                for: indexPath) as? SearchCollectionHeaderView else { fatalError("Invalid Header") }
+
+            headerView.titleLabel.text = collectionHeaderTitle
+            return headerView
+        default:
+            assert(false, "Unexpected elment kind")
+        }
+    }
+}
+
+extension SearchViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = (collectionView.bounds.width - 50) / 4
+        let cellHeight = cellWidth * 1.5
+        return CGSize(width: cellWidth, height: cellHeight)
+    }
+}

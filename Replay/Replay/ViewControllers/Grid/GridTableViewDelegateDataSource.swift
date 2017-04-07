@@ -10,7 +10,7 @@ import UIKit
 
 struct Section {
     typealias TargetPaged = (Int) -> TMDbService
-
+    
     let title: String
     let layout: GridLayout
     var contentList: [GridContent]

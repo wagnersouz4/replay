@@ -18,6 +18,7 @@ class MovieViewController: UIViewController {
     var sections: [Section]!
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         configureUI()
         createSections()
         loadContent()
@@ -25,7 +26,8 @@ class MovieViewController: UIViewController {
     }
 
     private func configureUI() {
-       tableView.backgroundColor = .background
+        tableView.backgroundColor = .background
+        view.backgroundColor = .background
     }
 
     private func createSections() {

@@ -18,6 +18,7 @@ class TVViewController: UIViewController {
     var sections: [Section]!
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         configureUI()
         createSections()
         loadContent()
@@ -26,6 +27,7 @@ class TVViewController: UIViewController {
 
     private func configureUI() {
         tableView.backgroundColor = .background
+        view.backgroundColor = .background
     }
 
     private func createSections() {

@@ -41,11 +41,6 @@ struct GridContent {
             return URL(string: "https://image.tmdb.org/t/p/original\(path)")
         }
     }
-
-    static func fromResults(_ json: JSONDictionary) -> [GridContent]? {
-        guard let list: [GridContent] = generateList(using: json, key: "results") else { return nil }
-        return list
-    }
 }
 
 extension GridContent: JSONable {

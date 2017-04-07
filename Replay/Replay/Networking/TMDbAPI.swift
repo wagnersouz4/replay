@@ -21,6 +21,8 @@ enum TMDbService {
 
     case celebrities(page: Int)
 
+    case search(page: Int, query: String)
+
 }
 
 extension TMDbService: TargetType {
@@ -47,6 +49,8 @@ extension TMDbService: TargetType {
             return "/tv/airing_today"
         case .celebrities:
             return "/person/popular"
+        case .search:
+            return "/search/multi"
         }
     }
 
@@ -59,6 +63,7 @@ extension TMDbService: TargetType {
         case .movie:
             return ["api_key": APIKeys.TMDbKey,
                     "append_to_response": "videos,images"]
+
         case .popularMovies(let page),
              .nowPlayingMovies(let page),
              .upcomingMovies(let page),
@@ -68,6 +73,9 @@ extension TMDbService: TargetType {
              .celebrities(let page),
              .airingToday(let page):
             return ["api_key": APIKeys.TMDbKey, "page": page]
+
+        case .search(let page, let query):
+            return ["api_key": APIKeys.TMDbKey, "page": page, "query": query]
         }
 
     }
@@ -92,6 +100,8 @@ extension TMDbService: TargetType {
             return Stub.stubbedResponse("TVShowIntro")
         case .celebrities:
             return Stub.stubbedResponse("Celebrities")
+        case .search:
+            return Stub.stubbedResponse("Search")
         }
     }
 

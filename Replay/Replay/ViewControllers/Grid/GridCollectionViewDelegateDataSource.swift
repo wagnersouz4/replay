@@ -25,27 +25,6 @@ class GridCollectionViewDelegateDataSource: NSObject {
         self.sections = sections
         self.didSelect = didSelect
     }
-
-    fileprivate func loadContent(for section: Int, completion: @escaping ((_: [GridContent]?) -> Void)) {
-        let target = sections[section].target
-
-        provider.request(target(1)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    guard let json = try response.mapJSON() as? JSONDictionary,
-                        let contentList = GridContent.fromResults(json) else { fatalError("Error while loading JSON") }
-                    completion(contentList)
-                } catch {
-                    print(error.localizedDescription)
-                    completion(nil)
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-                completion(nil)
-            }
-        }
-    }
 }
 
 // MARK: CollectionView delegate and dataSource
@@ -54,7 +33,9 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
         guard let collection = collectionView as? GridCollectionView,
             let currentSection = collection.section else { fatalError("Invalid collection") }
 
-        if sections[currentSection].contentList.isEmpty {
+        let section = sections[currentSection]
+
+        if section.contentList.isEmpty {
             let center = CGPoint(x: collectionView.frame.width/2, y: collectionView.frame.height/2)
 
             /// Spinner to give some feedback to the user while loading the json data (not the image)
@@ -64,7 +45,7 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
             collectionView.addSubview(spinner)
 
             spinner.startAnimating()
-            loadContent(for: collection.section) { [weak self] newContentList in
+            loadContent(using: section.target(1), with: GridContent.self) { [weak self] newContentList in
                 if let contentList = newContentList {
                     self?.sections[currentSection].contentList.append(contentsOf: contentList)
                     spinner.stopAnimating()
@@ -72,7 +53,7 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
                 }
             }
         }
-        return sections[currentSection].contentList.count
+        return section.contentList.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
