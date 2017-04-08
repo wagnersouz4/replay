@@ -45,7 +45,7 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
             collectionView.addSubview(spinner)
 
             spinner.startAnimating()
-            loadContent(using: section.target(1), with: GridContent.self) { [weak self] newContentList in
+            loadContent(using: section.target(1), mapTo: GridContent.self) { [weak self] newContentList in
                 if let contentList = newContentList {
                     self?.sections[currentSection].contentList.append(contentsOf: contentList)
                     spinner.stopAnimating()

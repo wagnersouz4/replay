@@ -10,7 +10,7 @@ import UIKit
 
 struct Section {
     typealias TargetPaged = (Int) -> TMDbService
-    
+
     let title: String
     let layout: GridLayout
     var contentList: [GridContent]
@@ -21,7 +21,7 @@ struct Section {
         self.layout = layout
         self.target = target
         self.title = title
-    }
+    } 
 }
 
 class GridTableViewDelegateDataSource: NSObject {

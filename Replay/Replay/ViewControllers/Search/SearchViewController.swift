@@ -20,7 +20,6 @@ class SearchViewController: UIViewController {
         if let text = searchBar.text, text.characters.count >= 3 {
             return "Searching for \(text)"
         }
-
         return "Most Popular Movies"
     }
 
@@ -52,28 +51,26 @@ class SearchViewController: UIViewController {
         searchBar.delegate = self
     }
 
-    fileprivate func searchContent(_ keyword: String? = nil) {
-
-        /// By default the search page will be laoded with the most popular movies
-        if let keyword = keyword {
-            loadContent(using: TMDbService.search(page: 1, query: keyword),
-                        with: SearchContent.self) { [weak self] contentList in
-                            self?.reloadCollectionData(using: contentList)
-            }
-        } else {
-            loadContent(using: TMDbService.popularMovies(page: 1), with: GridContent.self) { [weak self] contentList in
-                if let loadedContent = contentList {
-                    let searchContentList = loadedContent.flatMap {
-                        SearchContent($0, with: .movie)
-                    }
-                    self?.reloadCollectionData(using: searchContentList)
-                }
+    fileprivate func searchForContent(with keyword: String) {
+        let target = TMDbService.search(page: 1, query: keyword)
+        loadContent(using: target, mapTo: SearchContent.self) { [weak self] contentList in
+            if let loadedContent = contentList {
+                self?.reloadCollectionData(with: loadedContent)
             }
         }
-
     }
 
-    private func reloadCollectionData(using contentList: [SearchContent]?) {
+    fileprivate func loadDefaultContent() {
+        /// By default the search page will be laoded with the most popular movies
+        loadContent(using: TMDbService.popularMovies(page: 1), mapTo: GridContent.self) { [weak self] contentList in
+            if let loadedContent = contentList {
+                let searchContentList = loadedContent.flatMap { SearchContent($0, with: .movie) }
+                self?.reloadCollectionData(with: searchContentList)
+            }
+        }
+    }
+
+    private func reloadCollectionData(with contentList: [SearchContent]?) {
         data = contentList ?? []
         collectionView.reloadData()
     }
@@ -83,9 +80,9 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.characters.count >= 3 {
-            searchContent(searchText)
+            searchForContent(with: searchText)
         } else {
-            searchContent()
+            loadDefaultContent()
         }
     }
 }
@@ -93,9 +90,8 @@ extension SearchViewController: UISearchBarDelegate {
 extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if data.isEmpty {
-            searchContent()
+            loadDefaultContent()
         }
-
         return data.count
     }
 
@@ -158,5 +154,17 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
         let cellWidth = (collectionView.bounds.width - 50) / 4
         let cellHeight = cellWidth * 1.5
         return CGSize(width: cellWidth, height: cellHeight)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }

@@ -46,7 +46,6 @@ public func generateList<T>(using json: JSONDictionary, key: String) -> [T]? whe
     return generateList(using: list)
 }
 
-
 public func fromResults<T>(_ json: JSONDictionary) -> [T]? where T: JSONable {
     guard let list: [T] = generateList(using: json, key: "results") else { return nil }
     return list

@@ -12,7 +12,7 @@ import Moya
 let provider = MoyaProvider<TMDbService>()
 
 func loadContent<T>(using target: TMDbService,
-                    with _: T.Type,
+                    mapTo _: T.Type,
                     completion: @escaping ((_: [T]?) -> Void)) where T: JSONable {
 
     provider.request(target) { result in
