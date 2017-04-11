@@ -21,7 +21,7 @@ struct Section {
         self.layout = layout
         self.target = target
         self.title = title
-    } 
+    }
 }
 
 class GridTableViewDelegateDataSource: NSObject {

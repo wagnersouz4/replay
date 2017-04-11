@@ -59,6 +59,16 @@ class MovieViewController: UIViewController {
     }
 
     private func didSelect(_ content: GridContent) {
-        print("selected \(content.contentId)")
+        performSegue(withIdentifier: "MovieDetailSegue", sender: content.contentId)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let movieID = sender as? Int else { fatalError("A movie must have an id!")}
+
+        guard let movieVC = segue.destination as? MovieDetailViewController else {
+            fatalError("The destination ViewController must be MovieDetailViewController")
+        }
+
+        movieVC.movieID = movieID
     }
 }

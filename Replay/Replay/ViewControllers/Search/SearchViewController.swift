@@ -53,7 +53,7 @@ class SearchViewController: UIViewController {
 
     fileprivate func searchForContent(with keyword: String) {
         let target = TMDbService.search(page: 1, query: keyword)
-        loadContent(using: target, mapTo: SearchContent.self) { [weak self] contentList in
+        loadContentList(using: target, mappingTo: SearchContent.self) { [weak self] contentList in
             if let loadedContent = contentList {
                 self?.reloadCollectionData(with: loadedContent)
             }
@@ -62,7 +62,8 @@ class SearchViewController: UIViewController {
 
     fileprivate func loadDefaultContent() {
         /// By default the search page will be laoded with the most popular movies
-        loadContent(using: TMDbService.popularMovies(page: 1), mapTo: GridContent.self) { [weak self] contentList in
+        loadContentList(using: TMDbService.popularMovies(page: 1),
+                        mappingTo: GridContent.self) { [weak self] contentList in
             if let loadedContent = contentList {
                 let searchContentList = loadedContent.flatMap { SearchContent($0, with: .movie) }
                 self?.reloadCollectionData(with: searchContentList)
