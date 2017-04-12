@@ -17,10 +17,11 @@ struct Movie {
     var posterPath: String?
     var companies: [ProductionCompany]
     var contries: [ProductionCountry]
-    var releaseDate: String
+    var releaseDate: Date
     var spokenLanguages: [SpokenLanguage]
     var videos: [Video]
     var backdropImages: [BackdropImage]
+    var runtime: Int
 
     var posterURL: URL? {
         guard let path = posterPath else { return nil }
@@ -53,9 +54,17 @@ extension Movie: JSONable {
             let title = json["original_title"] as? String,
             let overview = json["overview"] as? String,
             let poster = json["poster_path"] as? String,
-            let releaseDate = json["release_date"] as? String else { return nil }
+            let releaseDateString = json["release_date"] as? String,
+            let runtime = json["runtime"] as? Int else { return nil }
 
         let posterPath = (poster == "N/A") ? nil : poster
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-d"
+
+        guard let releaseDate = formatter.date(from: releaseDateString) else {
+            fatalError("Invalid date format")
+        }
 
         self.init(genres: genres,
                   homepage: homepage,
@@ -68,7 +77,8 @@ extension Movie: JSONable {
                   releaseDate: releaseDate,
                   spokenLanguages: spokenLanguages,
                   videos: videos,
-                  backdropImages: backdropImages)
+                  backdropImages: backdropImages,
+                  runtime: runtime)
     }
 
     static var typeDescription: String {

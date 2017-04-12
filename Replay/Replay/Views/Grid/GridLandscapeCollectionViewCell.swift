@@ -2,7 +2,7 @@
 //  GridLandscapeCollectionViewCell.swift
 //  Replay
 //
-//  Created by Pan on 5/04/17.
+//  Created by Wagner Souza on 5/04/17.
 //  Copyright © 2017 Wagner Souza. All rights reserved.
 //
 

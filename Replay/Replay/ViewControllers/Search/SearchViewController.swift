@@ -99,8 +99,8 @@ extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath)
-            as? GridPortraitCollectionViewCell else { fatalError("Invalid cell") }
+        let cell: GridPortraitCollectionViewCell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "CollectionViewCell", for: indexPath)
 
         let currentData = data[indexPath.row]
 
@@ -128,10 +128,10 @@ extension SearchViewController: UICollectionViewDataSource {
                         at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionElementKindSectionHeader:
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(
+            let headerView: SearchCollectionHeaderView = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
                 withReuseIdentifier: "CollectionViewHeader",
-                for: indexPath) as? SearchCollectionHeaderView else { fatalError("Invalid Header") }
+                for: indexPath)
 
             headerView.titleLabel.text = collectionHeaderTitle
             return headerView

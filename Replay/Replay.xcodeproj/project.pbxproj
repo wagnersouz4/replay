@@ -35,6 +35,9 @@
 		3B5F7B9C1E8F7EA40052DCC1 /* GridTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5F7B971E8F7EA40052DCC1 /* GridTableViewCell.swift */; };
 		3B5F7BA01E8FF6E50052DCC1 /* GridCollectionViewDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5F7B9E1E8FF6E50052DCC1 /* GridCollectionViewDelegateDataSource.swift */; };
 		3B5F7BA11E8FF6E50052DCC1 /* GridTableViewDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5F7B9F1E8FF6E50052DCC1 /* GridTableViewDelegateDataSource.swift */; };
+		3B77FE9D1E9EA3A3007524FE /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B77FE9C1E9EA3A3007524FE /* DateExtension.swift */; };
+		3B77FE9F1E9EA7AF007524FE /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B77FE9E1E9EA7AF007524FE /* UITableViewExtension.swift */; };
+		3B77FEA11E9EAE62007524FE /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B77FEA01E9EAE62007524FE /* UICollectionViewExtension.swift */; };
 		3B7F3A651E9368ED003F6925 /* UIStoryBoardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F3A641E9368ED003F6925 /* UIStoryBoardExtension.swift */; };
 		3B7F3A671E9369D1003F6925 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F3A661E9369D1003F6925 /* UIViewControllerExtension.swift */; };
 		3B7F3A6B1E94E416003F6925 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F3A6A1E94E416003F6925 /* MovieViewController.swift */; };
@@ -42,6 +45,7 @@
 		3B8C0FB21E92DE0900B02C1F /* ReplayIpad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B8C0FB11E92DE0900B02C1F /* ReplayIpad.storyboard */; };
 		3B9B16C71E9D961A000DB783 /* TitleSubTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9B16C51E9D961A000DB783 /* TitleSubTitleTableViewCell.swift */; };
 		3B9B16C81E9D961A000DB783 /* TitleSubTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9B16C61E9D961A000DB783 /* TitleSubTitleTableViewCell.xib */; };
+		3B9B16CE1E9E8D37000DB783 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9B16CD1E9E8D37000DB783 /* ArrayExtension.swift */; };
 		3BAB454A1E7FEA21009E4E41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAB45491E7FEA21009E4E41 /* AppDelegate.swift */; };
 		3BAB45511E7FEA21009E4E41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BAB45501E7FEA21009E4E41 /* Assets.xcassets */; };
 		3BAB45541E7FEA21009E4E41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BAB45521E7FEA21009E4E41 /* LaunchScreen.storyboard */; };
@@ -106,6 +110,9 @@
 		3B5F7B971E8F7EA40052DCC1 /* GridTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTableViewCell.swift; sourceTree = "<group>"; };
 		3B5F7B9E1E8FF6E50052DCC1 /* GridCollectionViewDelegateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridCollectionViewDelegateDataSource.swift; sourceTree = "<group>"; };
 		3B5F7B9F1E8FF6E50052DCC1 /* GridTableViewDelegateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTableViewDelegateDataSource.swift; sourceTree = "<group>"; };
+		3B77FE9C1E9EA3A3007524FE /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		3B77FE9E1E9EA7AF007524FE /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
+		3B77FEA01E9EAE62007524FE /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
 		3B7F3A641E9368ED003F6925 /* UIStoryBoardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryBoardExtension.swift; sourceTree = "<group>"; };
 		3B7F3A661E9369D1003F6925 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		3B7F3A6A1E94E416003F6925 /* MovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +120,7 @@
 		3B8C0FB11E92DE0900B02C1F /* ReplayIpad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ReplayIpad.storyboard; sourceTree = "<group>"; };
 		3B9B16C51E9D961A000DB783 /* TitleSubTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleSubTitleTableViewCell.swift; sourceTree = "<group>"; };
 		3B9B16C61E9D961A000DB783 /* TitleSubTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TitleSubTitleTableViewCell.xib; sourceTree = "<group>"; };
+		3B9B16CD1E9E8D37000DB783 /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		3BAB45461E7FEA21009E4E41 /* Replay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Replay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAB45491E7FEA21009E4E41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BAB45501E7FEA21009E4E41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -174,6 +182,10 @@
 				3B7F3A641E9368ED003F6925 /* UIStoryBoardExtension.swift */,
 				3B7F3A661E9369D1003F6925 /* UIViewControllerExtension.swift */,
 				3BBE2C2A1E95E6E100AAA6E7 /* UIDeviceExtension.swift */,
+				3B9B16CD1E9E8D37000DB783 /* ArrayExtension.swift */,
+				3B77FE9C1E9EA3A3007524FE /* DateExtension.swift */,
+				3B77FE9E1E9EA7AF007524FE /* UITableViewExtension.swift */,
+				3B77FEA01E9EAE62007524FE /* UICollectionViewExtension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -628,10 +640,12 @@
 				3B011BC41E81C92500DDA24D /* APIKeys.swift in Sources */,
 				3B5F7B981E8F7EA40052DCC1 /* GridCollectionView.swift in Sources */,
 				3B2088991E9806AD00A54350 /* SearchViewController.swift in Sources */,
+				3B77FE9F1E9EA7AF007524FE /* UITableViewExtension.swift in Sources */,
 				3B7F3A671E9369D1003F6925 /* UIViewControllerExtension.swift in Sources */,
 				3B9B16C71E9D961A000DB783 /* TitleSubTitleTableViewCell.swift in Sources */,
 				3B011BCB1E81F74A00DDA24D /* JSONAble.swift in Sources */,
 				3B5F7BA11E8FF6E50052DCC1 /* GridTableViewDelegateDataSource.swift in Sources */,
+				3B77FEA11E9EAE62007524FE /* UICollectionViewExtension.swift in Sources */,
 				3B2EC01B1E81276D00435CA9 /* TMDbAPI.swift in Sources */,
 				3B7F3A6D1E94E60A003F6925 /* TabBarController.swift in Sources */,
 				3BCB63A21E9C19C1009886C5 /* MovieDetailViewController.swift in Sources */,
@@ -648,12 +662,14 @@
 				3BBE2C2B1E95E6E100AAA6E7 /* UIDeviceExtension.swift in Sources */,
 				3BC6B5A31E86184F0055F43F /* OMDbAPI.swift in Sources */,
 				3B5F7B991E8F7EA40052DCC1 /* GridPortraitCollectionViewCell.swift in Sources */,
+				3B77FE9D1E9EA3A3007524FE /* DateExtension.swift in Sources */,
 				3BC6B5A91E863E010055F43F /* MovieOMDb.swift in Sources */,
 				3B5F7B9C1E8F7EA40052DCC1 /* GridTableViewCell.swift in Sources */,
 				3B43BCEC1E838E3D00FBBB66 /* SpokenLanguage.swift in Sources */,
 				3B011BC91E81F12A00DDA24D /* MoyaResponseExtension.swift in Sources */,
 				3BBE2C351E960A1700AAA6E7 /* TVViewController.swift in Sources */,
 				3B011BD31E82122B00DDA24D /* Genre.swift in Sources */,
+				3B9B16CE1E9E8D37000DB783 /* ArrayExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

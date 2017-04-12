@@ -15,7 +15,17 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var movieID: Int!
-   fileprivate var movie: Movie?
+    fileprivate var movie: Movie?
+    fileprivate var movieSubTitle: String {
+        guard let movie = movie else { return "" }
+
+        let duration = minutesToHourMin(movie.runtime)
+        let genres = movie.genres.joined(separator: ", ")
+
+        let date = movie.releaseDate.format("d MMM yyyy")
+
+        return "\(duration.hours)hr(s)\(duration.minutes)min | \(genres) | \(date)"
+    }
 
     override func viewDidLoad() {
         configureUI()
@@ -47,6 +57,12 @@ class MovieDetailViewController: UIViewController {
             }
         }
     }
+
+    private func minutesToHourMin(_ minutes: Int) -> (hours: Int, minutes: Int) {
+        let hour = minutes / 60
+        let min = minutes % 60
+        return (hour, min)
+    }
 }
 
 extension MovieDetailViewController: UITableViewDataSource {
@@ -56,14 +72,10 @@ extension MovieDetailViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: "MovieTableViewCell", for: indexPath) as? TitleSubTitleTableViewCell else {
-                fatalError("Invalid TableView Cell")
-        }
-
+        let cell: TitleSubTitleTableViewCell = tableView.dequeueReusableCell(
+            withIdentifier: "MovieTableViewCell", for: indexPath)
         cell.title.text = movie?.title
-        cell.subTitle.text = movie?.releaseDate
-
+        cell.subTitle.text = movieSubTitle
         return cell
     }
 }
