@@ -36,7 +36,7 @@ class GridTableViewDelegateDataSource: NSObject {
 }
 
 // MARK: Tableview delegate and data source
-extension GridTableViewDelegateDataSource: UITableViewDataSource, UITableViewDelegate {
+extension GridTableViewDelegateDataSource: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
@@ -50,19 +50,22 @@ extension GridTableViewDelegateDataSource: UITableViewDataSource, UITableViewDel
         return sections[section].title
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return sections[indexPath.section].layout.tableViewHeight
-    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         /// Each table cell will have one identifier.
-        /// As a consequence, each section will have its own reuse queue avoiding unexpected conflits.
+        /// As a consequence, each section will have its own reusable queue avoiding unexpected conflits.
         let identifier = "TableCell#\(indexPath.section)"
         let section = sections[indexPath.section]
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier) ??
             GridTableViewCell(reuseIdentifier: identifier,
                               orientation: section.layout.collectionViewCellOrientation)
         return cell
+    }
+
+}
+
+extension GridTableViewDelegateDataSource: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return sections[indexPath.section].layout.tableViewHeight
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

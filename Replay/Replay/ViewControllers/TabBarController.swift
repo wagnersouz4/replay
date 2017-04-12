@@ -15,7 +15,7 @@ class TabBarController: UITabBarController {
     }
 
     private func configureUI() {
-        tabBar.barTintColor = .tabBar
+        tabBar.barTintColor = .darkBackground
         tabBar.tintColor = .white
         tabBar.isTranslucent = false
     }

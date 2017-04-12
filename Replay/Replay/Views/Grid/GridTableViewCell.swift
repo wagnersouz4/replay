@@ -22,10 +22,6 @@ class GridTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-
     init(reuseIdentifier: String?, orientation cellOrientation: CollectionViewCellOrientation) {
         self.cellOrientation = cellOrientation
         super.init(style: .default, reuseIdentifier: reuseIdentifier)

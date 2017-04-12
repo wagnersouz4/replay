@@ -26,8 +26,19 @@ class MovieViewController: UIViewController {
     }
 
     private func configureUI() {
+        /// Removing space between navigation bar and the tableView
+        automaticallyAdjustsScrollViewInsets = false
+
         tableView.backgroundColor = .background
         view.backgroundColor = .background
+
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationController?.navigationBar.barTintColor = .darkestBackground
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.clipsToBounds = true
+
+        navigationItem.title = "Movies"
     }
 
     private func createSections() {

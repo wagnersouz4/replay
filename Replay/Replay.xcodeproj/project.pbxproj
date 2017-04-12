@@ -40,6 +40,8 @@
 		3B7F3A6B1E94E416003F6925 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F3A6A1E94E416003F6925 /* MovieViewController.swift */; };
 		3B7F3A6D1E94E60A003F6925 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F3A6C1E94E60A003F6925 /* TabBarController.swift */; };
 		3B8C0FB21E92DE0900B02C1F /* ReplayIpad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B8C0FB11E92DE0900B02C1F /* ReplayIpad.storyboard */; };
+		3B9B16C71E9D961A000DB783 /* TitleSubTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9B16C51E9D961A000DB783 /* TitleSubTitleTableViewCell.swift */; };
+		3B9B16C81E9D961A000DB783 /* TitleSubTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9B16C61E9D961A000DB783 /* TitleSubTitleTableViewCell.xib */; };
 		3BAB454A1E7FEA21009E4E41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAB45491E7FEA21009E4E41 /* AppDelegate.swift */; };
 		3BAB45511E7FEA21009E4E41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BAB45501E7FEA21009E4E41 /* Assets.xcassets */; };
 		3BAB45541E7FEA21009E4E41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BAB45521E7FEA21009E4E41 /* LaunchScreen.storyboard */; };
@@ -109,6 +111,8 @@
 		3B7F3A6A1E94E416003F6925 /* MovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		3B7F3A6C1E94E60A003F6925 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		3B8C0FB11E92DE0900B02C1F /* ReplayIpad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ReplayIpad.storyboard; sourceTree = "<group>"; };
+		3B9B16C51E9D961A000DB783 /* TitleSubTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleSubTitleTableViewCell.swift; sourceTree = "<group>"; };
+		3B9B16C61E9D961A000DB783 /* TitleSubTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TitleSubTitleTableViewCell.xib; sourceTree = "<group>"; };
 		3BAB45461E7FEA21009E4E41 /* Replay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Replay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAB45491E7FEA21009E4E41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BAB45501E7FEA21009E4E41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -365,6 +369,8 @@
 			isa = PBXGroup;
 			children = (
 				3B5F7B921E8F7EA40052DCC1 /* Grid */,
+				3B9B16C51E9D961A000DB783 /* TitleSubTitleTableViewCell.swift */,
+				3B9B16C61E9D961A000DB783 /* TitleSubTitleTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -482,6 +488,7 @@
 				3B5F7B9A1E8F7EA40052DCC1 /* GridPortraitCollectionViewCell.xib in Resources */,
 				3BC6B5A71E8626820055F43F /* MovieOMDb.json in Resources */,
 				3BAB45541E7FEA21009E4E41 /* LaunchScreen.storyboard in Resources */,
+				3B9B16C81E9D961A000DB783 /* TitleSubTitleTableViewCell.xib in Resources */,
 				3BAB45511E7FEA21009E4E41 /* Assets.xcassets in Resources */,
 				3BBE2C291E95607600AAA6E7 /* GridLandscapeCollectionViewCell.xib in Resources */,
 				3B011BCE1E82107700DDA24D /* Movie.json in Resources */,
@@ -622,6 +629,7 @@
 				3B5F7B981E8F7EA40052DCC1 /* GridCollectionView.swift in Sources */,
 				3B2088991E9806AD00A54350 /* SearchViewController.swift in Sources */,
 				3B7F3A671E9369D1003F6925 /* UIViewControllerExtension.swift in Sources */,
+				3B9B16C71E9D961A000DB783 /* TitleSubTitleTableViewCell.swift in Sources */,
 				3B011BCB1E81F74A00DDA24D /* JSONAble.swift in Sources */,
 				3B5F7BA11E8FF6E50052DCC1 /* GridTableViewDelegateDataSource.swift in Sources */,
 				3B2EC01B1E81276D00435CA9 /* TMDbAPI.swift in Sources */,
