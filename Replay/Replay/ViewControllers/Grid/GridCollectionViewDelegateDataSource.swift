@@ -60,7 +60,7 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let collection = collectionView as? GridCollectionView else { fatalError("Invalid collection") }
 
-        guard let cell: GridableCollectionViewCell = collectionView.dequeueReusableCell(
+        guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "CollectionViewCell", for: indexPath)
             as? GridableCollectionViewCell else { fatalError("Invalid cell") }
 

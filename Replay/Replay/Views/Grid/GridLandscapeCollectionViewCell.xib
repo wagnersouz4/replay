@@ -64,6 +64,7 @@
                 <outlet property="imageView" destination="nXr-l6-EIO" id="VBV-ZN-ejQ"/>
                 <outlet property="label" destination="9yJ-67-woB" id="OBr-FT-Jgg"/>
                 <outlet property="spinner" destination="P81-Xt-S4b" id="6S3-aH-Kag"/>
+                <outlet property="titleView" destination="dfg-S8-KHz" id="oy4-RX-IJi"/>
             </connections>
             <point key="canvasLocation" x="127" y="64.5"/>
         </collectionViewCell>

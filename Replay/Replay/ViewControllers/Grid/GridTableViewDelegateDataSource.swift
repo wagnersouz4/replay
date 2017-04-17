@@ -53,7 +53,7 @@ extension GridTableViewDelegateDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         /// Each table cell will have one identifier.
         /// As a consequence, each section will have its own reusable queue avoiding unexpected conflits.
-        let identifier = "TableCell#\(indexPath.section)"
+        let identifier = "GridTableViewCell#\(indexPath.section)"
         let section = sections[indexPath.section]
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier) ??
             GridTableViewCell(reuseIdentifier: identifier,
