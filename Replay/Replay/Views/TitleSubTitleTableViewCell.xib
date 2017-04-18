@@ -20,15 +20,15 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UjS-h7-8OJ">
                         <rect key="frame" x="0.0" y="0.0" width="301" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                         <variation key="heightClass=regular-widthClass=regular">
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                         </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rpb-Os-UsV">
-                        <rect key="frame" x="0.0" y="23" width="301" height="12"/>
+                        <rect key="frame" x="5" y="23" width="291" height="12"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -39,8 +39,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="UjS-h7-8OJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="HjP-cc-6Jn"/>
-                    <constraint firstAttribute="trailing" secondItem="Rpb-Os-UsV" secondAttribute="trailing" id="KLU-08-ng0"/>
-                    <constraint firstItem="Rpb-Os-UsV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="c1o-1a-ibF"/>
+                    <constraint firstAttribute="trailing" secondItem="Rpb-Os-UsV" secondAttribute="trailing" constant="5" id="KLU-08-ng0"/>
+                    <constraint firstItem="Rpb-Os-UsV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="c1o-1a-ibF"/>
                     <constraint firstItem="UjS-h7-8OJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="kS0-X6-iFx"/>
                     <constraint firstItem="Rpb-Os-UsV" firstAttribute="top" secondItem="UjS-h7-8OJ" secondAttribute="bottom" constant="5" id="y8k-BK-DqR"/>
                     <constraint firstAttribute="trailing" secondItem="UjS-h7-8OJ" secondAttribute="trailing" id="yYD-Za-W94"/>

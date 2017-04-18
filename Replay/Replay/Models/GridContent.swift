@@ -24,8 +24,6 @@ struct GridContent {
         }
         return createImageURL(using: landscapeImagePath, with: size)
     }
-
-
 }
 
 extension GridContent: JSONable {

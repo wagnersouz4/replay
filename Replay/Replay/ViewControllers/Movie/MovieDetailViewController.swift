@@ -39,11 +39,16 @@ class MovieDetailViewController: UIViewController {
         spinner.hidesWhenStopped = true
         view.backgroundColor = .background
         tableView.backgroundColor = .background
+        tableView.estimatedRowHeight = 40
     }
 
     private func setupTableView() {
-        let nib = UINib(nibName: "TitleSubTitleTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "TitleSubTitleTableViewCell")
+        let titleSubtitleNib = UINib(nibName: "TitleSubTitleTableViewCell", bundle: nil)
+        tableView.register(titleSubtitleNib, forCellReuseIdentifier: "TitleSubTitleTableViewCell")
+
+        let titleTextNib = UINib(nibName: "TitleTextTableViewCell", bundle: nil)
+        tableView.register(titleTextNib, forCellReuseIdentifier: "TitleTextTableViewCell")
+
         tableView.dataSource = self
         tableView.delegate = self
     }
@@ -70,7 +75,7 @@ class MovieDetailViewController: UIViewController {
 extension MovieDetailViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -85,17 +90,24 @@ extension MovieDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         switch indexPath.section {
+        // Movie Title
         case 0:
             let cell: TitleSubTitleTableViewCell = tableView.dequeueReusableCell(
                 withIdentifier: "TitleSubTitleTableViewCell", for: indexPath)
             cell.title.text = movie?.title
             cell.subTitle.text = movieSubTitle
             return cell
-
+        // Movie backdrops
         case 1:
             let cell = GridTableViewCell(reuseIdentifier: "MovieTableViewCell#Backdrop", orientation: .landscape)
             return cell
-
+        // Movier Overview
+        case 2:
+            let cell: TitleTextTableViewCell = tableView.dequeueReusableCell(
+                withIdentifier: "TitleTextTableViewCell", for: indexPath)
+            cell.titleLabel.text = "Overview"
+            cell.textView.text = movie?.overview
+            return cell
         default:
             return UITableViewCell()
         }
@@ -116,7 +128,7 @@ extension MovieDetailViewController: UITableViewDelegate {
         case 1:
             return Grid(view).landscapeLayout.tableViewHeight
         default:
-            return 40
+            return UITableViewAutomaticDimension
         }
     }
 }
@@ -180,5 +192,4 @@ extension MovieDetailViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: layout.collectionViewCellSize.width,
                       height: layout.collectionViewCellSize.height)
     }
-    
 }

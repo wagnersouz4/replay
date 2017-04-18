@@ -67,6 +67,8 @@
 		3BC6B6011E884A770055F43F /* ReplayIphone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC6B6001E884A770055F43F /* ReplayIphone.storyboard */; };
 		3BCB63A21E9C19C1009886C5 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB63A11E9C19C1009886C5 /* MovieDetailViewController.swift */; };
 		3BFFCAEF1EA5371100960737 /* TMDbImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFCAEE1EA5371100960737 /* TMDbImages.swift */; };
+		3BFFCAF21EA58FA200960737 /* TitleTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFCAF01EA58FA200960737 /* TitleTextTableViewCell.swift */; };
+		3BFFCAF31EA58FA200960737 /* TitleTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BFFCAF11EA58FA200960737 /* TitleTextTableViewCell.xib */; };
 		5AF79E92BA3EEF475365AD94 /* Pods_ReplayTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 822D57B62D2E244CC118DC5C /* Pods_ReplayTests.framework */; };
 		9C4B818D27DAB46D2A08AAB0 /* Pods_Replay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A233BD0F0D3339C967E6C686 /* Pods_Replay.framework */; };
 /* End PBXBuildFile section */
@@ -147,6 +149,8 @@
 		3BC6B6001E884A770055F43F /* ReplayIphone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ReplayIphone.storyboard; sourceTree = "<group>"; };
 		3BCB63A11E9C19C1009886C5 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		3BFFCAEE1EA5371100960737 /* TMDbImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDbImages.swift; sourceTree = "<group>"; };
+		3BFFCAF01EA58FA200960737 /* TitleTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTextTableViewCell.swift; sourceTree = "<group>"; };
+		3BFFCAF11EA58FA200960737 /* TitleTextTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TitleTextTableViewCell.xib; sourceTree = "<group>"; };
 		822D57B62D2E244CC118DC5C /* Pods_ReplayTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReplayTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88F24DCABE7F4637A8E8DD95 /* Pods-ReplayTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReplayTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReplayTests/Pods-ReplayTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A233BD0F0D3339C967E6C686 /* Pods_Replay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Replay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -386,6 +390,8 @@
 				3B5F7B921E8F7EA40052DCC1 /* Grid */,
 				3B9B16C51E9D961A000DB783 /* TitleSubTitleTableViewCell.swift */,
 				3B9B16C61E9D961A000DB783 /* TitleSubTitleTableViewCell.xib */,
+				3BFFCAF01EA58FA200960737 /* TitleTextTableViewCell.swift */,
+				3BFFCAF11EA58FA200960737 /* TitleTextTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -505,6 +511,7 @@
 				3BAB45541E7FEA21009E4E41 /* LaunchScreen.storyboard in Resources */,
 				3B9B16C81E9D961A000DB783 /* TitleSubTitleTableViewCell.xib in Resources */,
 				3BAB45511E7FEA21009E4E41 /* Assets.xcassets in Resources */,
+				3BFFCAF31EA58FA200960737 /* TitleTextTableViewCell.xib in Resources */,
 				3BBE2C291E95607600AAA6E7 /* GridLandscapeCollectionViewCell.xib in Resources */,
 				3B011BCE1E82107700DDA24D /* Movie.json in Resources */,
 				3BC6B6011E884A770055F43F /* ReplayIphone.storyboard in Resources */,
@@ -641,6 +648,7 @@
 				3B7F3A6B1E94E416003F6925 /* MovieViewController.swift in Sources */,
 				3B5F7BA01E8FF6E50052DCC1 /* GridCollectionViewDelegateDataSource.swift in Sources */,
 				3B011BC41E81C92500DDA24D /* APIKeys.swift in Sources */,
+				3BFFCAF21EA58FA200960737 /* TitleTextTableViewCell.swift in Sources */,
 				3B5F7B981E8F7EA40052DCC1 /* GridCollectionView.swift in Sources */,
 				3B2088991E9806AD00A54350 /* SearchViewController.swift in Sources */,
 				3B77FE9F1E9EA7AF007524FE /* UITableViewExtension.swift in Sources */,
