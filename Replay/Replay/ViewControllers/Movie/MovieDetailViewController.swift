@@ -146,7 +146,9 @@ extension MovieDetailViewController: UICollectionViewDataSource {
             as? GridLandscapeCollectionViewCell else { fatalError("Invalid cell") }
 
         let backdropImage = movie.backdropImages[indexPath.row]
-        let url = createImageURL(using: backdropImage.filePath, with: .w300)
+
+        let size: TMDbSize = (UIDevice.isIPad) ? .w500 : .w300
+        let url = createImageURL(using: backdropImage.filePath, with: size)
 
         cell.spinner.color = .highlighted
         cell.spinner.hidesWhenStopped = true
