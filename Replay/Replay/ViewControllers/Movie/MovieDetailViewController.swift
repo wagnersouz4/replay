@@ -95,25 +95,25 @@ extension MovieDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         switch indexPath.section {
-        // Movie Title
+        /// Movie Title
         case 0:
             let cell: TitleSubTitleTableViewCell = tableView.dequeueReusableCell(
                 withIdentifier: "TitleSubTitleTableViewCell", for: indexPath)
             cell.title.text = movie?.title
             cell.subTitle.text = movieSubTitle
             return cell
-        // Movie backdrops
+        /// Movie backdrops
         case 1:
             let cell = GridTableViewCell(reuseIdentifier: "MovieTableViewCell#Backdrop", orientation: .landscape)
             return cell
-        // Movie Overview
+        /// Movie Overview
         case 2:
             let cell: TitleTextTableViewCell = tableView.dequeueReusableCell(
                 withIdentifier: "TitleTextTableViewCell", for: indexPath)
             cell.titleLabel.text = "Overview"
             cell.textView.text = movie?.overview
             return cell
-        // Movie Videos
+        /// Movie Videos
         case 3:
             let cell = GridTableViewCell(reuseIdentifier: "MovieTableViewCell#Videos", orientation: .landscape)
             return cell
@@ -177,40 +177,41 @@ extension MovieDetailViewController: UICollectionViewDataSource {
         cell.titleView.isHidden = true
 
         switch collection.section {
-        // backdrop
+        /// backdrop
         case 1:
             let backdropImage = movie.backdropImages[indexPath.row]
             let size: TMDbSize = (UIDevice.isIPad) ? .w500 : .w300
-
             let url = createImageURL(using: backdropImage.filePath, with: size)
+
             return loadGridImage(using: cell, with: url)
-        // videos
+        /// videos
         case 3:
             let video = filteredVideos[indexPath.row]
             let url = video.thumbnailURL
+
+            /// Enabling and shoing the play image
+            cell.playImageView.isHidden = false
+            cell.playImageView.contentMode = .scaleAspectFit
+            cell.playImageView.image = #imageLiteral(resourceName: "play")
+
             return loadGridImage(using: cell, with: url)
         default:
             return UICollectionViewCell()
         }
     }
 
-    private func loadGridImage(using gridCell: GridableCollectionViewCell, with url: URL) -> UICollectionViewCell {
+    private func loadGridImage(using gridCell: GridLandscapeCollectionViewCell, with url: URL) -> UICollectionViewCell {
 
         gridCell.spinner.color = .highlighted
         gridCell.spinner.hidesWhenStopped = true
         gridCell.spinner.startAnimating()
         gridCell.label.isHidden = true
-        /// Loading the image progressively see more at: https://github.com/pinterest/PINRemoteImage
         gridCell.imageView.pin_updateWithProgress = true
         gridCell.imageView.pin_setImage(from: url) {  _ in
             gridCell.spinner.stopAnimating()
         }
 
-        guard let cell = gridCell as? UICollectionViewCell else {
-            fatalError("Invalid Cell")
-        }
-
-        return cell
+        return gridCell
     }
 }
 

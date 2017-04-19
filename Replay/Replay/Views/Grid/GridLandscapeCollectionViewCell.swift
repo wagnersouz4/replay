@@ -14,5 +14,5 @@ class GridLandscapeCollectionViewCell: UICollectionViewCell, GridableCollectionV
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var titleView: UIView!
-
+    @IBOutlet weak var playImageView: UIImageView!
 }
