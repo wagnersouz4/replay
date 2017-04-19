@@ -83,6 +83,10 @@ extension MovieDetailViewController: UITableViewDataSource {
         return 4
     }
 
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return (section == 3) ? "Videos" : nil
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if movie == nil {
             loadMovieDetails()
@@ -142,6 +146,18 @@ extension MovieDetailViewController: UITableViewDelegate {
             return Grid(view).landscapeLayout.tableViewHeight
         default:
             return UITableViewAutomaticDimension
+        }
+    }
+
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if section == 3, let headerView = view as? UITableViewHeaderFooterView {
+            headerView.textLabel?.textColor = .white
+            headerView.textLabel?.text = headerView.textLabel?.text?.capitalized
+            if UIDevice.isIPad {
+                headerView.textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+            } else {
+                headerView.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            }
         }
     }
 }
