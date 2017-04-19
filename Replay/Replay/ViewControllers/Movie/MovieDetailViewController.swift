@@ -19,6 +19,11 @@ class MovieDetailViewController: UIViewController {
     fileprivate var backdrops = [BackdropImage]()
     fileprivate var movie: Movie?
 
+    fileprivate var filteredVideos: [Video] {
+        guard let movie = movie else { return [] }
+        return movie.videos.filter { $0.type == "Trailer" || $0.type == "Teaser" }
+    }
+
     fileprivate var movieSubTitle: String {
         guard let movie = movie else { return "" }
         let duration = minutesToHourMin(movie.runtime)
@@ -75,7 +80,7 @@ class MovieDetailViewController: UIViewController {
 extension MovieDetailViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -101,14 +106,19 @@ extension MovieDetailViewController: UITableViewDataSource {
         case 1:
             let cell = GridTableViewCell(reuseIdentifier: "MovieTableViewCell#Backdrop", orientation: .landscape)
             return cell
-        // Movier Overview
+        // Movie Overview
         case 2:
             let cell: TitleTextTableViewCell = tableView.dequeueReusableCell(
                 withIdentifier: "TitleTextTableViewCell", for: indexPath)
             cell.titleLabel.text = "Overview"
             cell.textView.text = movie?.overview
             return cell
+        // Movie Videos
+        case 3:
+            let cell = GridTableViewCell(reuseIdentifier: "MovieTableViewCell#Videos", orientation: .landscape)
+            return cell
         default:
+            print("hum")
             return UITableViewCell()
         }
     }
@@ -117,15 +127,18 @@ extension MovieDetailViewController: UITableViewDataSource {
 extension MovieDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 
-        if indexPath.section == 1 {
+        switch indexPath.section {
+        case 1, 3:
             guard let cell = cell as? GridTableViewCell else { fatalError(" Invalid TableViewCell") }
-            cell.setCollectionView(dataSource: self, delegate: self, section: indexPath.row)
+            cell.setCollectionView(dataSource: self, delegate: self, section: indexPath.section)
+        default:
+            break
         }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
-        case 1:
+        case 1, 3:
             return Grid(view).landscapeLayout.tableViewHeight
         default:
             return UITableViewAutomaticDimension
@@ -141,36 +154,60 @@ extension MovieDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let movie = movie else { fatalError("Movie has not been set.") }
 
-        if backdrops.isEmpty {
-            backdrops = movie.backdropImages
-            collectionView.reloadData()
-        }
+        guard let collection  = collectionView as? GridCollectionView else { fatalError("Invalid CollectionView") }
 
-        return backdrops.count
+        switch collection.section {
+        case 1:
+            return movie.backdropImages.count
+        case 3:
+            return filteredVideos.count
+        default:
+            return 0
+        }
     }
 
     public func collectionView(_ collectionView: UICollectionView,
                                cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let movie = movie else { fatalError("Movie has not been set.") }
 
-        guard let cell = collectionView.dequeueReusableCell(
+        guard let collection = collectionView as? GridCollectionView else { fatalError("Invalid collection") }
+
+        let cell: GridLandscapeCollectionViewCell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "CollectionViewCell", for: indexPath)
-            as? GridLandscapeCollectionViewCell else { fatalError("Invalid cell") }
-
-        let backdropImage = movie.backdropImages[indexPath.row]
-
-        let size: TMDbSize = (UIDevice.isIPad) ? .w500 : .w300
-        let url = createImageURL(using: backdropImage.filePath, with: size)
-
-        cell.spinner.color = .highlighted
-        cell.spinner.hidesWhenStopped = true
-        cell.spinner.startAnimating()
-        cell.label.isHidden = true
         cell.titleView.isHidden = true
+
+        switch collection.section {
+        // backdrop
+        case 1:
+            let backdropImage = movie.backdropImages[indexPath.row]
+            let size: TMDbSize = (UIDevice.isIPad) ? .w500 : .w300
+
+            let url = createImageURL(using: backdropImage.filePath, with: size)
+            return loadGridImage(using: cell, with: url)
+        // videos
+        case 3:
+            let video = filteredVideos[indexPath.row]
+            let url = video.thumbnailURL
+            return loadGridImage(using: cell, with: url)
+        default:
+            return UICollectionViewCell()
+        }
+    }
+
+    private func loadGridImage(using gridCell: GridableCollectionViewCell, with url: URL) -> UICollectionViewCell {
+
+        gridCell.spinner.color = .highlighted
+        gridCell.spinner.hidesWhenStopped = true
+        gridCell.spinner.startAnimating()
+        gridCell.label.isHidden = true
         /// Loading the image progressively see more at: https://github.com/pinterest/PINRemoteImage
-        cell.imageView.pin_updateWithProgress = true
-        cell.imageView.pin_setImage(from: url) { _ in
-            cell.spinner.stopAnimating()
+        gridCell.imageView.pin_updateWithProgress = true
+        gridCell.imageView.pin_setImage(from: url) {  _ in
+            gridCell.spinner.stopAnimating()
+        }
+
+        guard let cell = gridCell as? UICollectionViewCell else {
+            fatalError("Invalid Cell")
         }
 
         return cell
@@ -187,8 +224,8 @@ extension MovieDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let layout = Grid(view).landscapeLayout
 
+        let layout = Grid(view).landscapeLayout
         return CGSize(width: layout.collectionViewCellSize.width,
                       height: layout.collectionViewCellSize.height)
     }

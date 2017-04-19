@@ -41,7 +41,7 @@
                         </variation>
                     </label>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="P81-Xt-S4b">
-                        <rect key="frame" x="240" y="130.5" width="20" height="20"/>
+                        <rect key="frame" x="240" y="130" width="20" height="20"/>
                     </activityIndicatorView>
                 </subviews>
             </view>

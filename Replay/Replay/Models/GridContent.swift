@@ -20,9 +20,11 @@ struct GridContent {
 
     func imageURL(orientation: Orientation, size: TMDbSize) -> URL? {
         if orientation == .portrait {
-            return createImageURL(using: portraitImagePath, with: size)
+            guard let image = portraitImagePath else { return nil }
+            return createImageURL(using: image, with: size)
         }
-        return createImageURL(using: landscapeImagePath, with: size)
+        guard let image = landscapeImagePath else { return nil }
+        return createImageURL(using: image, with: size)
     }
 }
 

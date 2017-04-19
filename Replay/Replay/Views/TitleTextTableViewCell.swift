@@ -25,5 +25,6 @@ class TitleTextTableViewCell: UITableViewCell {
         textView.textColor = .white
         textView.isScrollEnabled = false
         textView.isSelectable = false
+        textView.textAlignment = .justified
     }
 }

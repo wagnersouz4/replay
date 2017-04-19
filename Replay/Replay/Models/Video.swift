@@ -14,23 +14,33 @@ struct Video {
     var key: String
     /// Such as Trailer, Teaser and so fourth
     var name: String
-    var site: String
+    var type: String
     var size: Int
     var resolution: String {
         return "\(size)p"
     }
-    var url: String? {
-        return (site == "Youtube") ? "https://youtube.com/watch?v=\(key)" : nil
+    var url: URL {
+        guard let url = URL(string: "https://youtube.com/watch?v=\(key)") else {
+            fatalError("Invalid URL")
+        }
+        return url
+    }
+
+    var thumbnailURL: URL {
+        guard let url = URL(string: "https://i.ytimg.com/vi/\(key)/hqdefault.jpg") else { fatalError("Invalid URL") }
+        return url
     }
 }
 
 extension Video: JSONable {
     init?(json: JSONDictionary) {
-        guard let key = json["key"] as? String,
+        guard let site = json["site"] as? String,
+            site == "YouTube",
+            let key = json["key"] as? String,
             let name = json["name"] as? String,
-            let site = json["site"] as? String,
+            let type = json["type"] as? String,
             let size = json["size"] as? Int else { return nil }
-        self.init(key: key, name: name, site: site, size: size)
+        self.init(key: key, name: name, type: type, size: size)
 
     }
 

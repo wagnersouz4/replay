@@ -33,11 +33,7 @@ public protocol JSONable {
 }
 
 public func generateList<T>(using list: [JSONDictionary]) -> [T]? where T: JSONable {
-    var listT = [T]()
-    for element in list {
-        guard let instanceT = T(json: element) else { return nil }
-        listT.append(instanceT)
-    }
+    let listT = list.flatMap { T(json: $0) }
     return listT
 }
 

@@ -13,14 +13,17 @@ enum TMDbSize {
     case w300, w500, original
 }
 
-func createImageURL(using path: String?, with size: TMDbSize) -> URL? {
-    guard let path = path else { return nil }
+func createImageURL(using path: String, with size: TMDbSize) -> URL {
+    let url: URL
+    
     switch size {
     case .w300:
-        return URL(string: "https://image.tmdb.org/t/p/w300\(path)")
+        url = URL(using: "https://image.tmdb.org/t/p/w300\(path)")
     case .w500:
-        return URL(string: "https://image.tmdb.org/t/p/w500\(path)")
+        url = URL(using: "https://image.tmdb.org/t/p/w500\(path)")
     case .original:
-        return URL(string: "https://image.tmdb.org/t/p/original\(path)")
+        url = URL(using: "https://image.tmdb.org/t/p/original\(path)")
     }
+
+    return url
 }
