@@ -3,9 +3,7 @@ use_frameworks!
 target 'Replay' do
 	platform :ios, '10.2'
 	pod 'Moya'
-	pod 'PINRemoteImage'
-	pod 'Cosmos', '~> 8.0'
-	pod 'iCarousel'
+ 	pod 'PINRemoteImage'
   	target 'ReplayTests' do
     		inherit! :search_paths
     		pod 'Quick'

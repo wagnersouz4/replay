@@ -108,7 +108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jKi-RU-wBZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3005.5999999999999" y="-1480.2098950524739"/>
+            <point key="canvasLocation" x="-4786" y="-1033"/>
         </scene>
         <!--TV-->
         <scene sceneID="ygW-UK-Mok">
@@ -142,7 +142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ycl-4X-uBB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4771.0144927536239" y="-1057.3369565217392"/>
+            <point key="canvasLocation" x="-5547" y="-600"/>
         </scene>
         <!--Movie View Controller-->
         <scene sceneID="j8Y-5J-xE3">
@@ -176,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="grG-gQ-376" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3834.4000000000001" y="-1813.0434782608697"/>
+            <point key="canvasLocation" x="-3889" y="-1890"/>
         </scene>
         <!--Movie Detail View Controller-->
         <scene sceneID="Pap-ZO-wqx">
@@ -219,7 +219,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L5h-7z-rHi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3007.1999999999998" y="-2153.9730134932533"/>
+            <point key="canvasLocation" x="-3028" y="-1890"/>
         </scene>
         <!--Movies-->
         <scene sceneID="3Bb-I3-uke">
@@ -238,7 +238,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bgD-EM-aqo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4773.6000000000004" y="-1813.0434782608697"/>
+            <point key="canvasLocation" x="-4785" y="-1890"/>
         </scene>
     </scenes>
     <resources>

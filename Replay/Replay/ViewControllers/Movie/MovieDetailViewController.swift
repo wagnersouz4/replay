@@ -122,7 +122,6 @@ extension MovieDetailViewController: UITableViewDataSource {
             let cell = GridTableViewCell(reuseIdentifier: "MovieTableViewCell#Videos", orientation: .landscape)
             return cell
         default:
-            print("hum")
             return UITableViewCell()
         }
     }
@@ -205,10 +204,9 @@ extension MovieDetailViewController: UICollectionViewDataSource {
             let video = filteredVideos[indexPath.row]
             let url = video.thumbnailURL
 
-            /// Enabling and shoing the play image
-            cell.playImageView.isHidden = false
-            cell.playImageView.contentMode = .scaleAspectFit
-            cell.playImageView.image = #imageLiteral(resourceName: "play")
+            cell.waterMarkImageView.isHidden = false
+            cell.waterMarkImageView.contentMode = .scaleAspectFit
+            cell.waterMarkImageView.image = #imageLiteral(resourceName: "youtubeLogo")
 
             return loadGridImage(using: cell, with: url)
         default:
@@ -228,6 +226,15 @@ extension MovieDetailViewController: UICollectionViewDataSource {
         }
 
         return gridCell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let collection = collectionView as? GridCollectionView else { fatalError("Invalid collection") }
+
+        if collection.section == 3 {
+            let video = filteredVideos[indexPath.row]
+            UIApplication.shared.open(video.url)
+        }
     }
 }
 

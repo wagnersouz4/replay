@@ -42,7 +42,6 @@
 		3B7F3A671E9369D1003F6925 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F3A661E9369D1003F6925 /* UIViewControllerExtension.swift */; };
 		3B7F3A6B1E94E416003F6925 /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F3A6A1E94E416003F6925 /* MovieViewController.swift */; };
 		3B7F3A6D1E94E60A003F6925 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F3A6C1E94E60A003F6925 /* TabBarController.swift */; };
-		3B8C0FB21E92DE0900B02C1F /* ReplayIpad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B8C0FB11E92DE0900B02C1F /* ReplayIpad.storyboard */; };
 		3B9B16C71E9D961A000DB783 /* TitleSubTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9B16C51E9D961A000DB783 /* TitleSubTitleTableViewCell.swift */; };
 		3B9B16C81E9D961A000DB783 /* TitleSubTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9B16C61E9D961A000DB783 /* TitleSubTitleTableViewCell.xib */; };
 		3B9B16CE1E9E8D37000DB783 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9B16CD1E9E8D37000DB783 /* ArrayExtension.swift */; };
@@ -64,7 +63,7 @@
 		3BC6B5A91E863E010055F43F /* MovieOMDb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6B5A81E863E010055F43F /* MovieOMDb.swift */; };
 		3BC6B5AB1E86E8B50055F43F /* MovieOMDbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6B5AA1E86E8B50055F43F /* MovieOMDbTests.swift */; };
 		3BC6B5AD1E870DF40055F43F /* GridContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6B5AC1E870DF40055F43F /* GridContent.swift */; };
-		3BC6B6011E884A770055F43F /* ReplayIphone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC6B6001E884A770055F43F /* ReplayIphone.storyboard */; };
+		3BC6B6011E884A770055F43F /* Replay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC6B6001E884A770055F43F /* Replay.storyboard */; };
 		3BCB63A21E9C19C1009886C5 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BCB63A11E9C19C1009886C5 /* MovieDetailViewController.swift */; };
 		3BF4CAB91EA6E5AA00A254E5 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF4CAB81EA6E5AA00A254E5 /* URLExtension.swift */; };
 		3BFFCAEF1EA5371100960737 /* TMDbImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFCAEE1EA5371100960737 /* TMDbImages.swift */; };
@@ -121,7 +120,6 @@
 		3B7F3A661E9369D1003F6925 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		3B7F3A6A1E94E416003F6925 /* MovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		3B7F3A6C1E94E60A003F6925 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		3B8C0FB11E92DE0900B02C1F /* ReplayIpad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ReplayIpad.storyboard; sourceTree = "<group>"; };
 		3B9B16C51E9D961A000DB783 /* TitleSubTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleSubTitleTableViewCell.swift; sourceTree = "<group>"; };
 		3B9B16C61E9D961A000DB783 /* TitleSubTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TitleSubTitleTableViewCell.xib; sourceTree = "<group>"; };
 		3B9B16CD1E9E8D37000DB783 /* ArrayExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
@@ -147,7 +145,7 @@
 		3BC6B5A81E863E010055F43F /* MovieOMDb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieOMDb.swift; sourceTree = "<group>"; };
 		3BC6B5AA1E86E8B50055F43F /* MovieOMDbTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieOMDbTests.swift; sourceTree = "<group>"; };
 		3BC6B5AC1E870DF40055F43F /* GridContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridContent.swift; sourceTree = "<group>"; };
-		3BC6B6001E884A770055F43F /* ReplayIphone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ReplayIphone.storyboard; sourceTree = "<group>"; };
+		3BC6B6001E884A770055F43F /* Replay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Replay.storyboard; sourceTree = "<group>"; };
 		3BCB63A11E9C19C1009886C5 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		3BF4CAB81EA6E5AA00A254E5 /* URLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
 		3BFFCAEE1EA5371100960737 /* TMDbImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDbImages.swift; sourceTree = "<group>"; };
@@ -372,8 +370,7 @@
 		3BC6B5F41E883F5B0055F43F /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				3BC6B6001E884A770055F43F /* ReplayIphone.storyboard */,
-				3B8C0FB11E92DE0900B02C1F /* ReplayIpad.storyboard */,
+				3BC6B6001E884A770055F43F /* Replay.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -517,8 +514,7 @@
 				3BFFCAF31EA58FA200960737 /* TitleTextTableViewCell.xib in Resources */,
 				3BBE2C291E95607600AAA6E7 /* GridLandscapeCollectionViewCell.xib in Resources */,
 				3B011BCE1E82107700DDA24D /* Movie.json in Resources */,
-				3BC6B6011E884A770055F43F /* ReplayIphone.storyboard in Resources */,
-				3B8C0FB21E92DE0900B02C1F /* ReplayIpad.storyboard in Resources */,
+				3BC6B6011E884A770055F43F /* Replay.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,7 +13,7 @@ extension URL {
         guard let url = URL(string: string) else {
             fatalError(" Error while creating URL using string: \(string)")
         }
-        
+
         self = url
     }
 }

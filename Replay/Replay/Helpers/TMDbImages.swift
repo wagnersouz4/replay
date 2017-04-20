@@ -15,7 +15,7 @@ enum TMDbSize {
 
 func createImageURL(using path: String, with size: TMDbSize) -> URL {
     let url: URL
-    
+
     switch size {
     case .w300:
         url = URL(using: "https://image.tmdb.org/t/p/w300\(path)")
