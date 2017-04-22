@@ -13,7 +13,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
 
-    private var section: Section!
+    private var section: GridSection!
     fileprivate var data = [SearchContent]()
 
     fileprivate var collectionHeaderTitle: String {
@@ -41,7 +41,7 @@ class SearchViewController: UIViewController {
     }
 
     private func setupCollectionView() {
-        let nib = UINib(nibName: "GridPortraitCollectionViewCell", bundle: nil)
+        let nib = UINib(nibName: "GridCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "CollectionViewCell")
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -99,26 +99,12 @@ extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        let cell: GridPortraitCollectionViewCell = collectionView.dequeueReusableCell(
+        let cell: GridCollectionViewCell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "CollectionViewCell", for: indexPath)
 
         let currentData = data[indexPath.row]
 
-        cell.imageView.image = #imageLiteral(resourceName: "nocover")
-        cell.label.text = nil
-
-        if let imageURL = currentData.imageURL {
-            cell.spinner.color = .highlighted
-            cell.spinner.hidesWhenStopped = true
-            cell.spinner.startAnimating()
-            cell.imageView.pin_updateWithProgress = true
-            cell.imageView.pin_setImage(from: imageURL) { _ in
-                cell.spinner.stopAnimating()
-            }
-        } else {
-            cell.spinner.isHidden = true
-            cell.label.text = currentData.description
-        }
+        cell.setup(description: nil, backgroundImageUrl: currentData.imageUrl, copyrightImage: nil)
 
         return cell
     }

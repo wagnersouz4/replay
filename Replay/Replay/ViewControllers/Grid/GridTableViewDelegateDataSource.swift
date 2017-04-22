@@ -8,28 +8,30 @@
 
 import UIKit
 
-struct Section {
+struct GridSection {
     typealias TargetPaged = (Int) -> TMDbService
 
     let title: String
     let layout: GridLayout
     var contentList: [GridContent]
     let target: TargetPaged
+    let showContentDescription: Bool
 
-    init(title: String, layout: GridLayout, target: @escaping TargetPaged) {
+    init(title: String, layout: GridLayout, showContentDescription: Bool = false, target: @escaping TargetPaged) {
         self.contentList = []
         self.layout = layout
         self.target = target
         self.title = title
+        self.showContentDescription = showContentDescription
     }
 }
 
 class GridTableViewDelegateDataSource: NSObject {
 
-    fileprivate var sections: [Section]!
+    fileprivate var sections: [GridSection]!
     fileprivate weak var collectionViewDelegateDataSource: GridCollectionViewDelegateDataSource!
 
-    init(sections: [Section], collectionViewDelegateDataSource: GridCollectionViewDelegateDataSource) {
+    init(sections: [GridSection], collectionViewDelegateDataSource: GridCollectionViewDelegateDataSource) {
         self.sections = sections
         self.collectionViewDelegateDataSource = collectionViewDelegateDataSource
     }
@@ -57,7 +59,7 @@ extension GridTableViewDelegateDataSource: UITableViewDataSource {
         let section = sections[indexPath.section]
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier) ??
             GridTableViewCell(reuseIdentifier: identifier,
-                              orientation: section.layout.collectionViewCellOrientation)
+                              orientation: section.layout.orientation)
         return cell
     }
 
@@ -79,8 +81,9 @@ extension GridTableViewDelegateDataSource: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let headerView = view as? UITableViewHeaderFooterView else { return }
         headerView.contentView.backgroundColor = .background
+        headerView.textLabel?.text = headerView.textLabel?.text?.capitalized
         headerView.textLabel?.textColor = .white
-        let orientation = sections[section].layout.collectionViewCellOrientation
+        let orientation = sections[section].layout.orientation
         headerView.textLabel?.textAlignment = (orientation == .landscape) ? .center : .left
     }
 }

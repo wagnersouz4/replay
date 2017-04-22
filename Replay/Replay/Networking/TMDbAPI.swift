@@ -9,15 +9,16 @@
 import Moya
 
 enum TMDbService {
-    case movie(movieID: Int)
+    case movie(movieId: Int)
     case popularMovies(page: Int)
     case nowPlayingMovies(page: Int)
     case upcomingMovies(page: Int)
     case topRatedMovies(page: Int)
 
-    case popularOnTV(page: Int)
-    case topRatedOnTV(page: Int)
-    case airingToday(page: Int)
+    case tvShow(tvShowId: Int)
+    case popularTvShows(page: Int)
+    case topRatedTvShows(page: Int)
+    case tvShowsAiringToday(page: Int)
 
     case celebrities(page: Int)
 
@@ -31,8 +32,8 @@ extension TMDbService: TargetType {
 
     var path: String {
         switch self {
-        case .movie(let movieID):
-            return "/movie/\(movieID)"
+        case .movie(let movieId):
+            return "/movie/\(movieId)"
         case .popularMovies:
             return "/movie/popular"
         case .nowPlayingMovies:
@@ -41,11 +42,13 @@ extension TMDbService: TargetType {
             return "/movie/upcoming"
         case .topRatedMovies:
             return "/movie/top_rated"
-        case .popularOnTV:
+        case .tvShow(let tvShowId):
+            return "/tv/\(tvShowId)"
+        case .popularTvShows:
             return "/tv/popular"
-        case .topRatedOnTV:
+        case .topRatedTvShows:
             return "/tv/top_rated"
-        case .airingToday:
+        case .tvShowsAiringToday:
             return "/tv/airing_today"
         case .celebrities:
             return "/person/popular"
@@ -60,22 +63,23 @@ extension TMDbService: TargetType {
 
     var parameters: [String: Any]? {
         switch self {
-        case .movie:
-            return ["api_key": APIKeys.TMDbKey,
+        case .movie,
+             .tvShow:
+            return ["api_key": APIKey.TMDbKey,
                     "append_to_response": "videos,images"]
 
         case .popularMovies(let page),
              .nowPlayingMovies(let page),
              .upcomingMovies(let page),
              .topRatedMovies(let page),
-             .popularOnTV(let page),
-             .topRatedOnTV(let page),
+             .popularTvShows(let page),
+             .topRatedTvShows(let page),
              .celebrities(let page),
-             .airingToday(let page):
-            return ["api_key": APIKeys.TMDbKey, "page": page]
+             .tvShowsAiringToday(let page):
+            return ["api_key": APIKey.TMDbKey, "page": page]
 
         case .search(let page, let query):
-            return ["api_key": APIKeys.TMDbKey, "page": page, "query": query]
+            return ["api_key": APIKey.TMDbKey, "page": page, "query": query]
         }
 
     }
@@ -86,7 +90,7 @@ extension TMDbService: TargetType {
 
     }
 
-    /// Provides stub data as response for use in testing.
+    /// Stubbed data to be used on unit tests.
     var sampleData: Data {
         switch self {
         case .movie:
@@ -96,8 +100,10 @@ extension TMDbService: TargetType {
              .upcomingMovies,
              .topRatedMovies:
             return Stub.stubbedResponse("MovieIntro")
-        case .popularOnTV, .topRatedOnTV, .airingToday:
-            return Stub.stubbedResponse("TVShowIntro")
+        case .tvShow:
+            return Stub.stubbedResponse("TV")
+        case .popularTvShows, .topRatedTvShows, .tvShowsAiringToday:
+            return Stub.stubbedResponse("TVIntro")
         case .celebrities:
             return Stub.stubbedResponse("Celebrities")
         case .search:

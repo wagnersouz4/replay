@@ -1,5 +1,5 @@
 //
-//  TVViewController.swift
+//  TvShowViewController.swift
 //  Replay
 //
 //  Created by Wagner Souza on 6/04/17.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-class TVViewController: UIViewController {
+class TvShowViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
     private var tableViewDelegateDataSource: GridTableViewDelegateDataSource!
     private var collectionViewDelegateDataSource: GridCollectionViewDelegateDataSource!
 
-    var sections: [Section]!
+    var sections: [GridSection]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,21 +26,24 @@ class TVViewController: UIViewController {
     }
 
     private func configureUI() {
+        automaticallyAdjustsScrollViewInsets = false
         tableView.backgroundColor = .background
         view.backgroundColor = .background
+        defaultConfigurationFor(navigationController?.navigationBar)
+        navigationItem.title = "Tv Show"
     }
 
     private func createSections() {
-        sections = [Section]()
-        sections.append(Section(title: "Airing Today",
+        sections = [GridSection]()
+        sections.append(GridSection(title: "Airing Today",
                                 layout: Grid(view).landscapeLayout,
-                                target: TMDbService.airingToday))
-        sections.append(Section(title: "Most Popular",
+                                target: TMDbService.tvShowsAiringToday))
+        sections.append(GridSection(title: "Most Popular",
                                layout: Grid(view).portraitLayout,
-                               target: TMDbService.popularOnTV))
-        sections.append(Section(title: "Top Rated",
+                               target: TMDbService.popularTvShows))
+        sections.append(GridSection(title: "Top Rated",
                                 layout: Grid(view).portraitLayout,
-                                target: TMDbService.topRatedOnTV))
+                                target: TMDbService.topRatedTvShows))
     }
 
     private func loadContent() {

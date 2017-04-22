@@ -23,6 +23,7 @@ struct GridContent {
             guard let image = portraitImagePath else { return nil }
             return createImageURL(using: image, with: size)
         }
+
         guard let image = landscapeImagePath else { return nil }
         return createImageURL(using: image, with: size)
     }

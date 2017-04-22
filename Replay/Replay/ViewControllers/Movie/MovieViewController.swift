@@ -15,7 +15,7 @@ class MovieViewController: UIViewController {
     private var tableViewDelegateDataSource: GridTableViewDelegateDataSource!
     private var collectionViewDelegateDataSource: GridCollectionViewDelegateDataSource!
 
-    var sections: [Section]!
+    var sections: [GridSection]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,28 +31,27 @@ class MovieViewController: UIViewController {
 
         tableView.backgroundColor = .background
         view.backgroundColor = .background
-
-        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        navigationController?.navigationBar.barTintColor = .darkestBackground
-        navigationController?.navigationBar.tintColor = .white
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.clipsToBounds = true
-
+        defaultConfigurationFor(navigationController?.navigationBar)
         navigationItem.title = "Movies"
     }
 
     private func createSections() {
-        sections = [Section]()
-        sections.append(Section(title: "In Theaters",
+        sections = [GridSection]()
+
+        sections.append(GridSection(title: "In theaters",
                                 layout: Grid(view).landscapeLayout,
+                                showContentDescription: true,
                                 target: TMDbService.nowPlayingMovies))
-        sections.append(Section(title: "Most Popular",
+
+        sections.append(GridSection(title: "Most popular",
                                 layout: Grid(view).portraitLayout,
                                 target: TMDbService.popularMovies))
-        sections.append(Section(title: "Top Rated",
+
+        sections.append(GridSection(title: "Top rated",
                                 layout: Grid(view).portraitLayout,
                                 target: TMDbService.topRatedMovies))
-        sections.append(Section(title: "Upcoming",
+
+        sections.append(GridSection(title: "Upcoming",
                                 layout: Grid(view).portraitLayout,
                                 target: TMDbService.upcomingMovies))
     }
@@ -74,12 +73,12 @@ class MovieViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let movieID = sender as? Int else { fatalError("A movie must have an id!")}
+        guard let movieId = sender as? Int else { fatalError("A movie must have an id!")}
 
         guard let movieVC = segue.destination as? MovieDetailViewController else {
             fatalError("The destination ViewController must be MovieDetailViewController")
         }
 
-        movieVC.movieID = movieID
+        movieVC.movieId = movieId
     }
 }

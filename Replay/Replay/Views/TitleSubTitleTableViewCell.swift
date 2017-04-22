@@ -10,8 +10,8 @@ import UIKit
 
 class TitleSubTitleTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var subTitle: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subtitleLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,8 +19,13 @@ class TitleSubTitleTableViewCell: UITableViewCell {
     }
 
     private func configureUI() {
-        title.textColor = .white
-        subTitle.textColor = .white
+        titleLabel.textColor = .white
+        subtitleLabel.textColor = .white
         backgroundColor = .background
+    }
+
+    func setup(title: String, subtitle: String) {
+        titleLabel.text = title
+        subtitleLabel.text = subtitle
     }
 }

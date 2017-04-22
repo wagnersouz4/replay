@@ -1,5 +1,5 @@
 //
-//  APIKeys.swift
+//  APIKey.swift
 //  Replay
 //
 //  Created by Wagner Souza on 21/03/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct APIKeys {
+struct APIKey {
     private init() {}
-    static let TMDbKey = "YOUR_API_KEY_HERE"
+    static let TMDbKey = "9db3ef7128866a1cb45a312c47b1916f"
 }

@@ -47,8 +47,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="subTitle" destination="Rpb-Os-UsV" id="Wp9-Bf-tD9"/>
-                <outlet property="title" destination="UjS-h7-8OJ" id="OLO-Dg-Wo2"/>
+                <outlet property="subtitleLabel" destination="Rpb-Os-UsV" id="Yg9-Ga-yhc"/>
+                <outlet property="titleLabel" destination="UjS-h7-8OJ" id="x7H-Xv-mmy"/>
             </connections>
             <point key="canvasLocation" x="-5.5" y="60"/>
         </tableViewCell>

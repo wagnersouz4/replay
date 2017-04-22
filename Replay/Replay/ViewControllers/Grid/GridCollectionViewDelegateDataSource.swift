@@ -14,14 +14,14 @@ class GridCollectionViewDelegateDataSource: NSObject {
 
     typealias DidSelectContentClosure = (_: GridContent) -> Void
 
-    fileprivate var sections: [Section]
+    fileprivate var sections: [GridSection]
     fileprivate let provider = MoyaProvider<TMDbService>()
     fileprivate var didSelect: DidSelectContentClosure
 
     /// Collection insets
-    fileprivate let collectionEdgeInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    fileprivate let collectionEdgeInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 
-    init(sections: [Section], didSelect: @escaping DidSelectContentClosure) {
+    init(sections: [GridSection], didSelect: @escaping DidSelectContentClosure) {
         self.sections = sections
         self.didSelect = didSelect
     }
@@ -62,53 +62,21 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
 
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "CollectionViewCell", for: indexPath)
-            as? GridableCollectionViewCell else { fatalError("Invalid cell") }
+            as? GridCollectionViewCell else { fatalError("Invalid cell") }
 
         let section = sections[collection.section]
         let content = section.contentList[indexPath.row]
 
-        cell.imageView.image = #imageLiteral(resourceName: "nocover")
+        let size: TMDbSize = (UIDevice.isIPad) ? .w500 : .w300
+        let orientation = section.layout.orientation
+        let imageUrl = content.imageURL(orientation: orientation, size: size)
 
-        var imageURL: URL? = nil
+        /// Depening on the section configuration or if the imageUrl is nil the content description will displayed
+        let description = (imageUrl == nil || section.showContentDescription ) ? content.description : nil
 
-        switch section.layout.collectionViewCellOrientation {
-        case .landscape:
-            cell.label.text = content.description
+        cell.setup(description: description, backgroundImageUrl: imageUrl, copyrightImage: nil)
 
-            guard content.landscapeImagePath != nil else { break }
-
-            if UIDevice.isIPad {
-                imageURL = content.imageURL(orientation: .landscape, size: .w500)!
-            } else {
-                imageURL = content.imageURL(orientation: .landscape, size: .w300)!
-            }
-        case .portrait:
-            guard content.portraitImagePath != nil else {
-                cell.label.text = content.description
-                break
-            }
-
-            if UIDevice.isIPad {
-                imageURL = content.imageURL(orientation: .portrait, size: .w500)
-            } else {
-                imageURL = content.imageURL(orientation: .portrait, size: .w300)
-            }
-        }
-
-        if let url = imageURL {
-            cell.spinner.color = .highlighted
-            cell.spinner.hidesWhenStopped = true
-            cell.spinner.startAnimating()
-            /// Loading the image progressively see more at: https://github.com/pinterest/PINRemoteImage
-            cell.imageView.pin_updateWithProgress = true
-            cell.imageView.pin_setImage(from: url) { _ in
-                cell.spinner.stopAnimating()
-            }
-        }
-
-        guard let collectionViewCell = cell as? UICollectionViewCell else { fatalError("Invalid CollectViewCell") }
-
-        return collectionViewCell
+        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -132,8 +100,8 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDelegateFlowLayo
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let collection = collectionView as? GridCollectionView else { fatalError("Invalid collection") }
         let section = sections[collection.section]
-        let height = section.layout.collectionViewCellSize.height
-        let width = section.layout.collectionViewCellSize.width
+        let height = section.layout.size.height
+        let width = section.layout.size.width
         return CGSize(width: width, height: height)
     }
 

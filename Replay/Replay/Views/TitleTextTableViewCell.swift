@@ -10,8 +10,8 @@ import UIKit
 
 class TitleTextTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var textView: UITextView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,5 +26,10 @@ class TitleTextTableViewCell: UITableViewCell {
         textView.isScrollEnabled = false
         textView.isSelectable = false
         textView.textAlignment = .justified
+    }
+
+    func setup(title: String, text: String) {
+        titleLabel.text = title
+        textView.text = text
     }
 }

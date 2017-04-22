@@ -31,7 +31,7 @@ struct SearchContent {
     var mediaType: MediaType
     var imagePath: String?
 
-    var imageURL: URL? {
+    var imageUrl: URL? {
         guard let path = imagePath else { return nil }
         return URL(string: "https://image.tmdb.org/t/p/w300\(path)")
     }

@@ -14,7 +14,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
-    var movieID: Int!
+    var movieId: Int!
 
     fileprivate var backdrops = [BackdropImage]()
     fileprivate var movie: Movie?
@@ -24,7 +24,7 @@ class MovieDetailViewController: UIViewController {
         return movie.videos.filter { $0.type == "Trailer" || $0.type == "Teaser" }
     }
 
-    fileprivate var movieSubTitle: String {
+    fileprivate var movieSubtitle: String {
         guard let movie = movie else { return "" }
         let duration = minutesToHourMin(movie.runtime)
         let genres = movie.genres.joined(separator: ", ")
@@ -59,7 +59,7 @@ class MovieDetailViewController: UIViewController {
     }
 
     fileprivate func loadMovieDetails() {
-        let target = TMDbService.movie(movieID: movieID)
+        let target = TMDbService.movie(movieId: movieId)
         spinner.startAnimating()
         loadContent(using: target, mappingTo: Movie.self) { [weak self] movie in
             self?.spinner.stopAnimating()
@@ -98,26 +98,26 @@ extension MovieDetailViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+        guard let movie = movie else { fatalError("Movie has not been initialized") }
+
         switch indexPath.section {
-        /// Movie Title
+        /// Movie's Title
         case 0:
-            let cell: TitleSubTitleTableViewCell = tableView.dequeueReusableCell(
+            let titleSubtitleCell: TitleSubTitleTableViewCell = tableView.dequeueReusableCell(
                 withIdentifier: "TitleSubTitleTableViewCell", for: indexPath)
-            cell.title.text = movie?.title
-            cell.subTitle.text = movieSubTitle
-            return cell
-        /// Movie backdrops
+            titleSubtitleCell.setup(title: movie.title, subtitle: movieSubtitle)
+            return titleSubtitleCell
+        /// Movie's backdrops
         case 1:
             let cell = GridTableViewCell(reuseIdentifier: "MovieTableViewCell#Backdrop", orientation: .landscape)
             return cell
-        /// Movie Overview
+        /// Movie's Overview
         case 2:
-            let cell: TitleTextTableViewCell = tableView.dequeueReusableCell(
+            let titleTextCell: TitleTextTableViewCell = tableView.dequeueReusableCell(
                 withIdentifier: "TitleTextTableViewCell", for: indexPath)
-            cell.titleLabel.text = "Overview"
-            cell.textView.text = movie?.overview
-            return cell
-        /// Movie Videos
+            titleTextCell.setup(title: "Overview", text: movie.overview)
+            return titleTextCell
+        /// Movie's Videos
         case 3:
             let cell = GridTableViewCell(reuseIdentifier: "MovieTableViewCell#Videos", orientation: .landscape)
             return cell
@@ -132,8 +132,8 @@ extension MovieDetailViewController: UITableViewDelegate {
 
         switch indexPath.section {
         case 1, 3:
-            guard let cell = cell as? GridTableViewCell else { fatalError(" Invalid TableViewCell") }
-            cell.setCollectionView(dataSource: self, delegate: self, section: indexPath.section)
+            guard let gridCell = cell as? GridTableViewCell else { fatalError(" Invalid TableViewCell") }
+            gridCell.setCollectionView(dataSource: self, delegate: self, section: indexPath.section)
         default:
             break
         }
@@ -152,11 +152,8 @@ extension MovieDetailViewController: UITableViewDelegate {
         if section == 3, let headerView = view as? UITableViewHeaderFooterView {
             headerView.textLabel?.textColor = .white
             headerView.textLabel?.text = headerView.textLabel?.text?.capitalized
-            if UIDevice.isIPad {
-                headerView.textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-            } else {
-                headerView.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            }
+            let fontSize:CGFloat = (UIDevice.isIPad) ? 20 : 15
+            headerView.textLabel?.font = UIFont(name: "SFUIText-Bold", size: fontSize)
         }
     }
 }
@@ -187,9 +184,8 @@ extension MovieDetailViewController: UICollectionViewDataSource {
 
         guard let collection = collectionView as? GridCollectionView else { fatalError("Invalid collection") }
 
-        let cell: GridLandscapeCollectionViewCell = collectionView.dequeueReusableCell(
+        let cell: GridCollectionViewCell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "CollectionViewCell", for: indexPath)
-        cell.titleView.isHidden = true
 
         switch collection.section {
         /// backdrop
@@ -198,34 +194,18 @@ extension MovieDetailViewController: UICollectionViewDataSource {
             let size: TMDbSize = (UIDevice.isIPad) ? .w500 : .w300
             let url = createImageURL(using: backdropImage.filePath, with: size)
 
-            return loadGridImage(using: cell, with: url)
+            cell.setup(description: nil, backgroundImageUrl: url, copyrightImage: nil)
+
         /// videos
         case 3:
             let video = filteredVideos[indexPath.row]
             let url = video.thumbnailURL
-
-            cell.waterMarkImageView.isHidden = false
-            cell.waterMarkImageView.contentMode = .scaleAspectFit
-            cell.waterMarkImageView.image = #imageLiteral(resourceName: "youtubeLogo")
-
-            return loadGridImage(using: cell, with: url)
+            cell.setup(description: nil, backgroundImageUrl: url, copyrightImage: #imageLiteral(resourceName: "youtubeLogo"))
         default:
-            return UICollectionViewCell()
-        }
-    }
-
-    private func loadGridImage(using gridCell: GridLandscapeCollectionViewCell, with url: URL) -> UICollectionViewCell {
-
-        gridCell.spinner.color = .highlighted
-        gridCell.spinner.hidesWhenStopped = true
-        gridCell.spinner.startAnimating()
-        gridCell.label.isHidden = true
-        gridCell.imageView.pin_updateWithProgress = true
-        gridCell.imageView.pin_setImage(from: url) {  _ in
-            gridCell.spinner.stopAnimating()
+            break
         }
 
-        return gridCell
+        return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -250,7 +230,7 @@ extension MovieDetailViewController: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let layout = Grid(view).landscapeLayout
-        return CGSize(width: layout.collectionViewCellSize.width,
-                      height: layout.collectionViewCellSize.height)
+        return CGSize(width: layout.size.width,
+                      height: layout.size.height)
     }
 }
