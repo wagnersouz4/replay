@@ -2,7 +2,7 @@
 //  URLExtension.swift
 //  Replay
 //
-//  Created by Wagner Souza on 18/04/17.
+//  Created by Wagner Souza on 23/04/17.
 //  Copyright © 2017 Wagner Souza. All rights reserved.
 //
 
@@ -13,7 +13,6 @@ extension URL {
         guard let url = URL(string: string) else {
             fatalError(" Error while creating URL using string: \(string)")
         }
-
         self = url
     }
 }

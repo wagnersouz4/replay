@@ -104,7 +104,7 @@ extension SearchViewController: UICollectionViewDataSource {
 
         let currentData = data[indexPath.row]
 
-        cell.setup(description: nil, backgroundImageUrl: currentData.imageUrl, copyrightImage: nil)
+        //cell.setup(description: nil, backgroundImageUrl: currentData.imageUrl, copyrightImage: nil)
 
         return cell
     }

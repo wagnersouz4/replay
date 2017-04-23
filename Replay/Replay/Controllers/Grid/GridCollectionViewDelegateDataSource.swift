@@ -74,7 +74,7 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
         /// Depening on the section configuration or if the imageUrl is nil the content description will displayed
         let description = (imageUrl == nil || section.showContentDescription ) ? content.description : nil
 
-        cell.setup(description: description, backgroundImageUrl: imageUrl, copyrightImage: nil)
+        //cell.setup(description: description, backgroundImageUrl: imageUrl, copyrightImage: nil)
 
         return cell
     }

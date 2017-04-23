@@ -16,13 +16,8 @@ class MovieDetailViewController: UIViewController {
 
     var movieId: Int!
 
-    fileprivate var backdrops = [BackdropImage]()
+    //fileprivate var backdrops = [BackdropImage]()
     fileprivate var movie: Movie?
-
-    fileprivate var filteredVideos: [Video] {
-        guard let movie = movie else { return [] }
-        return movie.videos.filter { $0.type == "Trailer" || $0.type == "Teaser" }
-    }
 
     fileprivate var movieSubtitle: String {
         guard let movie = movie else { return "" }
@@ -59,6 +54,8 @@ class MovieDetailViewController: UIViewController {
     }
 
     fileprivate func loadMovieDetails() {
+        //movie.load(with: id)
+
         let target = TMDbService.movie(movieId: movieId)
         spinner.startAnimating()
         loadContent(using: target, mappingTo: Movie.self) { [weak self] movie in
@@ -172,7 +169,7 @@ extension MovieDetailViewController: UICollectionViewDataSource {
         case 1:
             return movie.backdropImages.count
         case 3:
-            return filteredVideos.count
+            return movie.videos.count
         default:
             return 0
         }
@@ -194,13 +191,13 @@ extension MovieDetailViewController: UICollectionViewDataSource {
             let size: TMDbSize = (UIDevice.isIPad) ? .w500 : .w300
             let url = createImageURL(using: backdropImage.filePath, with: size)
 
-            cell.setup(description: nil, backgroundImageUrl: url, copyrightImage: nil)
+            //cell.setup(description: nil, backgroundImageUrl: url, copyrightImage: nil)
 
         /// videos
         case 3:
-            let video = filteredVideos[indexPath.row]
+            let video = movie.videos[indexPath.row]
             let url = video.thumbnailURL
-            cell.setup(description: nil, backgroundImageUrl: url, copyrightImage: #imageLiteral(resourceName: "youtubeLogo"))
+            //cell.setup(description: nil, backgroundImageUrl: url, copyrightImage: #imageLiteral(resourceName: "youtubeLogo"))
         default:
             break
         }
@@ -212,8 +209,9 @@ extension MovieDetailViewController: UICollectionViewDataSource {
         guard let collection = collectionView as? GridCollectionView else { fatalError("Invalid collection") }
 
         if collection.section == 3 {
-            let video = filteredVideos[indexPath.row]
-            UIApplication.shared.open(video.url)
+            if let video = movie?.videos[indexPath.row] {
+                UIApplication.shared.open(video.url)
+            }
         }
     }
 }

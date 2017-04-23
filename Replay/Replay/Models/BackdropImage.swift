@@ -21,6 +21,6 @@ extension BackdropImage: JSONable {
         self.init(filePath: filePath)
     }
 
-    static var typeDescription: String { return "Image" }
+    static var typeDescription: String { return "BackdropImage" }
 
 }

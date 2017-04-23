@@ -8,22 +8,18 @@
 
 import UIKit
 
-enum CollectionViewCellOrientation {
-    case portrait, landscape
-}
-
 class GridTableViewCell: UITableViewCell {
 
     fileprivate var collectionView: GridCollectionView!
     fileprivate var layout: UICollectionViewFlowLayout!
-    fileprivate var cellOrientation: Orientation
+    fileprivate var orientation: GridOrientation
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
-    init(reuseIdentifier: String?, orientation cellOrientation: Orientation) {
-        self.cellOrientation = cellOrientation
+    init(reuseIdentifier: String?, orientation: GridOrientation) {
+        self.orientation = orientation
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         setupCollectionView()
     }

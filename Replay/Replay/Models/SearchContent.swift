@@ -56,7 +56,7 @@ extension SearchContent: JSONable {
     }
 }
 
-/// Initializer a SearchContent from a GridContent with a type
+/// Initializing a SearchContent from a GridContent with a type
 extension SearchContent {
     init?(_ content: GridContent, with type: MediaType) {
         self.init(contentId: content.contentId,

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Orientation {
+enum GridOrientation {
     case portrait, landscape
 }
 
@@ -18,7 +18,7 @@ struct GridContent {
     var landscapeImagePath: String?
     var description: String
 
-    func imageURL(orientation: Orientation, size: TMDbSize) -> URL? {
+    func imageURL(orientation: GridOrientation, size: TMDbSize) -> URL? {
         if orientation == .portrait {
             guard let image = portraitImagePath else { return nil }
             return createImageURL(using: image, with: size)

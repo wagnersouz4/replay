@@ -11,7 +11,7 @@ import UIKit
 /// Data structure containing the grid layout specification
 public struct GridLayout {
     let tableViewHeight: CGFloat
-    let orientation: Orientation
+    let orientation: GridOrientation
     let size: CGSize
 }
 
@@ -33,7 +33,7 @@ public class Grid {
 
     public var landscapeLayout: GridLayout {
         let height = screenWidth * 0.562 - 20
-        let orientation = Orientation.landscape
+        let orientation = GridOrientation.landscape
         let size = CGSize(width: height * 1.78, height: height)
 
         return GridLayout(
@@ -44,7 +44,7 @@ public class Grid {
 
     public var portraitLayout: GridLayout {
         let height = screenHeight * 0.35 - 20
-        let orientation = Orientation.portrait
+        let orientation = GridOrientation.portrait
         let size = CGSize(width: height * 0.67, height: height)
 
         return GridLayout(
