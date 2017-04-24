@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,20 +24,44 @@
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="P81-Xt-S4b">
                         <rect key="frame" x="240" y="130" width="20" height="20"/>
                     </activityIndicatorView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s7n-AZ-ZvQ">
+                        <rect key="frame" x="0.0" y="241" width="500" height="40"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5g-WO-gia">
+                                <rect key="frame" x="0.0" y="9.5" width="500" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Z5g-WO-gia" secondAttribute="trailing" id="8oF-J5-11I"/>
+                            <constraint firstItem="Z5g-WO-gia" firstAttribute="centerY" secondItem="s7n-AZ-ZvQ" secondAttribute="centerY" id="EIs-N8-DF9"/>
+                            <constraint firstItem="Z5g-WO-gia" firstAttribute="leading" secondItem="s7n-AZ-ZvQ" secondAttribute="leading" id="Goq-e2-O90"/>
+                            <constraint firstItem="Z5g-WO-gia" firstAttribute="centerX" secondItem="s7n-AZ-ZvQ" secondAttribute="centerX" id="XOR-oC-Uni"/>
+                            <constraint firstAttribute="height" constant="40" id="hIj-Iq-fp1"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="s7n-AZ-ZvQ" secondAttribute="trailing" id="12y-mD-Eh8"/>
                 <constraint firstItem="nXr-l6-EIO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Asv-Ib-CAc"/>
                 <constraint firstAttribute="bottom" secondItem="nXr-l6-EIO" secondAttribute="bottom" id="B9n-qC-KEO"/>
                 <constraint firstItem="nXr-l6-EIO" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JEK-Vc-g56"/>
+                <constraint firstAttribute="bottom" secondItem="s7n-AZ-ZvQ" secondAttribute="bottom" id="KJ1-22-UVh"/>
                 <constraint firstItem="P81-Xt-S4b" firstAttribute="centerY" secondItem="nXr-l6-EIO" secondAttribute="centerY" id="kc6-gh-a7b"/>
                 <constraint firstAttribute="trailing" secondItem="nXr-l6-EIO" secondAttribute="trailing" id="nnO-MU-R3P"/>
+                <constraint firstItem="s7n-AZ-ZvQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="qgb-TA-Sny"/>
                 <constraint firstItem="P81-Xt-S4b" firstAttribute="centerX" secondItem="nXr-l6-EIO" secondAttribute="centerX" id="zCB-cv-jpk"/>
             </constraints>
             <size key="customSize" width="343" height="289"/>
             <connections>
                 <outlet property="backgroundImageView" destination="nXr-l6-EIO" id="Gi6-8h-yTT"/>
                 <outlet property="spinner" destination="P81-Xt-S4b" id="qhm-0O-oSd"/>
+                <outlet property="titleLabel" destination="Z5g-WO-gia" id="CYx-T9-XCm"/>
+                <outlet property="titleView" destination="s7n-AZ-ZvQ" id="v0X-Cw-RTZ"/>
             </connections>
             <point key="canvasLocation" x="127" y="64.5"/>
         </collectionViewCell>

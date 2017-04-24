@@ -27,7 +27,7 @@ enum MediaType {
 
 struct SearchContent {
     var contentId: Int
-    var description: String
+    var title: String
     var mediaType: MediaType
     var imagePath: String?
 
@@ -41,14 +41,14 @@ extension SearchContent: JSONable {
 
     init?(json: JSONDictionary) {
         guard let contendId = json["id"] as? Int,
-            let description = json["title"] as? String ?? json["name"] as? String,
+            let title = json["title"] as? String ?? json["name"] as? String,
             let type = json["media_type"] as? String,
             let mediaType = MediaType.fromString(type) else { return nil }
 
         /// Not every content has an image
         let imagePath = json["poster_path"] as? String ?? json["profile_path"] as? String
 
-        self.init(contentId: contendId, description: description, mediaType: mediaType, imagePath: imagePath)
+        self.init(contentId: contendId, title: title, mediaType: mediaType, imagePath: imagePath)
     }
 
     static var typeDescription: String {
@@ -60,7 +60,7 @@ extension SearchContent: JSONable {
 extension SearchContent {
     init?(_ content: GridContent, with type: MediaType) {
         self.init(contentId: content.contentId,
-                  description: content.description,
+                  title: content.title,
                   mediaType: type,
                   imagePath: content.portraitImagePath)
     }

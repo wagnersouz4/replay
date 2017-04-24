@@ -16,7 +16,7 @@ struct GridContent {
     var contentId: Int
     var portraitImagePath: String?
     var landscapeImagePath: String?
-    var description: String
+    var title: String
 
     func imageURL(orientation: GridOrientation, size: TMDbSize) -> URL? {
         if orientation == .portrait {
@@ -32,7 +32,7 @@ struct GridContent {
 extension GridContent: JSONable {
     init?(json: JSONDictionary) {
         guard let id = json["id"] as? Int,
-            let description = json["title"] as? String ??
+            let title = json["title"] as? String ??
                               json["name"] as? String else { return nil }
 
         /// Some movies/tv-shows will not have a poster and/or a backdrop image
@@ -42,7 +42,7 @@ extension GridContent: JSONable {
         self.init(contentId: id,
                   portraitImagePath: portraitImagePath,
                   landscapeImagePath: landscapeImagePath,
-                  description: description)
+                  title: title)
     }
 
     static var typeDescription: String {

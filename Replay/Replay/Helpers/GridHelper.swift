@@ -15,7 +15,7 @@ public struct GridLayout {
     let size: CGSize
 }
 
-public class Grid {
+public class GridHelper {
 
     public var view: UIView
 
@@ -32,23 +32,25 @@ public class Grid {
     }
 
     public var landscapeLayout: GridLayout {
-        let height = screenWidth * 0.562 - 20
+        let tableHeight = screenWidth * 0.562
         let orientation = GridOrientation.landscape
+        let height = tableHeight * 0.9
         let size = CGSize(width: height * 1.78, height: height)
 
         return GridLayout(
-            tableViewHeight: height,
+            tableViewHeight: tableHeight,
             orientation: orientation,
             size: size)
     }
 
     public var portraitLayout: GridLayout {
-        let height = screenHeight * 0.35 - 20
+        let tableHeight = screenHeight * 0.35
         let orientation = GridOrientation.portrait
+        let height = tableHeight * 0.9
         let size = CGSize(width: height * 0.67, height: height)
 
         return GridLayout(
-            tableViewHeight: height,
+            tableViewHeight: tableHeight,
             orientation: orientation,
             size: size)
     }

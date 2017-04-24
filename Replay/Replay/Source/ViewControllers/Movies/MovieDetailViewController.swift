@@ -16,11 +16,11 @@ class MovieDetailViewController: UIViewController {
 
     var movieId: Int!
 
-    //fileprivate var backdrops = [BackdropImage]()
     fileprivate var movie: Movie?
 
     fileprivate var movieSubtitle: String {
         guard let movie = movie else { return "" }
+
         let duration = minutesToHourMin(movie.runtime)
         let genres = movie.genres.joined(separator: ", ")
         let date = movie.releaseDate.format("d MMM yyyy")
@@ -39,23 +39,22 @@ class MovieDetailViewController: UIViewController {
         spinner.hidesWhenStopped = true
         view.backgroundColor = .background
         tableView.backgroundColor = .background
-        tableView.estimatedRowHeight = 40
+        tableView.estimatedRowHeight = GridHelper(view).landscapeLayout.tableViewHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     private func setupTableView() {
-        let titleSubtitleNib = UINib(nibName: "TitleSubTitleTableViewCell", bundle: nil)
-        tableView.register(titleSubtitleNib, forCellReuseIdentifier: "TitleSubTitleTableViewCell")
+        let titleSubtitleNib = TitleSubTitleTableViewCell.nib
+        tableView.register(titleSubtitleNib, forCellReuseIdentifier: TitleSubTitleTableViewCell.identifier)
 
-        let titleTextNib = UINib(nibName: "TitleTextTableViewCell", bundle: nil)
-        tableView.register(titleTextNib, forCellReuseIdentifier: "TitleTextTableViewCell")
+        let titleTextNib = TitleTextTableViewCell.nib
+        tableView.register(titleTextNib, forCellReuseIdentifier: TitleTextTableViewCell.identifier)
 
         tableView.dataSource = self
         tableView.delegate = self
     }
 
     fileprivate func loadMovieDetails() {
-        //movie.load(with: id)
-
         let target = TMDbService.movie(movieId: movieId)
         spinner.startAnimating()
         loadContent(using: target, mappingTo: Movie.self) { [weak self] movie in
@@ -101,22 +100,22 @@ extension MovieDetailViewController: UITableViewDataSource {
         /// Movie's Title
         case 0:
             let titleSubtitleCell: TitleSubTitleTableViewCell = tableView.dequeueReusableCell(
-                withIdentifier: "TitleSubTitleTableViewCell", for: indexPath)
+                withIdentifier: TitleSubTitleTableViewCell.identifier, for: indexPath)
             titleSubtitleCell.setup(title: movie.title, subtitle: movieSubtitle)
             return titleSubtitleCell
         /// Movie's backdrops
         case 1:
-            let cell = GridTableViewCell(reuseIdentifier: "MovieTableViewCell#Backdrop", orientation: .landscape)
+            let cell = GridTableViewCell(reuseIdentifier: GridTableViewCell.identifier, orientation: .landscape)
             return cell
         /// Movie's Overview
         case 2:
             let titleTextCell: TitleTextTableViewCell = tableView.dequeueReusableCell(
-                withIdentifier: "TitleTextTableViewCell", for: indexPath)
+                withIdentifier: TitleTextTableViewCell.identifier, for: indexPath)
             titleTextCell.setup(title: "Overview", text: movie.overview)
             return titleTextCell
         /// Movie's Videos
         case 3:
-            let cell = GridTableViewCell(reuseIdentifier: "MovieTableViewCell#Videos", orientation: .landscape)
+            let cell = GridTableViewCell(reuseIdentifier: GridTableViewCell.identifier, orientation: .landscape)
             return cell
         default:
             return UITableViewCell()
@@ -137,19 +136,24 @@ extension MovieDetailViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
         switch indexPath.section {
         case 1, 3:
-            return Grid(view).landscapeLayout.tableViewHeight
+            return GridHelper(view).landscapeLayout.tableViewHeight
         default:
             return UITableViewAutomaticDimension
         }
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return GridHelper(view).landscapeLayout.tableViewHeight
     }
 
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if section == 3, let headerView = view as? UITableViewHeaderFooterView {
             headerView.textLabel?.textColor = .white
             headerView.textLabel?.text = headerView.textLabel?.text?.capitalized
-            let fontSize:CGFloat = (UIDevice.isIPad) ? 20 : 15
+            let fontSize: CGFloat = (UIDevice.isIPad) ? 20 : 15
             headerView.textLabel?.font = UIFont(name: "SFUIText-Bold", size: fontSize)
         }
     }
@@ -182,7 +186,7 @@ extension MovieDetailViewController: UICollectionViewDataSource {
         guard let collection = collectionView as? GridCollectionView else { fatalError("Invalid collection") }
 
         let cell: GridCollectionViewCell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "CollectionViewCell", for: indexPath)
+            withReuseIdentifier: GridCollectionViewCell.identifier, for: indexPath)
 
         switch collection.section {
         /// backdrop
@@ -192,12 +196,13 @@ extension MovieDetailViewController: UICollectionViewDataSource {
             let url = createImageURL(using: backdropImage.filePath, with: size)
 
             //cell.setup(description: nil, backgroundImageUrl: url, copyrightImage: nil)
-
+            cell.setup(backgroundImageUrl: url, title: nil)
         /// videos
         case 3:
             let video = movie.videos[indexPath.row]
             let url = video.thumbnailURL
             //cell.setup(description: nil, backgroundImageUrl: url, copyrightImage: #imageLiteral(resourceName: "youtubeLogo"))
+            cell.setup(backgroundImageUrl: url, title: nil)
         default:
             break
         }
@@ -216,19 +221,23 @@ extension MovieDetailViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: CollectionView flow layout
 extension MovieDetailViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
 
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        let layout = Grid(view).landscapeLayout
+        let layout = GridHelper(view).landscapeLayout
         return CGSize(width: layout.size.width,
                       height: layout.size.height)
     }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+
 }

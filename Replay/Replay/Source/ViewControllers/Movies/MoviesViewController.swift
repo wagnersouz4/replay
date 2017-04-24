@@ -1,5 +1,5 @@
 //
-//  MovieViewController.swift
+//  MoviesViewController.swift
 //  Replay
 //
 //  Created by Wagner Souza on 5/04/17.
@@ -8,12 +8,20 @@
 
 import UIKit
 
-class MovieViewController: UIViewController {
+class MoviesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
     private var tableViewDelegateDataSource: GridTableViewDelegateDataSource!
     private var collectionViewDelegateDataSource: GridCollectionViewDelegateDataSource!
+
+    private var landscapeLayout: GridLayout {
+        return GridHelper(view).landscapeLayout
+    }
+
+    private var portraitLayout: GridLayout {
+        return GridHelper(view).portraitLayout
+    }
 
     var sections: [GridSection]!
 
@@ -39,20 +47,20 @@ class MovieViewController: UIViewController {
         sections = [GridSection]()
 
         sections.append(GridSection(title: "In theaters",
-                                layout: Grid(view).landscapeLayout,
-                                showContentDescription: true,
+                                layout: landscapeLayout,
+                                showContentsTitle: true,
                                 target: TMDbService.nowPlayingMovies))
 
         sections.append(GridSection(title: "Most popular",
-                                layout: Grid(view).portraitLayout,
+                                layout: portraitLayout,
                                 target: TMDbService.popularMovies))
 
         sections.append(GridSection(title: "Top rated",
-                                layout: Grid(view).portraitLayout,
+                                layout: portraitLayout,
                                 target: TMDbService.topRatedMovies))
 
         sections.append(GridSection(title: "Upcoming",
-                                layout: Grid(view).portraitLayout,
+                                layout: portraitLayout,
                                 target: TMDbService.upcomingMovies))
     }
 

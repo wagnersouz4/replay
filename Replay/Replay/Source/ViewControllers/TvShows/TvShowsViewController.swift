@@ -1,5 +1,5 @@
 //
-//  TvShowViewController.swift
+//  TvShowsViewController.swift
 //  Replay
 //
 //  Created by Wagner Souza on 6/04/17.
@@ -8,12 +8,20 @@
 
 import UIKit
 
-class TvShowViewController: UIViewController {
+class TvShowsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
     private var tableViewDelegateDataSource: GridTableViewDelegateDataSource!
     private var collectionViewDelegateDataSource: GridCollectionViewDelegateDataSource!
+
+    private var landscapeLayout: GridLayout {
+        return GridHelper(view).landscapeLayout
+    }
+
+    private var portraitLayout: GridLayout {
+        return GridHelper(view).portraitLayout
+    }
 
     var sections: [GridSection]!
 
@@ -35,14 +43,16 @@ class TvShowViewController: UIViewController {
 
     private func createSections() {
         sections = [GridSection]()
+
         sections.append(GridSection(title: "Airing Today",
-                                layout: Grid(view).landscapeLayout,
+                                layout: landscapeLayout,
+                                showContentsTitle: true,
                                 target: TMDbService.tvShowsAiringToday))
         sections.append(GridSection(title: "Most Popular",
-                               layout: Grid(view).portraitLayout,
+                               layout: portraitLayout,
                                target: TMDbService.popularTvShows))
         sections.append(GridSection(title: "Top Rated",
-                                layout: Grid(view).portraitLayout,
+                                layout: portraitLayout,
                                 target: TMDbService.topRatedTvShows))
     }
 
@@ -59,7 +69,7 @@ class TvShowViewController: UIViewController {
     }
 
     private func didSelect(content: GridContent) {
-        print(content.description)
+        print(content.title)
     }
 
 }

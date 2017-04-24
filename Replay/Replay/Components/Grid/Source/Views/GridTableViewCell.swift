@@ -43,8 +43,8 @@ private extension GridTableViewCell {
         /// Initializing the colletionView
         collectionView = GridCollectionView(frame: .zero, collectionViewLayout: layout)
 
-        let nib = UINib(nibName: "GridCollectionViewCell", bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView.register(GridCollectionViewCell.nib,
+                                forCellWithReuseIdentifier: GridCollectionViewCell.identifier)
 
         /// ColectionView Custom settings
         collectionView.backgroundColor = .background
