@@ -31,13 +31,14 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         configureUI()
         setupTableView()
+        loadDetails()
     }
 
     private func configureUI() {
         automaticallyAdjustsScrollViewInsets = false
+        view.backgroundColor = .background
         spinner.color = .highlighted
         spinner.hidesWhenStopped = true
-        view.backgroundColor = .background
         tableView.backgroundColor = .background
         tableView.estimatedRowHeight = GridHelper(view).landscapeLayout.tableViewHeight
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -54,15 +55,16 @@ class MovieDetailViewController: UIViewController {
         tableView.delegate = self
     }
 
-    fileprivate func loadMovieDetails() {
-        let target = TMDbService.movie(movieId: movieId)
+    private func loadDetails() {
         spinner.startAnimating()
-        loadContent(using: target, mappingTo: Movie.self) { [weak self] movie in
-            self?.spinner.stopAnimating()
+        Movie.load(with: movieId) { [weak self] movie in
             if let movie = movie {
                 self?.movie = movie
                 self?.tableView.reloadData()
+            } else {
+                print("Could not load movie Details")
             }
+            self?.spinner.stopAnimating()
         }
     }
 
@@ -84,12 +86,7 @@ extension MovieDetailViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if movie == nil {
-            loadMovieDetails()
-            return 0
-        }
-
-        return  1
+        return (movie == nil) ? 0 : 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -171,7 +168,7 @@ extension MovieDetailViewController: UICollectionViewDataSource {
 
         switch collection.section {
         case 1:
-            return movie.backdropImages.count
+            return movie.backdropImagesPath.count
         case 3:
             return movie.videos.count
         default:
@@ -191,12 +188,10 @@ extension MovieDetailViewController: UICollectionViewDataSource {
         switch collection.section {
         /// backdrop
         case 1:
-            let backdropImage = movie.backdropImages[indexPath.row]
-            let size: TMDbSize = (UIDevice.isIPad) ? .w500 : .w300
-            let url = createImageURL(using: backdropImage.filePath, with: size)
+            let imagePath = movie.backdropImagesPath[indexPath.row]
+            let imageURL = TMDbHelper.createImageURL(using: imagePath)
+            cell.setup(backgroundImageUrl: imageURL, title: nil)
 
-            //cell.setup(description: nil, backgroundImageUrl: url, copyrightImage: nil)
-            cell.setup(backgroundImageUrl: url, title: nil)
         /// videos
         case 3:
             let video = movie.videos[indexPath.row]

@@ -10,26 +10,39 @@ import Foundation
 
 struct TvShow {
     var name: String
-    var genres: [Genre]
+    var genres: [String]
     var inProduction: Bool
     var firstAirDate: Date
     var lastAirDate: Date
     var overview: String
-    var videos: [Video]
-    var backdrops: [BackdropImage]
+    var videos: [YoutubeVideo]
+    var backdropImagesPath: [String]
 }
 
+// MARK: Load TvShow method
+extension TvShow {
+    static func load(with tvShowId: Int, completion: @escaping (_: TvShow?) -> Void) {
+        let service = TMDbService.tvShow(tvShowId: tvShowId)
+        Networking.loadTMDbContent(using: service, mappingTo: self) { tvShow in
+            completion(tvShow)
+        }
+    }
+}
+
+// MARK: JSONable conformance
 extension TvShow: JSONable {
 
     init?(json: JSONDictionary) {
         guard let genresList = json["genres"] as? [JSONDictionary],
-            let genres: [Genre] = generateList(using: genresList) else { return nil }
+            let genres: [String] = JsonHelper.generateList(using: genresList, key: "name") else { return nil }
 
-        guard let videosList = json["videos"] as? JSONDictionary,
-            let videos: [Video] = generateList(using: videosList, key: "results") else { return nil }
+        guard let videosList = json["videos"] as? [JSONDictionary],
+            let videos: [YoutubeVideo] = JsonHelper.generateList(using: videosList, key: "results") else { return nil }
 
-        guard let imagesList = json["images"] as? JSONDictionary,
-            let backdrops: [BackdropImage] = generateList(using: imagesList, key: "backdrops") else { return nil }
+        guard let images = json["images"] as? [JSONDictionary],
+            let backdropImages: [JSONDictionary] = JsonHelper.generateList(using: images, key: "backdrops"),
+            let backdropImagesPath: [String] = JsonHelper.generateList(
+                using: backdropImages, key: "file_path") else { return nil }
 
         guard let name = json["name"] as? String,
             let inProductionString = json["in_production"] as? String,
@@ -53,10 +66,6 @@ extension TvShow: JSONable {
                   lastAirDate: lastAirDate,
                   overview: overview,
                   videos: videos,
-                  backdrops: backdrops)
-    }
-
-    static var typeDescription: String {
-        return "TvShow"
+                  backdropImagesPath: backdropImagesPath)
     }
 }

@@ -11,6 +11,7 @@ import UIKit
 class TvShowsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    //@IBOutlet weak var spinner: UIActivityIndicatorView!
 
     private var tableViewDelegateDataSource: GridTableViewDelegateDataSource!
     private var collectionViewDelegateDataSource: GridCollectionViewDelegateDataSource!
@@ -29,14 +30,16 @@ class TvShowsViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         createSections()
-        loadContent()
-        reloadData()
+        //loadContent()
+        //reloadData()
     }
 
     private func configureUI() {
         automaticallyAdjustsScrollViewInsets = false
         tableView.backgroundColor = .background
         view.backgroundColor = .background
+        //spinner.color = .highlighted
+        //spinner.hidesWhenStopped = true
         defaultConfigurationFor(navigationController?.navigationBar)
         navigationItem.title = "Tv Show"
     }
@@ -44,21 +47,22 @@ class TvShowsViewController: UIViewController {
     private func createSections() {
         sections = [GridSection]()
 
-        sections.append(GridSection(title: "Airing Today",
-                                layout: landscapeLayout,
-                                showContentsTitle: true,
-                                target: TMDbService.tvShowsAiringToday))
-        sections.append(GridSection(title: "Most Popular",
-                               layout: portraitLayout,
-                               target: TMDbService.popularTvShows))
-        sections.append(GridSection(title: "Top Rated",
-                                layout: portraitLayout,
-                                target: TMDbService.topRatedTvShows))
+        //spinner.startAnimating()
+
+//        sections.append(GridSection(title: "Airing Today",
+//                                layout: landscapeLayout,
+//                                showContentsTitle: true,
+//                                target: TMDbService.tvShowsAiringToday))
+//        sections.append(GridSection(title: "Most Popular",
+//                               layout: portraitLayout,
+//                               target: TMDbService.popularTvShows))
+//        sections.append(GridSection(title: "Top Rated",
+//                                layout: portraitLayout,
+//                                target: TMDbService.topRatedTvShows))
     }
 
     private func loadContent() {
-        collectionViewDelegateDataSource = GridCollectionViewDelegateDataSource(sections: sections,
-                                                                                didSelect: didSelect)
+        collectionViewDelegateDataSource = GridCollectionViewDelegateDataSource(sections: sections)
         tableViewDelegateDataSource = GridTableViewDelegateDataSource(
             sections: sections, collectionViewDelegateDataSource: collectionViewDelegateDataSource)
     }
@@ -68,8 +72,8 @@ class TvShowsViewController: UIViewController {
         tableView.dataSource = tableViewDelegateDataSource
     }
 
-    private func didSelect(content: GridContent) {
-        print(content.title)
+    private func didSelect(content: GriddableContent) {
+        print(content.gridTitle)
     }
 
 }

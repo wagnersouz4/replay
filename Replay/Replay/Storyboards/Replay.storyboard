@@ -200,16 +200,22 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="YYP-gq-hSl" customClass="ReplayUIActivityIndicatorView" customModule="Replay" customModuleProvider="target">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="06T-bw-7CD" firstAttribute="top" secondItem="dPZ-k5-u5p" secondAttribute="bottom" id="56b-d2-wvf"/>
                             <constraint firstAttribute="trailing" secondItem="06T-bw-7CD" secondAttribute="trailing" id="EOp-NQ-gEh"/>
                             <constraint firstItem="dWz-dc-ax9" firstAttribute="top" secondItem="06T-bw-7CD" secondAttribute="bottom" id="ZhJ-ax-qa7"/>
+                            <constraint firstItem="YYP-gq-hSl" firstAttribute="centerY" secondItem="bzG-KM-bSt" secondAttribute="centerY" id="bMY-4B-Hwe"/>
                             <constraint firstItem="06T-bw-7CD" firstAttribute="leading" secondItem="bzG-KM-bSt" secondAttribute="leading" id="hIE-h3-jQg"/>
+                            <constraint firstItem="YYP-gq-hSl" firstAttribute="centerX" secondItem="bzG-KM-bSt" secondAttribute="centerX" id="scv-Ia-w8X"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dHz-B5-AsS"/>
                     <connections>
+                        <outlet property="spinner" destination="YYP-gq-hSl" id="9hh-8b-3fq"/>
                         <outlet property="tableView" destination="06T-bw-7CD" id="JKm-Oq-7hW"/>
                         <segue destination="qRd-xJ-ES3" kind="show" identifier="MovieDetailSegue" id="Vcl-OA-ld4"/>
                     </connections>

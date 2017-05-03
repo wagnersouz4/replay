@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PINRemoteImage
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

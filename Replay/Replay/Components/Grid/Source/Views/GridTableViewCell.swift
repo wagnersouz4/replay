@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum GridOrientation {
+    case portrait, landscape
+}
+
 class GridTableViewCell: UITableViewCell {
 
     fileprivate var collectionView: GridCollectionView!

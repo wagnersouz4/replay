@@ -1,5 +1,5 @@
 //
-//  Video.swift
+//  YoutubeVideo.swift
 //  Replay
 //
 //  Created by Wagner Souza on 23/03/17.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-/// Videos related to a movie
-struct Video {
+/// Youtube videos related to a movie
+struct YoutubeVideo {
     /// For example, the video from "youtube.com/watch?v=pjTDTmef5-c" has key equals to pjTDTmef5-c
     var key: String
 
@@ -26,7 +26,7 @@ struct Video {
     }
 }
 
-extension Video: JSONable {
+extension YoutubeVideo: JSONable {
     init?(json: JSONDictionary) {
         guard let site = json["site"] as? String,
             site == "YouTube",
@@ -35,6 +35,4 @@ extension Video: JSONable {
             type == "Trailer" || type == "Teaser" else { return nil }
         self.init(key: key)
     }
-
-    static var typeDescription: String { return "Video" }
 }

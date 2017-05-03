@@ -9,33 +9,78 @@
 import Foundation
 
 struct Movie {
-    var genres: [Genre]
+    var movieId: Int
+    var genres: [String]
     var title: String
     var overview: String
-    var posterPath: String?
     var releaseDate: Date
-    var videos: [Video]
-    var backdropImages: [BackdropImage]
-    var runtime: Int
 
-    var posterURL: URL? {
-        guard let path = posterPath else { return nil }
-        return URL(string: "https://image.tmdb.org/t/p/w300\(path)")
+    /// Not every movie has a posterPath
+    var posterPath: String?
+
+    var videos: [YoutubeVideo]
+
+    /// Array of  backdrops images sorted by its rating.
+    var backdropImagesPath: [String]
+
+    var runtime: Int
+}
+
+// MARK: Load movie method
+extension Movie {
+
+    typealias TMDbClosure = (_: [TMDbContent]?) -> Void
+
+    enum Category {
+        case nowPlaying, mostPopular, upcoming, topRated
+    }
+
+    /// Load a movie using from TMDb
+    static func load(with movieId: Int, completion: @escaping (_: Movie?) -> Void) {
+        let tmdbMovieService = TMDbService.movie(movieId: movieId)
+        Networking.loadTMDbContent(using: tmdbMovieService, mappingTo: self) { movie in
+            completion(movie)
+        }
+    }
+
+    static func loadList(_ movieList: Category, completion: @escaping (_: [TMDbContent]?) -> Void) {
+        var tmdbService: TMDbService
+
+        switch movieList {
+        case .mostPopular:
+            tmdbService = TMDbService.popularMovies(page: 1)
+        case .nowPlaying:
+            tmdbService = TMDbService.nowPlayingMovies(page: 1)
+        case .topRated:
+            tmdbService = TMDbService.topRatedMovies(page: 1)
+        case .upcoming:
+            tmdbService = TMDbService.upcomingMovies(page: 1)
+        }
+
+        Networking.loadTMDbContentList(using: tmdbService, mappingTo: TMDbContent.self) { movies in
+            completion(movies)
+        }
     }
 }
 
+// MARK: Conforming to JSONable
 extension Movie: JSONable {
     init?(json: JSONDictionary) {
         guard let genresList = json["genres"] as? [JSONDictionary],
-            let genres: [Genre] = generateList(using: genresList) else { return nil }
+            let genres: [String] = JsonHelper.generateList(using: genresList, key: "name") else { return nil }
 
         guard let videosList = json["videos"] as? JSONDictionary,
-            let videos: [Video] = generateList(using: videosList, key: "results") else { return nil }
+            let videosResult = videosList["results"] as? [JSONDictionary],
+            let videos: [YoutubeVideo] = JsonHelper.generateList(using: videosResult) else { return nil }
 
-        guard let imagesList = json["images"] as? JSONDictionary,
-            let backdropImages: [BackdropImage] = generateList(using: imagesList,
-                                                               key: "backdrops") else { return nil }
-        guard let title = json["original_title"] as? String,
+        guard let images = json["images"] as? JSONDictionary,
+            let backdropImages = images["backdrops"] as? [JSONDictionary],
+            let backdropImagesPath: [String] = JsonHelper.generateList(using: backdropImages,
+                                                               key: "file_path")
+            else { return nil }
+
+        guard let movieId = json["id"] as? Int,
+            let title = json["original_title"] as? String,
             let overview = json["overview"] as? String,
             let poster = json["poster_path"] as? String,
             let releaseDateString = json["release_date"] as? String,
@@ -50,17 +95,33 @@ extension Movie: JSONable {
             fatalError("Invalid date format")
         }
 
-        self.init(genres: genres,
+        self.init(movieId: movieId,
+                  genres: genres,
                   title: title,
                   overview: overview,
-                  posterPath: posterPath,
                   releaseDate: releaseDate,
+                  posterPath: posterPath,
                   videos: videos,
-                  backdropImages: backdropImages,
+                  backdropImagesPath: backdropImagesPath,
                   runtime: runtime)
     }
+}
 
-    static var typeDescription: String {
-        return "Movie"
+// MARK: Conforming to GriddableContent
+extension Movie: GriddableContent {
+    var identifier: Any? {
+        return movieId
+    }
+
+    var gridPortraitImageUrl: URL? {
+        guard let imagePath = posterPath else { return nil }
+        return TMDbHelper.createImageURL(using: imagePath)
+    }
+    var gridLandscapeImageUrl: URL? {
+        guard !backdropImagesPath.isEmpty else { return nil }
+        return TMDbHelper.createImageURL(using: backdropImagesPath[0])
+    }
+    var gridTitle: String {
+        return title
     }
 }

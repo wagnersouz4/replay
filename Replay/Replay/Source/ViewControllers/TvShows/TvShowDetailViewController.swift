@@ -19,6 +19,7 @@ class TvShowDetailViewController: UIViewController {
     override func viewDidLoad() {
         configureUI()
         setupTableView()
+        loadDetails()
     }
 
     private func configureUI() {
@@ -38,27 +39,23 @@ class TvShowDetailViewController: UIViewController {
         tableView.delegate = self
     }
 
-    fileprivate func loadDetails() {
-        let target = TMDbService.tvShow(tvShowId: tvShowId)
+    private func loadDetails() {
         spinner.startAnimating()
-        loadContent(using: target, mappingTo: TvShow.self) { [weak self] tvShow in
-            self?.spinner.stopAnimating()
+        TvShow.load(with: tvShowId) { [weak self] tvShow in
             if let tvShow = tvShow {
                 self?.tvShow = tvShow
                 self?.tableView.reloadData()
+            } else {
+                print("Could not load tvShow details")
             }
+            self?.spinner.stopAnimating()
         }
     }
 }
 
 extension TvShowDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tvShow == nil {
-            loadDetails()
-            return 0
-        }
-
-        return 1
+        return (tvShow == nil) ? 0 : 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

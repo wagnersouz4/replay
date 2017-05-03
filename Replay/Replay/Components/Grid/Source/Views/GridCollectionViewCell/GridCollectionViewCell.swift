@@ -12,12 +12,9 @@ import PINRemoteImage
 class GridCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
-    //@IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    //@IBOutlet weak var titleView: UIView!
-    //@IBOutlet weak var copyrightImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,8 +28,8 @@ class GridCollectionViewCell: UICollectionViewCell {
         backgroundImageView.pin_updateWithProgress = true
         backgroundImageView.contentMode = .scaleToFill
 
-        /// The titleView will only be visible when there is a description in the setup method
-
+        /// By default the titleView is hidden, and will only be shown 
+        /// when there is title or the there is no background image.
         titleView.backgroundColor = .black
         titleView.alpha = 0.65
         titleView.isHidden = true
@@ -45,7 +42,7 @@ class GridCollectionViewCell: UICollectionViewCell {
 
     func setup(backgroundImageUrl: URL?, title: String?) {
 
-        /// Setting the description if it's not nil
+        /// Setting the title if it's not nil
         if let title = title {
             titleView.isHidden = false
             titleLabel.text = title

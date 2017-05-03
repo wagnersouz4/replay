@@ -8,19 +8,30 @@
 
 import UIKit
 
+protocol GriddableContent {
+    var identifier: Any? { get }
+    var gridPortraitImageUrl: URL? { get }
+    var gridLandscapeImageUrl: URL? { get }
+    var gridTitle: String { get }
+}
+
 struct GridSection {
-    typealias TargetPaged = (Int) -> TMDbService
 
     let title: String
     let layout: GridLayout
-    var contentList: [GridContent]
-    let target: TargetPaged
+    var contentList: [GriddableContent]
     let showContentsTitle: Bool
 
-    init(title: String, layout: GridLayout, showContentsTitle: Bool = false, target: @escaping TargetPaged) {
+    init(title: String, layout: GridLayout, contentList: [GriddableContent], showContentsTitle: Bool = false) {
+        self.contentList = contentList
+        self.layout = layout
+        self.title = title
+        self.showContentsTitle = showContentsTitle
+    }
+
+    init(title: String, layout: GridLayout, showContentsTitle: Bool = false) {
         self.contentList = []
         self.layout = layout
-        self.target = target
         self.title = title
         self.showContentsTitle = showContentsTitle
     }
@@ -58,6 +69,7 @@ extension GridTableViewDelegateDataSource: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier) ??
             GridTableViewCell(reuseIdentifier: identifier,
                               orientation: section.layout.orientation)
+
         return cell
     }
 

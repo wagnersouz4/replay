@@ -7,48 +7,28 @@
 //
 
 import UIKit
-import PINRemoteImage
+
+protocol GridCollectionViewDidSelectDelegate:class {
+    func didSelect(section: GridSection, at indexPath: IndexPath)
+}
 
 class GridCollectionViewDelegateDataSource: NSObject {
 
-    typealias DidSelectContentClosure = (_: GridContent) -> Void
-
     fileprivate var sections: [GridSection]
-    fileprivate var didSelect: DidSelectContentClosure
+    weak var delegate: GridCollectionViewDidSelectDelegate?
 
-    init(sections: [GridSection], didSelect: @escaping DidSelectContentClosure) {
+    init(sections: [GridSection]) {
         self.sections = sections
-        self.didSelect = didSelect
     }
 }
 
 // MARK: CollectionView delegate and dataSource
 extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let collection = collectionView as? GridCollectionView,
-            let currentSection = collection.section else { fatalError("Invalid collection") }
+        guard let collection = collectionView as? GridCollectionView else { fatalError("Invalid collection") }
 
-        let section = sections[currentSection]
+        return sections[collection.section].contentList.count
 
-        if section.contentList.isEmpty {
-            let center = CGPoint(x: collectionView.frame.width/2, y: collectionView.frame.height/2)
-
-            /// Spinner to give some feedback to the user while loading the json data (not the image)
-            let spinner = UIActivityIndicatorView(frame: CGRect(x: center.x, y: center.y, width: 50, height: 50))
-            spinner.color = .highlighted
-            spinner.hidesWhenStopped = true
-            collectionView.addSubview(spinner)
-
-            spinner.startAnimating()
-            loadContentList(using: section.target(1), mappingTo: GridContent.self) { [weak self] newContentList in
-                if let contentList = newContentList {
-                    self?.sections[currentSection].contentList.append(contentsOf: contentList)
-                    spinner.stopAnimating()
-                    collectionView.reloadData()
-                }
-            }
-        }
-        return section.contentList.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -61,12 +41,15 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
         let section = sections[collection.section]
         let content = section.contentList[indexPath.row]
 
-        let size: TMDbSize = (UIDevice.isIPad) ? .w500 : .w300
-        let orientation = section.layout.orientation
-        let imageUrl = content.imageURL(orientation: orientation, size: size)
+        let imageUrl = (section.layout.orientation == .portrait) ? content.gridPortraitImageUrl
+                                                                 : content.gridLandscapeImageUrl
+
+        //let size: TMDbSize = (UIDevice.isIPad) ? .w500 : .w300
+        //let orientation = section.layout.orientation
+        //let imageUrl: URL? //content.imageURL(orientation: orientation, size: size)
 
         /// If there is no image or the section should show the content's title the title will be set
-        let title =  (imageUrl == nil || section.showContentsTitle) ? content.title : nil
+        let title =  (imageUrl == nil || section.showContentsTitle) ? content.gridTitle : nil
 
         cell.setup(backgroundImageUrl: imageUrl, title: title)
 
@@ -76,10 +59,7 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let collection = collectionView as? GridCollectionView else { fatalError("Invalid collection") }
         let section = sections[collection.section]
-        let content = section.contentList[indexPath.row]
-
-        /// The class holding the delegate will be responsible to act when a content is selected
-        didSelect(content)
+        delegate?.didSelect(section: section, at: indexPath)
     }
 }
 

@@ -8,7 +8,6 @@
 
 import UIKit
 
-/// Data structure containing the grid layout specification
 public struct GridLayout {
     let tableViewHeight: CGFloat
     let orientation: GridOrientation

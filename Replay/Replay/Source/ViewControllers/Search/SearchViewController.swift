@@ -14,7 +14,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
 
     private var section: GridSection!
-    fileprivate var data = [SearchContent]()
+    fileprivate var contentList = [TMDbContent]()
 
     fileprivate var collectionHeaderTitle: String {
         if let text = searchBar.text, text.characters.count >= 3 {
@@ -41,8 +41,9 @@ class SearchViewController: UIViewController {
     }
 
     private func setupCollectionView() {
-        let nib = UINib(nibName: "GridCollectionViewCell", bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView.register(GridCollectionViewCell.nib,
+                                forCellWithReuseIdentifier: GridCollectionViewCell.identifier)
+
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -51,28 +52,36 @@ class SearchViewController: UIViewController {
         searchBar.delegate = self
     }
 
-    fileprivate func searchForContent(with keyword: String) {
-        let target = TMDbService.search(page: 1, query: keyword)
-        loadContentList(using: target, mappingTo: SearchContent.self) { [weak self] contentList in
-            if let loadedContent = contentList {
-                self?.reloadCollectionData(with: loadedContent)
+    fileprivate func search(with keyword: String) {
+        TMDbContent.find(with: keyword) { [weak self] searchResult in
+            if let contentList = searchResult {
+                self?.reload(using: contentList)
+            } else {
+                print("No contents with the keyword: \(keyword) were found at TMDb")
             }
         }
     }
 
-    fileprivate func loadDefaultContent() {
-        /// By default the search page will be laoded with the most popular movies
-        loadContentList(using: TMDbService.popularMovies(page: 1),
-                        mappingTo: GridContent.self) { [weak self] contentList in
-            if let loadedContent = contentList {
-                let searchContentList = loadedContent.flatMap { SearchContent($0, with: .movie) }
-                self?.reloadCollectionData(with: searchContentList)
+    fileprivate func loadInitialContent() {
+        /// The most popular movies will be used as initial content
+        Movie.loadList(.mostPopular) { [weak self] movies in
+            if let movies = movies {
+                self?.reload(using: movies)
+            } else {
+                print("Error while loading most popular movies")
             }
         }
+//        loadContentList(using: TMDbService.popularMovies(page: 1),
+//                        mappingTo: GridContent.self) { [weak self] contentList in
+//            if let loadedContent = contentList {
+//                let searchContentList = loadedContent.flatMap { SearchContent($0, with: .movie) }
+//                self?.reloadCollectionData(with: searchContentList)
+//            }
+//        }
     }
 
-    private func reloadCollectionData(with contentList: [SearchContent]?) {
-        data = contentList ?? []
+    private func reload(using contentList: [TMDbContent]) {
+        self.contentList = contentList
         collectionView.reloadData()
     }
 
@@ -81,19 +90,14 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.characters.count >= 3 {
-            searchForContent(with: searchText)
-        } else {
-            loadDefaultContent()
+            search(with: searchText)
         }
     }
 }
 
 extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if data.isEmpty {
-            loadDefaultContent()
-        }
-        return data.count
+        return contentList.count
     }
 
     func collectionView(_ collectionView: UICollectionView,
@@ -102,8 +106,8 @@ extension SearchViewController: UICollectionViewDataSource {
         let cell: GridCollectionViewCell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "CollectionViewCell", for: indexPath)
 
-        let currentData = data[indexPath.row]
-
+        //let content = contentList[indexPath.row]
+        //cell.setup(
         //cell.setup(description: nil, backgroundImageUrl: currentData.imageUrl, copyrightImage: nil)
 
         return cell
