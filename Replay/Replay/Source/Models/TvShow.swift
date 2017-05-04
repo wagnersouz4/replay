@@ -21,10 +21,31 @@ struct TvShow {
 
 // MARK: Load TvShow method
 extension TvShow {
+    enum Category {
+        case airing, mostPopular, topRated
+    }
+
     static func load(with tvShowId: Int, completion: @escaping (_: TvShow?) -> Void) {
         let service = TMDbService.tvShow(tvShowId: tvShowId)
         Networking.loadTMDbContent(using: service, mappingTo: self) { tvShow in
             completion(tvShow)
+        }
+    }
+
+    static func loadList(of category: Category, completion: @escaping (_: [TMDbContent]?) -> Void) {
+        var tmdbService: TMDbService
+
+        switch category {
+        case .mostPopular:
+            tmdbService = TMDbService.popularTvShows(page: 1)
+        case .airing:
+            tmdbService = TMDbService.tvShowsAiringToday(page: 1)
+        case .topRated:
+            tmdbService = TMDbService.topRatedTvShows(page: 1)
+        }
+
+        Networking.loadTMDbContentList(using: tmdbService, mappingTo: TMDbContent.self) { tvShows in
+            completion(tvShows)
         }
     }
 }

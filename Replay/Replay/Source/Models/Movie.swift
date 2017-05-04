@@ -28,9 +28,6 @@ struct Movie {
 
 // MARK: Load movie method
 extension Movie {
-
-    typealias TMDbClosure = (_: [TMDbContent]?) -> Void
-
     enum Category {
         case nowPlaying, mostPopular, upcoming, topRated
     }
@@ -43,10 +40,10 @@ extension Movie {
         }
     }
 
-    static func loadList(_ movieList: Category, completion: @escaping (_: [TMDbContent]?) -> Void) {
+    static func loadList(of category: Category, completion: @escaping (_: [TMDbContent]?) -> Void) {
         var tmdbService: TMDbService
 
-        switch movieList {
+        switch category {
         case .mostPopular:
             tmdbService = TMDbService.popularMovies(page: 1)
         case .nowPlaying:

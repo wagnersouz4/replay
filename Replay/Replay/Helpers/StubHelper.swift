@@ -1,5 +1,5 @@
 //
-//  Stub.swift
+//  StubHelper.swift
 //  Replay
 //
 //  Created by Wagner Souza on 25/03/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Stub {
+struct StubHelper {
     static func stubbedResponse(_ filename: String) -> Data {
         /// Searching for the file, if not found or the file is not recognized
         /// as a valid Base-64, returning an empty Data.

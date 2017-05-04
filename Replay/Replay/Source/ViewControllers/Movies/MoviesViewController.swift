@@ -10,7 +10,7 @@ import UIKit
 
 class MoviesViewController: UIViewController {
 
-    enum SectionIndex: Int, CustomStringConvertible {
+    enum MovieSection: Int, CustomStringConvertible {
         case inTheaters = 0
         case mostPopular, topRated, upcoming
 
@@ -29,10 +29,10 @@ class MoviesViewController: UIViewController {
     }
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var spinner: ReplayUIActivityIndicatorView!
 
-    private var tableViewDelegateDataSource: GridTableViewDelegateDataSource!
-    private var collectionViewDelegateDataSource: GridCollectionViewDelegateDataSource!
+    private var gridTableViewDelegateDataSource: GridTableViewDelegateDataSource!
+    private var gridCollectionViewDelegateDataSource: GridCollectionViewDelegateDataSource!
 
     private var landscapeLayout: GridLayout {
         return GridHelper(view).landscapeLayout
@@ -42,7 +42,7 @@ class MoviesViewController: UIViewController {
         return GridHelper(view).portraitLayout
     }
 
-    private var sections = [GridSection]()
+    private var sections: [GridSection]!
     private var totalSections: Int {
         return 4
     }
@@ -59,17 +59,15 @@ class MoviesViewController: UIViewController {
     private func configureUI() {
         /// Removing space between navigation bar and the tableView
         automaticallyAdjustsScrollViewInsets = false
-
         tableView.backgroundColor = .background
         view.backgroundColor = .background
-        defaultConfigurationFor(navigationController?.navigationBar)
         navigationItem.title = "Movies"
     }
 
-    private func loadContentForSection(_ index: SectionIndex) {
+    private func loadContentFor(section: MovieSection) {
         var category: Movie.Category
 
-        switch index {
+        switch section {
         case .inTheaters:
             category = .nowPlaying
         case .mostPopular:
@@ -80,12 +78,12 @@ class MoviesViewController: UIViewController {
             category = .upcoming
         }
 
-        Movie.loadList(category) { [weak self] movies in
+        Movie.loadList(of: category) { [weak self] movies in
             if let movies = movies {
-                self?.sections[index.rawValue].contentList = movies
+                self?.sections[section.rawValue].contentList = movies
                 self?.addLoadedSection()
             } else {
-                print("Error to load content for section: \(index.description)")
+                print("Error to load content for section: \(section.description)")
             }
         }
     }
@@ -98,17 +96,17 @@ class MoviesViewController: UIViewController {
     }
 
     private func showSectionsContent() {
-        collectionViewDelegateDataSource =
+        gridCollectionViewDelegateDataSource =
             GridCollectionViewDelegateDataSource(sections: sections)
 
-        collectionViewDelegateDataSource.delegate = self
+        gridCollectionViewDelegateDataSource.didSelectDelegate = self
 
-        tableViewDelegateDataSource =
+        gridTableViewDelegateDataSource =
             GridTableViewDelegateDataSource(
-            sections: sections, collectionViewDelegateDataSource:collectionViewDelegateDataSource)
+            sections: sections, collectionViewDelegateDataSource: gridCollectionViewDelegateDataSource)
 
-        tableView.delegate = tableViewDelegateDataSource
-        tableView.dataSource = tableViewDelegateDataSource
+        tableView.delegate = gridTableViewDelegateDataSource
+        tableView.dataSource = gridTableViewDelegateDataSource
         tableView.reloadData()
 
         spinner.stopAnimating()
@@ -116,26 +114,27 @@ class MoviesViewController: UIViewController {
 
     private func createSections() {
         /// Creating sections with no content
-        sections.append(GridSection(title: SectionIndex.inTheaters.description,
+        sections = [GridSection]()
+        sections.append(GridSection(title: MovieSection.inTheaters.description,
                                     layout: landscapeLayout,
                                     showContentsTitle: true))
 
-        sections.append(GridSection(title: SectionIndex.mostPopular.description,
+        sections.append(GridSection(title: MovieSection.mostPopular.description,
                                     layout: portraitLayout))
 
-        sections.append(GridSection(title: SectionIndex.topRated.description,
+        sections.append(GridSection(title: MovieSection.topRated.description,
                                     layout: portraitLayout))
 
-        sections.append(GridSection(title: SectionIndex.upcoming.description,
+        sections.append(GridSection(title: MovieSection.upcoming.description,
                                     layout: portraitLayout))
 
         /// Loading each section's content
         /// The spinner will stop when the content for every section has been loaded
         spinner.startAnimating()
-        loadContentForSection(.inTheaters)
-        loadContentForSection(.mostPopular)
-        loadContentForSection(.topRated)
-        loadContentForSection(.upcoming)
+        loadContentFor(section: .inTheaters)
+        loadContentFor(section: .mostPopular)
+        loadContentFor(section: .topRated)
+        loadContentFor(section: .upcoming)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

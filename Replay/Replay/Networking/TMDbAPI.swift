@@ -94,20 +94,20 @@ extension TMDbService: TargetType {
     var sampleData: Data {
         switch self {
         case .movie:
-            return Stub.stubbedResponse("Movie")
+            return StubHelper.stubbedResponse("Movie")
         case .popularMovies,
              .nowPlayingMovies,
              .upcomingMovies,
              .topRatedMovies:
-            return Stub.stubbedResponse("MovieIntro")
+            return StubHelper.stubbedResponse("MovieIntro")
         case .tvShow:
-            return Stub.stubbedResponse("TV")
+            return StubHelper.stubbedResponse("TV")
         case .popularTvShows, .topRatedTvShows, .tvShowsAiringToday:
-            return Stub.stubbedResponse("TVIntro")
+            return StubHelper.stubbedResponse("TVIntro")
         case .celebrities:
-            return Stub.stubbedResponse("Celebrities")
+            return StubHelper.stubbedResponse("Celebrities")
         case .search:
-            return Stub.stubbedResponse("Search")
+            return StubHelper.stubbedResponse("Search")
         }
     }
 

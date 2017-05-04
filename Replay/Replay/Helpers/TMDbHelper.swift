@@ -10,9 +10,7 @@ import Foundation
 import UIKit
 
 struct TMDbHelper {
-
     static func createImageURL(using path: String) -> URL {
-
         var urlString: String
 
         switch UIDevice.isIPad {

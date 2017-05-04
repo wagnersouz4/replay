@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol GridCollectionViewDidSelectDelegate:class {
+protocol GridCollectionViewDidSelectDelegate: class {
     func didSelect(section: GridSection, at indexPath: IndexPath)
 }
 
 class GridCollectionViewDelegateDataSource: NSObject {
 
     fileprivate var sections: [GridSection]
-    weak var delegate: GridCollectionViewDidSelectDelegate?
+    weak var didSelectDelegate: GridCollectionViewDidSelectDelegate?
 
     init(sections: [GridSection]) {
         self.sections = sections
@@ -59,7 +59,7 @@ extension GridCollectionViewDelegateDataSource: UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let collection = collectionView as? GridCollectionView else { fatalError("Invalid collection") }
         let section = sections[collection.section]
-        delegate?.didSelect(section: section, at: indexPath)
+        didSelectDelegate?.didSelect(section: section, at: indexPath)
     }
 }
 

@@ -64,7 +64,7 @@ class SearchViewController: UIViewController {
 
     fileprivate func loadInitialContent() {
         /// The most popular movies will be used as initial content
-        Movie.loadList(.mostPopular) { [weak self] movies in
+        Movie.loadList(of: .mostPopular) { [weak self] movies in
             if let movies = movies {
                 self?.reload(using: movies)
             } else {

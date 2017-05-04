@@ -22,6 +22,7 @@
 		3B77FE9D1E9EA3A3007524FE /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B77FE9C1E9EA3A3007524FE /* DateExtension.swift */; };
 		3B77FE9F1E9EA7AF007524FE /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B77FE9E1E9EA7AF007524FE /* UITableViewExtension.swift */; };
 		3B77FEA11E9EAE62007524FE /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B77FEA01E9EAE62007524FE /* UICollectionViewExtension.swift */; };
+		3B8D4A271EBB8F0C00CF2243 /* ReplayUINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8D4A261EBB8F0C00CF2243 /* ReplayUINavigationBar.swift */; };
 		3BAB454A1E7FEA21009E4E41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAB45491E7FEA21009E4E41 /* AppDelegate.swift */; };
 		3BAB45541E7FEA21009E4E41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BAB45521E7FEA21009E4E41 /* LaunchScreen.storyboard */; };
 		3BBE1A591E8CBB7200975AF7 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE1A581E8CBB7200975AF7 /* UIColorExtension.swift */; };
@@ -30,11 +31,10 @@
 		3BC6B5A11E85F7D90055F43F /* MovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6B5A01E85F7D90055F43F /* MovieTests.swift */; };
 		3BC6B5AB1E86E8B50055F43F /* MovieOMDbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC6B5AA1E86E8B50055F43F /* MovieOMDbTests.swift */; };
 		3BC6B6011E884A770055F43F /* Replay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BC6B6001E884A770055F43F /* Replay.storyboard */; };
-		3BDAE1BF1EA93CCF00C4C951 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAE1BE1EA93CCF00C4C951 /* NavigationBar.swift */; };
 		3BDAE1CA1EAD5B2D00C4C951 /* Movie.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BDAE1C71EAD5B2D00C4C951 /* Movie.json */; };
 		3BDAE1CB1EAD5B2D00C4C951 /* MovieIntro.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BDAE1C81EAD5B2D00C4C951 /* MovieIntro.json */; };
 		3BDAE1CC1EAD5B2D00C4C951 /* MovieOMDb.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BDAE1C91EAD5B2D00C4C951 /* MovieOMDb.json */; };
-		3BDAE1CE1EAD5B8300C4C951 /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAE1CD1EAD5B8300C4C951 /* Stub.swift */; };
+		3BDAE1CE1EAD5B8300C4C951 /* StubHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAE1CD1EAD5B8300C4C951 /* StubHelper.swift */; };
 		3BDAE1D01EAD5BC200C4C951 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAE1CF1EAD5BC200C4C951 /* URLExtension.swift */; };
 		3BDAE1E81EAD6F7500C4C951 /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDAE1E71EAD6F7500C4C951 /* JsonHelper.swift */; };
 		3BFE404F1EADA61C003F3DA9 /* UITableViewCellExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE404E1EADA61C003F3DA9 /* UITableViewCellExtenstion.swift */; };
@@ -96,6 +96,7 @@
 		3B77FE9C1E9EA3A3007524FE /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		3B77FE9E1E9EA7AF007524FE /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		3B77FEA01E9EAE62007524FE /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
+		3B8D4A261EBB8F0C00CF2243 /* ReplayUINavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayUINavigationBar.swift; sourceTree = "<group>"; };
 		3BAB45461E7FEA21009E4E41 /* Replay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Replay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAB45491E7FEA21009E4E41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BAB45531E7FEA21009E4E41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -107,11 +108,10 @@
 		3BC6B5A01E85F7D90055F43F /* MovieTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieTests.swift; sourceTree = "<group>"; };
 		3BC6B5AA1E86E8B50055F43F /* MovieOMDbTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieOMDbTests.swift; sourceTree = "<group>"; };
 		3BC6B6001E884A770055F43F /* Replay.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Replay.storyboard; sourceTree = "<group>"; };
-		3BDAE1BE1EA93CCF00C4C951 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		3BDAE1C71EAD5B2D00C4C951 /* Movie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Movie.json; sourceTree = "<group>"; };
 		3BDAE1C81EAD5B2D00C4C951 /* MovieIntro.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MovieIntro.json; sourceTree = "<group>"; };
 		3BDAE1C91EAD5B2D00C4C951 /* MovieOMDb.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MovieOMDb.json; sourceTree = "<group>"; };
-		3BDAE1CD1EAD5B8300C4C951 /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
+		3BDAE1CD1EAD5B8300C4C951 /* StubHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubHelper.swift; sourceTree = "<group>"; };
 		3BDAE1CF1EAD5BC200C4C951 /* URLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
 		3BDAE1E71EAD6F7500C4C951 /* JsonHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonHelper.swift; sourceTree = "<group>"; };
 		3BFE404E1EADA61C003F3DA9 /* UITableViewCellExtenstion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtenstion.swift; sourceTree = "<group>"; };
@@ -262,9 +262,8 @@
 			children = (
 				3BFE41251EAE47E4003F3DA9 /* GridHelper.swift */,
 				3BDAE1E71EAD6F7500C4C951 /* JsonHelper.swift */,
-				3BDAE1CD1EAD5B8300C4C951 /* Stub.swift */,
+				3BDAE1CD1EAD5B8300C4C951 /* StubHelper.swift */,
 				3BFFCAEE1EA5371100960737 /* TMDbHelper.swift */,
-				3BDAE1BE1EA93CCF00C4C951 /* NavigationBar.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -333,6 +332,7 @@
 				3BFE40D71EAE1DBF003F3DA9 /* TitleTextTableViewCell */,
 				3BFE40731EAE08C8003F3DA9 /* ReplayUITabBar.swift */,
 				3B5137891EB2EC4500F9CAE1 /* ReplayUIActivityIndicatorView.swift */,
+				3B8D4A261EBB8F0C00CF2243 /* ReplayUINavigationBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -694,7 +694,8 @@
 				3BBE1A591E8CBB7200975AF7 /* UIColorExtension.swift in Sources */,
 				3B011BC41E81C92500DDA24D /* APIKey.swift in Sources */,
 				3BFE410F1EAE2DD8003F3DA9 /* GridCollectionViewCell.swift in Sources */,
-				3BDAE1CE1EAD5B8300C4C951 /* Stub.swift in Sources */,
+				3BDAE1CE1EAD5B8300C4C951 /* StubHelper.swift in Sources */,
+				3B8D4A271EBB8F0C00CF2243 /* ReplayUINavigationBar.swift in Sources */,
 				3BDAE1E81EAD6F7500C4C951 /* JsonHelper.swift in Sources */,
 				3B77FE9F1E9EA7AF007524FE /* UITableViewExtension.swift in Sources */,
 				3BFE41111EAE2DD8003F3DA9 /* GridTableView.swift in Sources */,
@@ -711,7 +712,6 @@
 				3BFE41161EAE2E89003F3DA9 /* GridCollectionViewDelegateDataSource.swift in Sources */,
 				3BFE41171EAE2E89003F3DA9 /* GridTableViewDelegateDataSource.swift in Sources */,
 				3BFE40D31EAE1CD1003F3DA9 /* TvShowsViewController.swift in Sources */,
-				3BDAE1BF1EA93CCF00C4C951 /* NavigationBar.swift in Sources */,
 				3B4471711EAFC8FC00F1B1CD /* GridContentExtension.swift in Sources */,
 				3BFE408C1EAE08C8003F3DA9 /* ReplayUITabBar.swift in Sources */,
 				3B44716F1EAF8CAB00F1B1CD /* Networking.swift in Sources */,
