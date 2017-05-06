@@ -17,3 +17,12 @@ extension UITableViewCell: IdentifiableCell {
     class var identifier: String { return String(describing: self) }
     class var nib: UINib { return UINib(nibName: identifier, bundle: nil) }
 }
+
+extension UITableViewCell {
+    func asGridTableViewCell() -> GridTableViewCell {
+        guard let gridTableCell = self as? GridTableViewCell else {
+            fatalError("Error while casting:  \(self) to \(GridTableViewCell.self)")
+        }
+        return gridTableCell
+    }
+}

@@ -12,6 +12,9 @@
 		3B011BD61E824FDE00DDA24D /* GenreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B011BD51E824FDE00DDA24D /* GenreTests.swift */; };
 		3B011BDA1E837CA000DDA24D /* ProductionCompanyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B011BD91E837CA000DDA24D /* ProductionCompanyTests.swift */; };
 		3B011BDE1E83806E00DDA24D /* ProductionCountryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B011BDD1E83806E00DDA24D /* ProductionCountryTests.swift */; };
+		3B2A7DE31EBE1E5700AA0AB8 /* GridSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A7DE21EBE1E5700AA0AB8 /* GridSection.swift */; };
+		3B2A7DE71EBE1E8000AA0AB8 /* GridCollectionViewDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A7DE51EBE1E8000AA0AB8 /* GridCollectionViewDelegateDataSource.swift */; };
+		3B2A7DE81EBE1E8000AA0AB8 /* GridTableViewDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A7DE61EBE1E8000AA0AB8 /* GridTableViewDelegateDataSource.swift */; };
 		3B2EC01B1E81276D00435CA9 /* TMDbAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2EC01A1E81276D00435CA9 /* TMDbAPI.swift */; };
 		3B43BCEE1E838F3F00FBBB66 /* SpokenLanguageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B43BCED1E838F3F00FBBB66 /* SpokenLanguageTests.swift */; };
 		3B43BCF41E83A17900FBBB66 /* VideoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B43BCF31E83A17900FBBB66 /* VideoTests.swift */; };
@@ -47,8 +50,6 @@
 		3BFE408C1EAE08C8003F3DA9 /* ReplayUITabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE40731EAE08C8003F3DA9 /* ReplayUITabBar.swift */; };
 		3BFE40CE1EAE1CD1003F3DA9 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE40C61EAE1CD1003F3DA9 /* MovieDetailViewController.swift */; };
 		3BFE40CF1EAE1CD1003F3DA9 /* MoviesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE40C71EAE1CD1003F3DA9 /* MoviesViewController.swift */; };
-		3BFE40D01EAE1CD1003F3DA9 /* SearchCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE40C91EAE1CD1003F3DA9 /* SearchCollectionHeaderView.swift */; };
-		3BFE40D11EAE1CD1003F3DA9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE40CA1EAE1CD1003F3DA9 /* SearchViewController.swift */; };
 		3BFE40D21EAE1CD1003F3DA9 /* TvShowDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE40CC1EAE1CD1003F3DA9 /* TvShowDetailViewController.swift */; };
 		3BFE40D31EAE1CD1003F3DA9 /* TvShowsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE40CD1EAE1CD1003F3DA9 /* TvShowsViewController.swift */; };
 		3BFE40DA1EAE1DBF003F3DA9 /* TitleSubTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE40D51EAE1DBF003F3DA9 /* TitleSubTitleTableViewCell.swift */; };
@@ -61,8 +62,6 @@
 		3BFE41101EAE2DD8003F3DA9 /* GridCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BFE41081EAE2DD8003F3DA9 /* GridCollectionViewCell.xib */; };
 		3BFE41111EAE2DD8003F3DA9 /* GridTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE41091EAE2DD8003F3DA9 /* GridTableView.swift */; };
 		3BFE41121EAE2DD8003F3DA9 /* GridTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE410A1EAE2DD8003F3DA9 /* GridTableViewCell.swift */; };
-		3BFE41161EAE2E89003F3DA9 /* GridCollectionViewDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE41141EAE2E89003F3DA9 /* GridCollectionViewDelegateDataSource.swift */; };
-		3BFE41171EAE2E89003F3DA9 /* GridTableViewDelegateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE41151EAE2E89003F3DA9 /* GridTableViewDelegateDataSource.swift */; };
 		3BFE41261EAE47E4003F3DA9 /* GridHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFE41251EAE47E4003F3DA9 /* GridHelper.swift */; };
 		3BFFCAEF1EA5371100960737 /* TMDbHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFCAEE1EA5371100960737 /* TMDbHelper.swift */; };
 		5AF79E92BA3EEF475365AD94 /* Pods_ReplayTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 822D57B62D2E244CC118DC5C /* Pods_ReplayTests.framework */; };
@@ -86,6 +85,9 @@
 		3B011BD51E824FDE00DDA24D /* GenreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenreTests.swift; sourceTree = "<group>"; };
 		3B011BD91E837CA000DDA24D /* ProductionCompanyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductionCompanyTests.swift; sourceTree = "<group>"; };
 		3B011BDD1E83806E00DDA24D /* ProductionCountryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductionCountryTests.swift; sourceTree = "<group>"; };
+		3B2A7DE21EBE1E5700AA0AB8 /* GridSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridSection.swift; sourceTree = "<group>"; };
+		3B2A7DE51EBE1E8000AA0AB8 /* GridCollectionViewDelegateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridCollectionViewDelegateDataSource.swift; sourceTree = "<group>"; };
+		3B2A7DE61EBE1E8000AA0AB8 /* GridTableViewDelegateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTableViewDelegateDataSource.swift; sourceTree = "<group>"; };
 		3B2EC01A1E81276D00435CA9 /* TMDbAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDbAPI.swift; sourceTree = "<group>"; };
 		3B43BCED1E838F3F00FBBB66 /* SpokenLanguageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpokenLanguageTests.swift; sourceTree = "<group>"; };
 		3B43BCF31E83A17900FBBB66 /* VideoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoTests.swift; sourceTree = "<group>"; };
@@ -124,8 +126,6 @@
 		3BFE40731EAE08C8003F3DA9 /* ReplayUITabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayUITabBar.swift; sourceTree = "<group>"; };
 		3BFE40C61EAE1CD1003F3DA9 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		3BFE40C71EAE1CD1003F3DA9 /* MoviesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesViewController.swift; sourceTree = "<group>"; };
-		3BFE40C91EAE1CD1003F3DA9 /* SearchCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCollectionHeaderView.swift; sourceTree = "<group>"; };
-		3BFE40CA1EAE1CD1003F3DA9 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		3BFE40CC1EAE1CD1003F3DA9 /* TvShowDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowDetailViewController.swift; sourceTree = "<group>"; };
 		3BFE40CD1EAE1CD1003F3DA9 /* TvShowsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TvShowsViewController.swift; sourceTree = "<group>"; };
 		3BFE40D51EAE1DBF003F3DA9 /* TitleSubTitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleSubTitleTableViewCell.swift; sourceTree = "<group>"; };
@@ -138,8 +138,6 @@
 		3BFE41081EAE2DD8003F3DA9 /* GridCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GridCollectionViewCell.xib; sourceTree = "<group>"; };
 		3BFE41091EAE2DD8003F3DA9 /* GridTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTableView.swift; sourceTree = "<group>"; };
 		3BFE410A1EAE2DD8003F3DA9 /* GridTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTableViewCell.swift; sourceTree = "<group>"; };
-		3BFE41141EAE2E89003F3DA9 /* GridCollectionViewDelegateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridCollectionViewDelegateDataSource.swift; sourceTree = "<group>"; };
-		3BFE41151EAE2E89003F3DA9 /* GridTableViewDelegateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridTableViewDelegateDataSource.swift; sourceTree = "<group>"; };
 		3BFE41251EAE47E4003F3DA9 /* GridHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridHelper.swift; sourceTree = "<group>"; };
 		3BFFCAEE1EA5371100960737 /* TMDbHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDbHelper.swift; sourceTree = "<group>"; };
 		822D57B62D2E244CC118DC5C /* Pods_ReplayTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReplayTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,6 +198,23 @@
 				3BBE1A5A1E8CC84400975AF7 /* IntroContentTests.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		3B2A7DE11EBE1E4F00AA0AB8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3B2A7DE21EBE1E5700AA0AB8 /* GridSection.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3B2A7DE41EBE1E8000AA0AB8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3B2A7DE51EBE1E8000AA0AB8 /* GridCollectionViewDelegateDataSource.swift */,
+				3B2A7DE61EBE1E8000AA0AB8 /* GridTableViewDelegateDataSource.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		3B2EC0191E81275100435CA9 /* Networking */ = {
@@ -341,7 +356,6 @@
 			isa = PBXGroup;
 			children = (
 				3BFE40C51EAE1CD1003F3DA9 /* Movies */,
-				3BFE40C81EAE1CD1003F3DA9 /* Search */,
 				3BFE40CB1EAE1CD1003F3DA9 /* TvShows */,
 			);
 			path = ViewControllers;
@@ -354,15 +368,6 @@
 				3BFE40C71EAE1CD1003F3DA9 /* MoviesViewController.swift */,
 			);
 			path = Movies;
-			sourceTree = "<group>";
-		};
-		3BFE40C81EAE1CD1003F3DA9 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				3BFE40C91EAE1CD1003F3DA9 /* SearchCollectionHeaderView.swift */,
-				3BFE40CA1EAE1CD1003F3DA9 /* SearchViewController.swift */,
-			);
-			path = Search;
 			sourceTree = "<group>";
 		};
 		3BFE40CB1EAE1CD1003F3DA9 /* TvShows */ = {
@@ -411,7 +416,8 @@
 		3BFE40FE1EAE2DD8003F3DA9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				3BFE41131EAE2E89003F3DA9 /* View Controllers */,
+				3B2A7DE41EBE1E8000AA0AB8 /* ViewControllers */,
+				3B2A7DE11EBE1E4F00AA0AB8 /* Models */,
 				3BFE41041EAE2DD8003F3DA9 /* Views */,
 			);
 			path = Source;
@@ -435,15 +441,6 @@
 				3BFE41081EAE2DD8003F3DA9 /* GridCollectionViewCell.xib */,
 			);
 			path = GridCollectionViewCell;
-			sourceTree = "<group>";
-		};
-		3BFE41131EAE2E89003F3DA9 /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				3BFE41141EAE2E89003F3DA9 /* GridCollectionViewDelegateDataSource.swift */,
-				3BFE41151EAE2E89003F3DA9 /* GridTableViewDelegateDataSource.swift */,
-			);
-			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		696448FB8DE1FC8088CB4FB5 /* Pods */ = {
@@ -690,12 +687,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BAB454A1E7FEA21009E4E41 /* AppDelegate.swift in Sources */,
-				3BFE40D01EAE1CD1003F3DA9 /* SearchCollectionHeaderView.swift in Sources */,
 				3BBE1A591E8CBB7200975AF7 /* UIColorExtension.swift in Sources */,
 				3B011BC41E81C92500DDA24D /* APIKey.swift in Sources */,
 				3BFE410F1EAE2DD8003F3DA9 /* GridCollectionViewCell.swift in Sources */,
 				3BDAE1CE1EAD5B8300C4C951 /* StubHelper.swift in Sources */,
 				3B8D4A271EBB8F0C00CF2243 /* ReplayUINavigationBar.swift in Sources */,
+				3B2A7DE81EBE1E8000AA0AB8 /* GridTableViewDelegateDataSource.swift in Sources */,
 				3BDAE1E81EAD6F7500C4C951 /* JsonHelper.swift in Sources */,
 				3B77FE9F1E9EA7AF007524FE /* UITableViewExtension.swift in Sources */,
 				3BFE41111EAE2DD8003F3DA9 /* GridTableView.swift in Sources */,
@@ -704,13 +701,11 @@
 				3BFFCAEF1EA5371100960737 /* TMDbHelper.swift in Sources */,
 				3BDAE1D01EAD5BC200C4C951 /* URLExtension.swift in Sources */,
 				3B77FEA11E9EAE62007524FE /* UICollectionViewExtension.swift in Sources */,
+				3B2A7DE31EBE1E5700AA0AB8 /* GridSection.swift in Sources */,
 				3B2EC01B1E81276D00435CA9 /* TMDbAPI.swift in Sources */,
 				3BFE40D21EAE1CD1003F3DA9 /* TvShowDetailViewController.swift in Sources */,
 				3BFE40CE1EAE1CD1003F3DA9 /* MovieDetailViewController.swift in Sources */,
-				3BFE40D11EAE1CD1003F3DA9 /* SearchViewController.swift in Sources */,
 				3BFE40831EAE08C8003F3DA9 /* Movie.swift in Sources */,
-				3BFE41161EAE2E89003F3DA9 /* GridCollectionViewDelegateDataSource.swift in Sources */,
-				3BFE41171EAE2E89003F3DA9 /* GridTableViewDelegateDataSource.swift in Sources */,
 				3BFE40D31EAE1CD1003F3DA9 /* TvShowsViewController.swift in Sources */,
 				3B4471711EAFC8FC00F1B1CD /* GridContentExtension.swift in Sources */,
 				3BFE408C1EAE08C8003F3DA9 /* ReplayUITabBar.swift in Sources */,
@@ -722,6 +717,7 @@
 				3BFE40DA1EAE1DBF003F3DA9 /* TitleSubTitleTableViewCell.swift in Sources */,
 				3B011BC91E81F12A00DDA24D /* MoyaResponseExtension.swift in Sources */,
 				3BFE40CF1EAE1CD1003F3DA9 /* MoviesViewController.swift in Sources */,
+				3B2A7DE71EBE1E8000AA0AB8 /* GridCollectionViewDelegateDataSource.swift in Sources */,
 				3BFE404F1EADA61C003F3DA9 /* UITableViewCellExtenstion.swift in Sources */,
 				3BFE41121EAE2DD8003F3DA9 /* GridTableViewCell.swift in Sources */,
 				3B51378A1EB2EC4500F9CAE1 /* ReplayUIActivityIndicatorView.swift in Sources */,

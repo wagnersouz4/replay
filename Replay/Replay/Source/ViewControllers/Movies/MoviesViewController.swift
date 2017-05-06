@@ -31,8 +31,8 @@ class MoviesViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var spinner: ReplayUIActivityIndicatorView!
 
-    private var gridTableViewDelegateDataSource: GridTableViewDelegateDataSource!
-    private var gridCollectionViewDelegateDataSource: GridCollectionViewDelegateDataSource!
+    private var gridTableDelegateDataSource: GridTableViewDelegateDataSource!
+    private var gridCollectionDelegateDataSource: GridCollectionViewDelegateDataSource!
 
     private var landscapeLayout: GridLayout {
         return GridHelper(view).landscapeLayout
@@ -53,6 +53,8 @@ class MoviesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureGridComponent()
+        configureTableView()
         createSections()
     }
 
@@ -64,21 +66,32 @@ class MoviesViewController: UIViewController {
         navigationItem.title = "Movies"
     }
 
+    private func configureGridComponent() {
+        gridCollectionDelegateDataSource = GridCollectionViewDelegateDataSource()
+        gridTableDelegateDataSource = GridTableViewDelegateDataSource()
+        gridTableDelegateDataSource.setCollectionDelegateDataSource(gridCollectionDelegateDataSource)
+    }
+
+    private func configureTableView() {
+        tableView.delegate = gridTableDelegateDataSource
+        tableView.dataSource = gridTableDelegateDataSource
+    }
+
     private func loadContentFor(section: MovieSection) {
-        var category: Movie.Category
+        var service: ServiceType
 
         switch section {
         case .inTheaters:
-            category = .nowPlaying
+            service = .nowPlayingMovies
         case .mostPopular:
-            category = .mostPopular
+            service = .popularMovies
         case .topRated:
-            category = .topRated
+            service = .topRatedMovies
         case .upcoming:
-            category = .upcoming
+            service = .upcomingMovies
         }
 
-        Movie.loadList(of: category) { [weak self] movies in
+        Networking.loadList(using: service) { [weak self] movies in
             if let movies = movies {
                 self?.sections[section.rawValue].contentList = movies
                 self?.addLoadedSection()
@@ -96,19 +109,9 @@ class MoviesViewController: UIViewController {
     }
 
     private func showSectionsContent() {
-        gridCollectionViewDelegateDataSource =
-            GridCollectionViewDelegateDataSource(sections: sections)
-
-        gridCollectionViewDelegateDataSource.didSelectDelegate = self
-
-        gridTableViewDelegateDataSource =
-            GridTableViewDelegateDataSource(
-            sections: sections, collectionViewDelegateDataSource: gridCollectionViewDelegateDataSource)
-
-        tableView.delegate = gridTableViewDelegateDataSource
-        tableView.dataSource = gridTableViewDelegateDataSource
+        gridCollectionDelegateDataSource.setSection(sections)
+        gridTableDelegateDataSource.setSections(sections)
         tableView.reloadData()
-
         spinner.stopAnimating()
     }
 
@@ -138,13 +141,13 @@ class MoviesViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let movieId = sender as? Int else { fatalError("A movie must have an id!")}
-
-        guard let movieVC = segue.destination as? MovieDetailViewController else {
-            fatalError("The destination ViewController must be MovieDetailViewController")
-        }
-
-        movieVC.movieId = movieId
+//        guard let movieId = sender as? Int else { fatalError("A movie must have an id!")}
+//
+//        guard let movieVC = segue.destination as? MovieDetailViewController else {
+//            fatalError("The destination ViewController must be MovieDetailViewController")
+//        }
+//
+//        movieVC.movieId = movieId
     }
 }
 

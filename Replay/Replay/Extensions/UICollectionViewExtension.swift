@@ -30,4 +30,11 @@ extension UICollectionView {
 
         return reusableView
     }
+
+    func asGridCollectionView() -> GridCollectionView {
+        guard let gridCollectionView = self as? GridCollectionView else {
+            fatalError("Error while casting: \(self) to \(GridCollectionView.self)")
+        }
+        return gridCollectionView
+    }
 }

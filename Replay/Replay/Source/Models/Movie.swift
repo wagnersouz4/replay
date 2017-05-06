@@ -26,40 +26,6 @@ struct Movie {
     var runtime: Int
 }
 
-// MARK: Load movie method
-extension Movie {
-    enum Category {
-        case nowPlaying, mostPopular, upcoming, topRated
-    }
-
-    /// Load a movie using from TMDb
-    static func load(with movieId: Int, completion: @escaping (_: Movie?) -> Void) {
-        let tmdbMovieService = TMDbService.movie(movieId: movieId)
-        Networking.loadTMDbContent(using: tmdbMovieService, mappingTo: self) { movie in
-            completion(movie)
-        }
-    }
-
-    static func loadList(of category: Category, completion: @escaping (_: [TMDbContent]?) -> Void) {
-        var tmdbService: TMDbService
-
-        switch category {
-        case .mostPopular:
-            tmdbService = TMDbService.popularMovies(page: 1)
-        case .nowPlaying:
-            tmdbService = TMDbService.nowPlayingMovies(page: 1)
-        case .topRated:
-            tmdbService = TMDbService.topRatedMovies(page: 1)
-        case .upcoming:
-            tmdbService = TMDbService.upcomingMovies(page: 1)
-        }
-
-        Networking.loadTMDbContentList(using: tmdbService, mappingTo: TMDbContent.self) { movies in
-            completion(movies)
-        }
-    }
-}
-
 // MARK: Conforming to JSONable
 extension Movie: JSONable {
     init?(json: JSONDictionary) {

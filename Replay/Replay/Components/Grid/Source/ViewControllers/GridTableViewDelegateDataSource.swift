@@ -8,42 +8,21 @@
 
 import UIKit
 
-protocol GriddableContent {
-    var identifier: Any? { get }
-    var gridPortraitImageUrl: URL? { get }
-    var gridLandscapeImageUrl: URL? { get }
-    var gridTitle: String { get }
-}
-
-struct GridSection {
-
-    let title: String
-    let layout: GridLayout
-    var contentList: [GriddableContent]
-    let showContentsTitle: Bool
-
-    init(title: String, layout: GridLayout, contentList: [GriddableContent], showContentsTitle: Bool = false) {
-        self.contentList = contentList
-        self.layout = layout
-        self.title = title
-        self.showContentsTitle = showContentsTitle
-    }
-
-    init(title: String, layout: GridLayout, showContentsTitle: Bool = false) {
-        self.contentList = []
-        self.layout = layout
-        self.title = title
-        self.showContentsTitle = showContentsTitle
-    }
-}
-
 class GridTableViewDelegateDataSource: NSObject {
-    fileprivate var sections: [GridSection]!
+    fileprivate var sections: [GridSection]
     fileprivate weak var collectionViewDelegateDataSource: GridCollectionViewDelegateDataSource?
 
-    init(sections: [GridSection], collectionViewDelegateDataSource: GridCollectionViewDelegateDataSource) {
+    override init() {
+        sections = []
+        super.init()
+    }
+
+    func setSections(_ sections: [GridSection]) {
         self.sections = sections
-        self.collectionViewDelegateDataSource = collectionViewDelegateDataSource
+    }
+
+    func setCollectionDelegateDataSource(_ delegateDataSource: GridCollectionViewDelegateDataSource) {
+        collectionViewDelegateDataSource = delegateDataSource
     }
 }
 
@@ -81,9 +60,9 @@ extension GridTableViewDelegateDataSource: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let tableViewCell = cell as? GridTableViewCell else { fatalError("Invalid Table Cell") }
+        let gridTableCell = cell.asGridTableViewCell()
         if let delegateDataSource = collectionViewDelegateDataSource {
-        tableViewCell.setCollectionView(dataSource: delegateDataSource,
+        gridTableCell.setCollectionView(dataSource: delegateDataSource,
                                         delegate: delegateDataSource,
                                         section: indexPath.section)
         }

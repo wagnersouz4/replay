@@ -22,16 +22,6 @@ struct TMDbContent {
     var backdropImagePath: String?
 }
 
-// MARK: Find content method
-extension TMDbContent {
-    static func find(with keyword: String, page: Int = 1, completion: @escaping (_: [TMDbContent]?) -> Void) {
-        let tmdbSearchService = TMDbService.search(page: page, query: keyword)
-        Networking.loadTMDbContentList(using: tmdbSearchService, mappingTo: self) { contentList in
-            completion(contentList)
-        }
-    }
-}
-
 // MARK: JSONable conformance
 extension TMDbContent: JSONable {
     init?(json: JSONDictionary) {

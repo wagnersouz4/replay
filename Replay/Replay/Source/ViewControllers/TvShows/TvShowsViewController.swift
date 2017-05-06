@@ -29,8 +29,8 @@ class TvShowsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var spinner: ReplayUIActivityIndicatorView!
 
-    private var tableViewDelegateDataSource: GridTableViewDelegateDataSource!
-    private var collectionViewDelegateDataSource: GridCollectionViewDelegateDataSource!
+    private var gridTableDelegateDataSource: GridTableViewDelegateDataSource!
+    private var gridCollectionDelegateDataSource: GridCollectionViewDelegateDataSource!
 
     private var landscapeLayout: GridLayout {
         return GridHelper(view).landscapeLayout
@@ -50,6 +50,8 @@ class TvShowsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureGridComponent()
+        configureTableView()
         createSections()
     }
 
@@ -58,6 +60,17 @@ class TvShowsViewController: UIViewController {
         tableView.backgroundColor = .background
         view.backgroundColor = .background
         navigationItem.title = "Tv Show"
+    }
+
+    private func configureGridComponent() {
+        gridCollectionDelegateDataSource = GridCollectionViewDelegateDataSource()
+        gridTableDelegateDataSource = GridTableViewDelegateDataSource()
+        gridTableDelegateDataSource.setCollectionDelegateDataSource(gridCollectionDelegateDataSource)
+    }
+
+    private func configureTableView() {
+        tableView.delegate = gridTableDelegateDataSource
+        tableView.dataSource = gridTableDelegateDataSource
     }
 
     private func createSections() {
@@ -79,18 +92,18 @@ class TvShowsViewController: UIViewController {
     }
 
     private func loadContentFor(section: TvShowSection) {
-        let category: TvShow.Category
+        let service: ServiceType
 
         switch section {
         case .airing:
-            category = .airing
+            service = .airingTvShows
         case .mostPopular:
-            category = .mostPopular
+            service = .popularTvShows
         case .topRated:
-            category = .topRated
+            service = .topRatedTvShows
         }
 
-        TvShow.loadList(of: category) { [weak self] tvShows in
+        Networking.loadList(using: service) { [weak self] tvShows in
             if let tvShows = tvShows {
                 self?.sections[section.rawValue].contentList = tvShows
                 self?.addLoadedSection()
@@ -105,18 +118,12 @@ class TvShowsViewController: UIViewController {
         if loadedSections == totalSections {
             showSectionsContent()
         }
-
     }
 
     private func showSectionsContent() {
-        collectionViewDelegateDataSource = GridCollectionViewDelegateDataSource(sections: sections)
-        tableViewDelegateDataSource = GridTableViewDelegateDataSource(
-            sections: sections, collectionViewDelegateDataSource: collectionViewDelegateDataSource)
-
-        tableView.delegate = tableViewDelegateDataSource
-        tableView.dataSource = tableViewDelegateDataSource
+        gridTableDelegateDataSource.setSections(sections)
+        gridCollectionDelegateDataSource.setSection(sections)
         tableView.reloadData()
-
         spinner.stopAnimating()
     }
 }
