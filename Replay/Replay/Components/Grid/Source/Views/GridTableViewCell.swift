@@ -64,7 +64,7 @@ private extension GridTableViewCell {
 // MARK: Setting collection data source, delegate and section
 extension GridTableViewCell {
     /// This method will be called in the TableViewController's tableView(_:willDisplay:forRowAt:)
-    func setCollectionView(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate, section: Int) {
+    func setCollectionView(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate?, section: Int) {
 
         if collectionView.section == nil {
             collectionView.section = section

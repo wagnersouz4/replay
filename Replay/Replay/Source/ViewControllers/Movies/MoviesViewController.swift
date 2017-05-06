@@ -68,6 +68,7 @@ class MoviesViewController: UIViewController {
 
     private func configureGridComponent() {
         gridCollectionDelegateDataSource = GridCollectionViewDelegateDataSource()
+        gridCollectionDelegateDataSource.didSelectDelegate = self
         gridTableDelegateDataSource = GridTableViewDelegateDataSource()
         gridTableDelegateDataSource.setCollectionDelegateDataSource(gridCollectionDelegateDataSource)
     }
@@ -141,18 +142,19 @@ class MoviesViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard let movieId = sender as? Int else { fatalError("A movie must have an id!")}
-//
-//        guard let movieVC = segue.destination as? MovieDetailViewController else {
-//            fatalError("The destination ViewController must be MovieDetailViewController")
-//        }
-//
-//        movieVC.movieId = movieId
+        guard let movieId = sender as? Int else { fatalError("A movie must have an id!")}
+
+        guard let movieVC = segue.destination as? MovieDetailsViewController else {
+            fatalError("The destination ViewController must be type of \(MovieDetailsViewController.self)")
+        }
+
+        movieVC.movieId = movieId
     }
 }
 
 extension MoviesViewController: GridCollectionViewDidSelectDelegate {
     func didSelect(section: GridSection, at indexPath: IndexPath) {
+        /// Needs a refactor in order to remove the memory leaks, as loading the details is generating memory leaks
         let movie = section.contentList[indexPath.row]
         performSegue(withIdentifier: "MovieDetailSegue", sender: movie.identifier)
     }

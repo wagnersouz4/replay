@@ -147,10 +147,10 @@
             </objects>
             <point key="canvasLocation" x="-3889" y="-1890"/>
         </scene>
-        <!--Movie Detail View Controller-->
+        <!--Movie Details View Controller-->
         <scene sceneID="Pap-ZO-wqx">
             <objects>
-                <viewController storyboardIdentifier="MovieDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qRd-xJ-ES3" customClass="MovieDetailViewController" customModule="Replay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qRd-xJ-ES3" customClass="MovieDetailsViewController" customModule="Replay" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aGy-FH-okS"/>
                         <viewControllerLayoutGuide type="bottom" id="ktl-J7-FmD"/>
@@ -163,7 +163,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nf5-g3-lCw">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="nf5-g3-lCw" customClass="ReplayUIActivityIndicatorView" customModule="Replay" customModuleProvider="target">
                                 <rect key="frame" x="137" y="283" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="RTW-KQ-I10"/>
